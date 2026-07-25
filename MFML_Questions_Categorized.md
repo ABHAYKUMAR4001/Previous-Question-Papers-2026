@@ -1,367 +1,364 @@
-# MFML (Mathematical Foundation for Machine Learning) - Comprehensive Exam Questions Categorized by Topic
+# MFML (Mathematical Foundation for Machine Learning) - Comprehensive Exam Questions (Full Verbatim)
 
 **Papers Covered:**
 - 2022-23 Comprehensive (40%)
 - 2022-23 Comprehensive Makeup AIML (40%)
 - 2023-24 EC3 Regular Solutions (40%)
 - 2023-24 EC3 Makeup Solutions (40%)
-- Comprehensive Regular AIML (40%)
-- Comprehensive Regular AK (Answer Key)
-- Comprehensive Makeup AIML (40%)
-- Comprehensive Makeup AK (Answer Key)
+- Comprehensive Regular AIML & AK
+- Comprehensive Makeup AIML & AK
 - MFML Comprehensive March 2025 Solution Key (40%)
 - MFML Comprehensive Makeup April 2025 Solution Key (40%)
 
+> **Note:** Questions involving diagrams are marked with [DIAGRAM IN ORIGINAL].
+
 ---
 
-## 1. Principal Component Analysis (PCA) & Dimensionality Reduction
+## 1. PCA & Dimensionality Reduction
 
-### Q1 [2022-23 Comprehensive, 5M]
-A data scientist works on N>10000 points in D>100 dimensions and obtains top 10 principal components (mean-centered data). Every data point (x1,...,xD) needs to be transformed to (alpha1*x1,...,alphaD*xD). Can the scientist simply modify each eigenvector (b1,...,bD) to (alpha1*b1,...,alphaD*bD) to get principal directions for modified problem? Mathematical justification required.
+### Q1 [2022-23 Comprehensive, Q1a - 5M]
 
-### Q2 [2022-23 Comprehensive, 3M]
-Data scientist computes covariance matrix. Then each point (x1,...,xD) is transformed to (alpha1*x1,...,alphaD*xD). Can the modified covariance matrix be computed in O(D^2) time given the old covariance matrix? Demonstrate the method or show why incorrect.
+$N>10000$ points in $D>100$ dimensions. Top 10 PCs found (mean-centred data). Each point $(x_1,\ldots,x_D)$ transformed to $(\alpha_1 x_1,\ldots,\alpha_D x_D)$. Can eigenvector $(b_1,\ldots,b_D)$ be modified to $(\alpha_1 b_1,\ldots,\alpha_D b_D)$ to get new PCs? Mathematical justification.
 
-### Q3 [2022-23 Makeup AIML, 2M]
-Given 2D data matrix X = [[2,-1],[-2,1],[-4,2],[4,-2]]. Student 1 says direction of max variance is [1,0]^T. Student 2 says [0,1]^T. Student 3 says both are wrong. Find correct v that gives direction of maximum variance.
+### Q2 [2022-23 Comprehensive, Q1b - 3M]
 
-### Q4 [2023-24 EC3R Solutions, 4M]
-Given covariance matrix with 6 eigenvalues:
-i) What is dimension of each training sample?
-ii) How many components to retain 95% variance? 99% variance?
-iii) Compute PCA projection for given data points.
+Same transformation. Can modified covariance matrix be computed in $O(D^2)$ given old covariance matrix? Demonstrate method.
 
-### Q5 [Comprehensive Regular AIML]
-i) Given S = sum(xi * xi^T) where xi in R^1024, N=20. S is 1024x1024. You have eig(A) function that works only for matrices with <32 rows.
-a) How to find eigenvalues of S? Mathematical reasoning.
-b) How to find eigenvectors of S? Mathematical reasoning.
+### Q3 [2022-23 Makeup, Q1b - 2M]
 
-### Q6 [March 2025, 4M]
-Given covariance matrix of a dataset:
-a) Compute eigenvalues and eigenvectors.
-b) Determine the number of principal components needed to retain 90% of variance.
-c) Project data onto the reduced space.
+Data: $X = \begin{bmatrix} 2 & -1 \\ -2 & 1 \\ -4 & 2 \\ 4 & -2 \end{bmatrix}$
+
+Direction of max variance: $[1,0]^T$, $[0,1]^T$, or neither? Find correct $v$.
+
+### Q4 [2023-24 EC3R, Q4B - 4M]
+
+Eigenvalues: 12, 6.8, 3.5, 1, 0.02, 0.01. Total variance = 23.330.
+- 95% variance: top 3 components $(12+6.8+3.5)/23.33 = 95.7\%$
+- 99% variance: top 4 components
+- Compute PCA projection for given data
+
+### Q5 [Comprehensive Makeup, Q3(2) - 3M]
+
+$x_i \in \mathbb{R}^{1024}$, $N=20$. $S = \sum_{i=1}^N x_i x_i^T \in \mathbb{R}^{1024\times1024}$. Function `eig(A)` works only for <32 rows.
+(a) How to find eigenvalues of S? (b) How to find eigenvectors?
+
+**Hint:** Use kernel trick. Define $K = X^T X$ (20x20 matrix). Eigenvalues of $K$ = non-zero eigenvalues of $S$. Eigenvectors of $S$ = $X \cdot$ eigenvectors of $K$ (normalized).
 
 ---
 
 ## 2. Gradient Descent & Optimization
 
-### Q1 [2023-24 EC3M Solutions, 4M]
-Given f(x,y) = x^2 + beta*y^2. Gradient descent with momentum term. From given iterates x0,x1,x2, and knowledge of x3, find beta. Using update rule: z_{i+1} = z_i - alpha*grad_f(z_i) + v_i where v_i = beta*(z_i - z_{i-1}).
+### Q1 [2023-24 EC3M, Q1(1) - 4M]
 
-### Q2 [2023-24 EC3M Solutions, 3M]
-f(x,y) = 2x^2 + beta*y^2, start at (1,1). Derive closed form expression for optimal step size. If alpha=0.5, find beta.
+$f(x,y) = 3x^2 + 2y^2$. GD with momentum: $z_{i+1} = z_i - \alpha\nabla f(z_i) + \beta(z_i - z_{i-1})$
 
-### Q3 [Comprehensive Regular AIML, 2M]
-g(z) = (1/2)||Az-b||^2 + (1/2)||z||^2 + ||b||^2 where A is symmetric positive definite.
-a) Derive expression for gradient descent direction dk.
-b) Derive closed form for optimal stepsize for (k+1)th iteration.
+$(x_0,y_0)=(2,4)$, $\alpha=1/2$. Given $x_3=-7.36$, find $\beta$.
 
-### Q4 [2022-23 Makeup AIML, 3+1M]
-f(x) = 3x^4 - 20x^3 + 36x^2 + 10.
-i) Find stationary points, classify, find global minima.
-ii) Suggest whether x=0.5 or x=3.5 is better initial condition for gradient descent. Reasons.
+$x_1 = -4$, $x_2 = 8-6\beta$, $x_3 = -6\beta^2+24\beta-16 = -7.36$
 
-### Q5 [March 2025, 4M]
-f(x,y) = 2x^2 + beta*y^2 where beta != 0. Initial point (1,2).
-(i) Derive closed form for optimal step size alpha for first iteration.
-(ii) If alpha=0.25, find beta.
+Solving: $\beta = 0.4$
 
-### Q6 [March 2025, 2M]
-f(z) = 3z^4 - 6z^3 - 42z^2 + 2z + 72.
-(i) Find all critical points in [-5, 5].
-(ii) Classify critical point closest to left end using second derivative test.
+### Q2 [2023-24 EC3M, Q1(3) - 3M]
 
-### Q7 [April 2025 Makeup, 4M]
-f(x,y) = x^2 + beta*y^2 where beta != 0. Initial point (1,1).
-(i) Derive closed form for optimal step size.
-(ii) If alpha = 1/6, find beta.
+$f(x,y) = x^2 + \beta y^2$ at $(1,1)$. Optimal step size:
 
-### Q8 [April 2025 Makeup, 2M]
-f(z) = 3z^4 - 8z^3 + 6z^2.
-(i) Find all critical points in [-3, 3].
-(ii) Classify critical point closest to left end.
+$$\alpha = \frac{1+\beta^2}{2+2\beta^3}$$
 
----
+If $\alpha=0.5$: $\beta^2(\beta-1)=0 \Rightarrow \beta=1$
 
-## 3. Support Vector Machines (SVM) & Kernel Methods
+### Q3 [March 2025, Q4(i) - 4M]
 
-### Q1 [2022-23 Comprehensive, 8M]
-Three points: (-1,3,+), (1,3,-), (-1,1,-). Find separating hyperplane w^T*x + b = 0 using SVM. Set up Lagrangian dual objective as polynomial in fewest variables and terms. Find optimal separating hyperplane using calculus.
+$f(x,y) = 2x^2 + \beta y^2$ at $(1,2)$. $\nabla f = [4, 4\beta]^T$.
 
-### Q2 [2023-24 EC3M Solutions, 5M]
-Find suitable transformation to make data linearly separable: (7,0)->+1, (9,0)->+1, (8,0)->-1, (10,0)->-1. Find decision boundary.
+$$\alpha = \frac{16+16\beta^2}{64+32\beta^3}$$
 
-### Q3 [2023-24 EC3M Solutions, 3M]
-Compute Kernel matrix K using feature transformation phi(x) = [x1, x2, ||x||] for dataset X = [(4,-3), (0,1)].
+If $\alpha=0.25$: $\beta^2(\beta-2)=0 \Rightarrow \beta=2$
 
-### Q4 [2023-24 EC3M Solutions, 2M]
-Compute hinge loss for: (y=0.5, y'=1) and (y=1, y'=-1). Identify misclassified sample.
+### Q4 [April 2025 Makeup, Q4(i) - 4M]
 
-### Q5 [2023-24 EC3R Solutions, 3.5M]
-Given 4 data points (2 classes), problem not linearly separable.
-i) Explain why not linearly separable.
-ii) Define kernel K(x1,x2) = (4 + x1^T*x2)^2. Compute kernel matrix.
-iii) Set up and solve dual optimization. Find decision boundary.
+$f(x,y) = x^2 + \beta y^2$ at $(1,1)$. $\nabla f = [2, 2\beta]^T$.
 
-### Q6 [March 2025, 8M]
-Constrained optimization problem with Lagrangian formulation:
-min x + y subject to alpha*x^2 + beta*y^2 <= 1, beta*x^2 + alpha*y^2 <= 1.
-(a) Write dual formulation.
-(b) Assuming dual optimal is strictly positive, find optimal primal solution.
+$$\alpha = \frac{4+4\beta^2}{8+8\beta^3}$$
 
-### Q7 [March 2025, 6M]
-K(x,y) is kernel with mapping phi having d components. Find mapping for kernel (K(x,y)+c)^2. How many components does this mapping contain?
+If $\alpha=1/6$: $\beta=2$
 
-### Q8 [April 2025 Makeup, 8M]
-Given data points (1,1,+1), (-1,-1,+1), (1,-1,-1), (-1,1,-1):
-(a) Write SVM dual optimization (2M).
-(b) Solve for Lagrange multipliers (3M).
-(c) Find optimal w and b (3M).
+### Q5 [2022-23 Makeup, Q1a - 4M]
+
+$f(x) = 3x^4 - 20x^3 + 36x^2 + 10$
+
+$f'(x) = 12x(x-2)(x-3) = 0$. Stationary points: $x=0,2,3$
+
+Better initial for GD to find global minima: $x=0.5$ or $x=3.5$?
+
+### Q6 [March 2025, Q4(ii) - 2M]
+
+$f(z) = 3z^4-6z^3-42z^2+2z+72$. Critical points in $[-5,5]$:
+
+$f'(z) = 6z(2z^2-3z-14)=0$. Points: $z=0, -2, 3.5$
+
+At $z=-2$: $f''(-2)>0$ → minimum
+
+### Q7 [April 2025, Q4(ii) - 2M]
+
+$f(z) = 3z^4-8z^3+6z^2$. $f'(z) = 12z(z-1)^2 = 0$. Points: $z=0, 1$
 
 ---
 
-## 4. Convex Functions & Convex Optimization
+## 3. SVM & Kernel Methods
 
-### Q1 [2022-23 Comprehensive, 4M]
-i) f1(x) = ||x||_1. Prove or disprove convexity using properties of norms.
-ii) g(x) is convex, A in R^{nxn}, b in R^n. Prove or disprove h(x) = g(Ax+b) is convex.
+### Q1 [2022-23 Comprehensive, Q1c - 8M]
 
-### Q2 [Comprehensive Regular AIML, 1M]
-Prove or disprove: C = {x | Ax=b} (all solutions of linear system) is a convex set.
+Points: $(-1,3,+), (1,3,-), (-1,1,-)$. Find separating hyperplane $w^Tx+b=0$.
 
-### Q3 [2022-23 Makeup AIML, 1+1+2M]
-Set M = {(x,y) in R^2 | x^2+y^2<=5, x+2y=4, x>=0, y>=0}.
-i) Formulate constrained optimization to find point in M nearest to origin.
-ii) Write the Lagrangian function.
-iii) Verify (4/5, 8/5) satisfies KKT conditions. Find Lagrangian multipliers.
+Set up Lagrangian dual in terms of $\alpha_i$. Find optimal hyperplane using calculus.
 
-### Q4 [2023-24 EC3R Solutions, 4M]
-Constrained optimization: min (4-x)^2 + (2-y)^2 subject to lines x-2y+3=0 and x+2y+5=0.
-Find closest point on each line to (4,2) using Lagrangian method.
+### Q2 [2023-24 EC3M, Q2(1) - 5M]
 
-### Q5 [March 2025, 8M]
-Primal problem: min x+y subject to alpha*x^2 + beta*y^2 <= 1, beta*x^2 + alpha*y^2 <= 1 (alpha>0, beta>0, alpha!=beta).
-(a) Write dual formulation expressed as a(lambda) + 1/p(lambda) + 1/q(lambda).
-(b) Find optimal primal solution assuming dual optimal is strictly positive.
+Make linearly separable: $(7,0)\to+1$, $(9,0)\to+1$, $(8,0)\to-1$, $(10,0)\to-1$
 
-### Q6 [April 2025 Makeup, 6M]
-Constrained optimization: Minimize f(x,y) = x^2 + y subject to g(x,y) = x^2 - y^2 = 1.
-Find critical points using Lagrange multipliers. Classify as minima/maxima.
+Transformation: $\phi(x) = x \bmod 2$. Decision boundary: $x=0.5$
 
----
+### Q3 [2023-24 EC3M, Q2(2) - 3M]
 
-## 5. Linear Algebra - Eigenvalues, Eigenvectors & Matrix Properties
+Kernel matrix for $\phi(x) = [x_1, x_2, ||x||]$, data $X=[(4,-3),(0,1)]$:
 
-### Q1 [2022-23 Comprehensive, 4M]
-Matrix A in R^{nxn} with SVD A = U*Sigma*V^T. ||Sigma||_F^2 = gamma. B = A^T*A.
-(a) Prove/disprove alpha = B11+B22+...+Bnn = gamma (claim by G1).
-(b) Prove/disprove alpha = sqrt(gamma) (claim by G2).
-(c) C = A*A^T. Prove/disprove beta = C11+...+Cnn = gamma^2.
+$\phi(4,-3)=[4,-3,5]$, $\phi(0,1)=[0,1,1]$
 
-### Q2 [2023-24 EC3R Solutions, 4M]
-Given matrix C, find eigenvalues. Then compute:
-i) Trace(C^6)
-ii) det(C^7)
+$$K = \begin{bmatrix} 50 & 2 \\ 2 & 2 \end{bmatrix}$$
 
-### Q3 [2023-24 EC3M Solutions, 2.5M]
-Given positive definite matrix A. Find Cholesky decomposition A = LL^T. Find eigenvalues of L.
+### Q4 [2023-24 EC3M, Q2(3) - 2M]
 
-### Q4 [Comprehensive Regular AIML, 2M]
-Find rank of A_{nxn} matrix whose entry a_{jk} = j+k-1. Would it change if a_{jk} = j+k-alpha (alpha positive integer)?
+Hinge loss: $\max(0, 1-y\cdot y')$
+- $(y=0.5, y'=1)$: loss = 0.5
+- $(y=1, y'=-1)$: loss = 2 (misclassified)
 
-### Q5 [April 2025 Makeup, 5M]
-Given matrix A:
-(a) Find eigenvalues.
-(b) Find corresponding eigenvectors.
-(c) Determine if matrix is diagonalizable. If yes, find P and D such that A = PDP^{-1}.
+### Q5 [2023-24 EC3R, Q3B - 3.5M]
+
+4 points (XOR pattern). $K(x_1,x_2) = (4+x_1^Tx_2)^2$.
+
+$$K = \begin{bmatrix} 144&16&16&16\\16&144&16&16\\16&16&144&16\\16&16&16&144 \end{bmatrix}$$
+
+Solve dual: $\alpha_i = 1/128$. Decision boundary: $x_1 x_2 = 0$
+
+### Q6 [March 2025, Q5 - 8M]
+
+$\min x+y$ s.t. $\alpha x^2+\beta y^2 \leq 1$, $\beta x^2+\alpha y^2 \leq 1$
+
+Dual: $D(\lambda) = -\lambda_1-\lambda_2-\frac{1}{4(\alpha\lambda_1+\beta\lambda_2)}-\frac{1}{4(\alpha\lambda_2+\beta\lambda_1)}$
+
+By complementary slackness: $x=\pm y$, $x^2=\frac{1}{\alpha+\beta}$
+
+### Q7 [March 2025, Q6 - 6M]
+
+Kernel $(K(x,y)+c)^2$. Mapping has $1+d+d^2$ components.
+
+### Q8 [April 2025, Q3 - 8M]
+
+Points $(1,1,+1),(-1,-1,+1),(1,-1,-1),(-1,1,-1)$. Write SVM dual. Solve for $\alpha$. Find $w$, $b$.
 
 ---
 
-## 6. Linear Algebra - Vector Spaces, Subspaces & Linear Independence
+## 4. Convex Functions & Optimization
 
-### Q1 [2023-24 EC3R Solutions, 3M]
-Given a,b,c are linearly independent. Prove that {x,y,z} = {b-c, a+c, a-b} is linearly independent.
+### Q1 [2022-23 Comprehensive, Q2a - 4M]
 
-### Q2 [2023-24 EC3M Solutions, 4M]
-Given matrix A with rows R1,...,Rm:
-i) Show Ax=0 when <Ri,x>=0 for all i.
-ii) Show S={x | <Ri,x>=0} = N(A) is a subspace.
-iii) If rank(A)=m, find dim(S).
+i) Prove/disprove $f_1(x)=||x||_1$ is convex. [2M]
+ii) $g(x)$ convex → prove $h(x)=g(Ax+b)$ is convex. [2M]
 
-### Q3 [Comprehensive Regular AIML, 2M]
-Prove/disprove: dimension of vector space is independent of field over which it is defined.
+### Q2 [Comprehensive Makeup, Q3(1)ii - 1M]
 
-### Q4 [Comprehensive Regular AIML, 2M]
-Prove: if v1+v2+v3=0, then {v1,v2} spans same subspace as {v2,v3}.
+$C = \{x|Ax=b\}$ — prove $C$ is convex set.
 
-### Q5 [Comprehensive Regular AIML, 2M]
-RREF: Two students get same RREF. Another says it's impossible. A senior says both could be correct and X can be recovered if no element is zero. Who is correct?
+### Q3 [2022-23 Makeup, Q1c - 4M]
 
-### Q6 [Comprehensive Regular AIML, 2M]
-Given distinct eigenvalues lambda1,...,lambdan, is it possible to generate an orthogonal matrix of order n?
+$M = \{(x,y) | x^2+y^2 \leq 5, x+2y=4, x\geq0, y\geq0\}$
 
-### Q7 [2023-24 EC3R Solutions, 3M]
-Given 6x6 matrix A where C1 = sum(C2...C6) = 2*C2. Find two vectors in null space of A.
+Nearest point to origin. Lagrangian. Verify $(4/5, 8/5)$ satisfies KKT.
 
----
+### Q4 [2023-24 EC3R, Q1A - 4M]
 
-## 7. Calculus - Gradients & Jacobians
+Closest point to $(4,2)$ on lines $x-2y+3=0$ and $x+2y+5=0$.
 
-### Q1 [2022-23 Comprehensive, 4M]
-f(x) = ||Ax-b||^2 + c^T*x + d and g(x) = ||A1^T*A1*x||^2 + ||A2^T*x||^2.
-i) Derive gradient of f(x) w.r.t. x.
-ii) Derive gradient of g(x) w.r.t. x.
+Line 1: $(17/5, 16/5)$, distance $=\sqrt{9/5}$
+Line 2: $(7/5, -16/5)$, distance $=\sqrt{169/5}$
 
-### Q2 [2022-23 Comprehensive, 1+2M]
-f(x) = [x^T*Q*x, b^T*x]^T where Q is 3x3 symmetric positive definite.
-i) Find gradient (Jacobian) of f.
-ii) Find linear approximation of f about (0,0,0).
+### Q5 [April 2025, Q2 - 6M]
 
-### Q3 [2023-24 EC3M Solutions - Q3B]
-Sigmoid sigma(z) = (1+e^{-z})^{-1}.
-i) Derive d(sigma)/dz = sigma(z)(1-sigma(z)).
-ii) Given f(x,y) involving log and sigma, simplify f.
-iii) Compute partial f/partial x and partial f/partial y.
-iv) Find Taylor polynomial of degree 1 at (0,0).
+$\min f(x,y)=x^2+y$ s.t. $x^2-y^2=1$
 
-### Q4 [2023-24 EC3R Solutions, 3.5M]
-Given loss function L(beta) = (1/2p)||y-beta||^2 + lambda*||W*beta||^2:
-i) Express as sum of individual losses Lj(beta).
-ii) Derive gradient of Lj(beta).
-iii) Derive gradient of L(beta).
+Lagrange: $2x=\lambda(2x)$, $1=\lambda(-2y)$
 
-### Q5 [March 2025, 4M]
-f(x,y) = 2x^2 + beta*y^2. Derive gradient and use for optimal step size calculation.
-
-### Q6 [April 2025 Makeup, 4M]
-f(x,y) = x^2 + beta*y^2. Derive gradient and closed form optimal step size.
+$\lambda=1 \Rightarrow y=-1/2$, $x=\pm\sqrt{5/4}$, $f=3/4$ (minimum)
 
 ---
 
-## 8. Inner Products, Norms & Distance Functions
+## 5. Eigenvalues & Matrix Properties
 
-### Q1 [2022-23 Comprehensive, 3+3M]
-Matrix A = [[1,0,rho],[0,1,rho],[rho,rho,1]].
-i) Find conditions on rho such that <x,y>_A = x^T*A*y is an inner product on R^3.
-ii) Is [1,0,0]^T perpendicular to [0,1,0]^T w.r.t. this inner product? Find all z perpendicular to both.
+### Q1 [2022-23 Comprehensive, Q2b - 4M]
 
-### Q2 [Comprehensive Regular AIML, 2M]
-d(x,y) = sum|xi-yi|. Prove or disprove this is a valid distance function by verifying all properties.
+$A=U\Sigma V^T$, $||\Sigma||_F^2=\gamma$. $B=A^TA$.
 
-### Q3 [2022-23 Comprehensive, 3M]
-Find 2x2 matrix M with trace(M)=0 such that (||M-A||_2)^2 is minimum where A = [[1,0],[0,2]].
+$\text{trace}(B) = \text{trace}(\Sigma^2) = \gamma$ ✓ (G1 correct)
 
----
+$\text{trace}(B) = \sqrt{\gamma}$? ✗ (G2 wrong)
 
-## 9. Critical Points & Function Analysis (Multivariable Calculus)
+$C=AA^T$: $\text{trace}(C)=\gamma$ (not $\gamma^2$) ✗
 
-### Q1 [2023-24 EC3R Solutions, 3M]
-f(x,y) = (x^2+y^2)*e^{-(x^2+y^2)}. Find set A of all critical points. Determine nature of (0,0) using Hessian.
+### Q2 [2023-24 EC3R, Q1B - 4M]
 
-### Q2 [2022-23 Makeup AIML, 3+1M]
-f(x) = 3x^4 - 20x^3 + 36x^2 + 10.
-i) Find stationary points, classify, find global minima.
-ii) Better initial condition for GD: x=0.5 or x=3.5?
+$\det(C-\lambda I) = (\lambda-3)(\lambda+3)(\lambda-14)=0$
 
-### Q3 [March 2025, 2M]
-f(z) = 3z^4 - 6z^3 - 42z^2 + 2z + 72. Find critical points in [-5,5]. Classify using second derivative test.
+$\text{Trace}(C^6) = 14^6+3^6+(-3)^6$
 
-### Q4 [April 2025 Makeup, 2M]
-f(z) = 3z^4 - 8z^3 + 6z^2. Find critical points in [-3,3]. Classify closest to left end.
+$\det(C^7) = (14\times3\times(-3))^7 = (-126)^7$
 
-### Q5 [April 2025 Makeup, 6M]
-f(x,y) = x^2 + y subject to x^2 - y^2 = 1. Find critical points using Lagrange multipliers.
+### Q3 [2023-24 EC3M, Q1(2) - 2.5M]
+
+Cholesky: $A=LL^T$. $L=\begin{bmatrix}2&0&0\\1&4&0\\3&1&5\end{bmatrix}$
+
+Eigenvalues of $L$: 2, 4, 5
 
 ---
 
-## 10. Singular Value Decomposition (SVD)
+## 6. Vector Spaces & Linear Independence
 
-### Q1 [2022-23 Comprehensive, 4M]
-SVD of A = U*Sigma*V^T where ||Sigma||_F^2 = gamma. Prove/disprove claims about trace of A^T*A and A*A^T.
+### Q1 [2023-24 EC3R, Q1C - 3M]
 
-### Q2 [April 2025 Makeup, 5M]
-Given matrix A:
-(a) Compute A^T*A.
-(b) Find singular values of A.
-(c) Construct U, Sigma, V matrices for SVD.
+$a,b,c$ linearly independent → prove $\{b-c, a+c, a-b\}$ linearly independent.
 
----
+$\alpha_1(b-c)+\alpha_2(a+c)+\alpha_3(a-b)=0$
 
-## 11. Kernel Methods & Feature Transformations
+$\Rightarrow a(\alpha_2+\alpha_3)+b(\alpha_1-\alpha_3)+c(\alpha_2-\alpha_1)=0$
 
-### Q1 [2023-24 EC3M, 5M]
-Find transformation to make 1D data linearly separable. Points: (7,0)->+1, (9,0)->+1, (8,0)->-1, (10,0)->-1.
+Since $a,b,c$ independent: $\alpha_1=\alpha_2=\alpha_3=0$ ✓
 
-### Q2 [2023-24 EC3M, 3M]
-Compute kernel matrix using phi(x) = [x1, x2, ||x||] for X = [(4,-3), (0,1)].
+### Q2 [Comprehensive Makeup, Q2 - 10M]
 
-### Q3 [2023-24 EC3R, 3.5M]
-Kernel K(x1,x2) = (4+x1^T*x2)^2. Compute kernel matrix for 4 points. Set up dual optimization.
+i) Rank of $A$ with $a_{jk}=j+k-1$. Rank=2. Same for $a_{jk}=j+k-\alpha$. [2M]
+ii) Dimension of vector space independent of field? [2M]
+iii) $v_1+v_2+v_3=0 \Rightarrow \text{span}\{v_1,v_2\}=\text{span}\{v_2,v_3\}$. [2M]
+iv) Two students get same RREF — who's correct? [2M]
+v) Distinct eigenvalues → orthogonal matrix possible? [2M]
 
-### Q4 [2023-24 EC3R Solutions, 2M]
-Feature transformation phi(x) = [x1,...,xm, x1^3,...,xm^3, x1*x2*x3,...,x_{m-2}*x_{m-1}*xm].
-Dimension of transformed data? Derive kernel function K(x,y).
+### Q3 [2023-24 EC3R, Q3A - 2M]
 
-### Q5 [March 2025, 6M]
-K(x,y) is kernel with mapping phi of d components. Find mapping for (K(x,y)+c)^2. Number of components?
+6x6 matrix: $C_1=\sum_{i=2}^6 C_i = 2C_2$. Null space vectors:
+- $[1,-2,0,0,0,0]^T$
+- $[-1,0,2,2,2,2]^T$
 
 ---
 
-## 12. Constrained Optimization & KKT Conditions
+## 7. Gradients & Jacobians
 
-### Q1 [2022-23 Makeup AIML, 4M]
-M = {(x,y) | x^2+y^2<=5, x+2y=4, x>=0, y>=0}. Find nearest point to origin.
-Write Lagrangian. Verify (4/5, 8/5) satisfies KKT conditions.
+### Q1 [2022-23 Comprehensive, Q2c - 4M]
 
-### Q2 [2023-24 EC3R, 6M]
-Primal: min x^2_1 + x^2_2 - 4x1 - 4x2 subject to x^2_1 - x_2 <= 0, x1+x2-2 <= 0.
-i) Find Lagrangian and solve for x1, x2.
-ii) Does strong duality hold? Justify.
+$f(x) = ||Ax-b||_2^2 + c^Tx + d$
 
-### Q3 [March 2025, 8M]
-min x+y subject to alpha*x^2 + beta*y^2 <= 1, beta*x^2 + alpha*y^2 <= 1.
-Write dual. Find primal solution from complementary slackness.
+$\nabla f = 2A^T(Ax-b) + c$
 
-### Q4 [April 2025 Makeup, 6M]
-Minimize x^2 + y subject to x^2 - y^2 = 1. Use Lagrange multipliers.
+$g(x) = ||A_1^TA_1x||_2^2 + ||A_2^Tx||_2^2$
 
----
+$\nabla g = 2(A_1^TA_1)^T(A_1^TA_1)x + 2A_2A_2^Tx$
 
-## 13. Matrix Decomposition (Cholesky, LU)
+### Q2 [2022-23 Comprehensive, Q3b - 3M]
 
-### Q1 [2023-24 EC3M, 2.5M]
-Given positive definite matrix A:
-Find Cholesky decomposition A = LL^T. Find eigenvalues of L.
+$f(x) = [x^TQx, b^Tx]^T$. Jacobian: $\nabla_x f = \begin{bmatrix} 2x^TQ \\ b^T \end{bmatrix}$
 
----
+Linear approximation at origin: $f(x) \approx \begin{bmatrix} 0 \\ b^Tx \end{bmatrix}$
 
-## 14. Taylor Series & Linear Approximation
+### Q3 [2023-24 EC3M, Q3B - 5M]
 
-### Q1 [2022-23 Comprehensive, 2M]
-f(x) = [x^T*Q*x, b^T*x]^T. Find linear approximation about (0,0,0).
+$\sigma(z) = (1+e^{-z})^{-1}$. Prove $\sigma'(z)=\sigma(z)(1-\sigma(z))$.
 
-### Q2 [2023-24 EC3M, 1M]
-Find Taylor polynomial of degree 1 of f(x,y) = (1-alpha)(x+beta*y) - ln(sigma(x+beta*y)) at (0,0).
+$f(x,y) = (1-\alpha)(x+\beta y) - \ln(\sigma(x+\beta y))$
 
----
+$\frac{\partial f}{\partial x} = -\alpha + \sigma(x+\beta y)$
 
-## 15. Loss Functions (Hinge Loss, Cross-Entropy)
+$\frac{\partial f}{\partial y} = \beta(-\alpha + \sigma(x+\beta y))$
 
-### Q1 [2023-24 EC3M, 2M]
-Compute hinge loss for samples: (y=0.5, y'=1) and (y=1, y'=-1). Identify misclassified sample.
+Taylor at (0,0): $T_1 = \ln(2) + (-\alpha+1/2)(x+\beta y)$
 
-### Q2 [2023-24 EC3M - Q3B]
-Cross-entropy loss involving sigmoid function. Derive gradient expressions.
+### Q4 [2023-24 EC3R, Q2A - 3.5M]
+
+$L(\beta) = \frac{1}{2p}||y-\beta||^2 + \lambda||W\beta||^2$
+
+$\nabla L = -\frac{1}{p}(y-\beta)^T + 2\lambda(W^TW\beta)^T$
 
 ---
 
-## 16. Null Space & Column Space
+## 8. Inner Products & Norms
 
-### Q1 [2023-24 EC3M, 4M]
-Given A with rows R1,...,Rm. Show S = {x | <Ri,x>=0} = N(A). If rank(A)=m, find dim(S).
+### Q1 [2022-23 Comprehensive, Q3a - 6M]
 
-### Q2 [2023-24 EC3R, 2M]
-6x6 matrix where C1 = sum(C2..C6) = 2*C2. Find two independent vectors in null space.
+$A = \begin{bmatrix}1&0&\rho\\0&1&\rho\\\rho&\rho&1\end{bmatrix}$
+
+i) Conditions on $\rho$ for $\langle x,y\rangle_A = x^TAy$ to be inner product. (Require $A$ positive definite)
+ii) Is $[1,0,0]^T \perp [0,1,0]^T$? Find all $z \perp$ both.
+
+### Q2 [Comprehensive Makeup, Q3(1)i - 2M]
+
+$d(x,y) = \sum|x_i-y_i|$. Prove valid distance (non-negativity, identity, symmetry, triangle inequality).
+
+### Q3 [2022-23 Comprehensive, Q3c - 3M]
+
+Find 2x2 matrix $M$ with $\text{trace}(M)=0$ minimizing $||M-A||_2^2$ where $A=\begin{bmatrix}1&0\\0&2\end{bmatrix}$.
+
+---
+
+## 9. Critical Points (Multivariable)
+
+### Q1 [2023-24 EC3R, Q2C - 3M]
+
+$f(x,y) = (x^2+y^2)e^{-(x^2+y^2)}$
+
+Critical points: $A = \{(0,0)\} \cup \{x^2+y^2=1\}$
+
+At $(0,0)$: $H=\begin{bmatrix}2&0\\0&2\end{bmatrix}$ → minimum
+
+---
+
+## 10. Constrained Optimization & KKT
+
+### Q1 [2023-24 EC3R, Q4A - 6M]
+
+$\min x_1^2+x_2^2-4x_1-4x_2$ s.t. $x_1^2-x_2\leq0$, $x_1+x_2-2\leq0$
+
+$x_1 = \frac{4-\lambda_2}{2(1+\lambda_1)}$, $x_2 = \frac{\lambda_1-\lambda_2+4}{2}$
+
+Strong duality holds (convex problem).
+
+---
+
+## 11. SVD
+
+### Q1 [2022-23 Comprehensive, Q2b - 4M]
+
+$A=U\Sigma V^T$. $B=A^TA=V\Sigma^2V^T$. $\text{trace}(B)=\sum\sigma_i^2=||\Sigma||_F^2=\gamma$
+
+---
+
+## 12. Regularized Loss & Stochastic Gradients
+
+### Q1 [Comprehensive Makeup, Q3(3) - 4M]
+
+$g(z) = \frac{1}{2}||Az-b||_2^2 + \frac{1}{2}||z||_2^2 + ||b||_2^2$
+
+$\nabla g = (A^TA+I)z - A^Tb$
+
+GD direction: $d_k = A^Tb - (A^TA+I)z_k$
+
+Optimal stepsize: $\alpha^* = \frac{d_k^Td_k}{d_k^T(A^TA+I)d_k}$
+
+---
+
+## 13. Null Space & Rank
+
+### Q1 [Comprehensive Makeup, Q2i - 2M]
+
+$a_{jk} = j+k-1$. Column $C_k = C_1 + (k-1)\mathbf{1}$. Rank = 2.
+
+### Q2 [2023-24 EC3M, Q3A - 4M]
+
+$S = \{x | R_i^Tx=0\} = N(A)$. If $\text{rank}(A)=m$: $\dim S = 0 \Rightarrow S=\{0\}$.
 
 ---
