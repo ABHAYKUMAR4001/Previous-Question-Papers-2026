@@ -2,15 +2,13 @@
 
 # Topic 1 — Vector Spaces & Linear Independence
 
-> **Learning goal:** Build the concepts in the same style in which they have appeared in MFML exams: **intuition → small example → actual exam question → solution pattern**.
+> **Learning goal:** Concept → intuition → simple example → actual exam question → step-by-step solution → exam pattern.
 
 ## Topic Map
 
-$$
-\boxed{\text{Vector Space} \rightarrow \text{Subspace} \rightarrow \text{Span} \rightarrow \text{Linear Independence} \rightarrow \text{Basis}}
-$$
+**Vector Space → Subspace → Span → Linear Independence → Basis → Dimension**
 
-We will begin with the most intuitive chain:
+We begin with the easiest chain:
 
 **Linear Combination → Span → Linear Independence**
 
@@ -18,36 +16,22 @@ We will begin with the most intuitive chain:
 
 ## 1. What is a Linear Combination?
 
-Suppose
+Suppose we have two vectors:
 
-$$
-v_1=\begin{bmatrix}1\\0\end{bmatrix},
-\qquad
-v_2=\begin{bmatrix}0\\1\end{bmatrix}
-$$
+- **v₁ = (1, 0)**
+- **v₂ = (0, 1)**
 
-Take any two numbers $a$ and $b$.
+Take any two numbers **a** and **b**.
 
-Then
+Then:
 
-$$
-av_1+bv_2
-=
-a\begin{bmatrix}1\\0\end{bmatrix}
-+b\begin{bmatrix}0\\1\end{bmatrix}
-=
-\begin{bmatrix}a\\b\end{bmatrix}
-$$
+**a v₁ + b v₂ = a(1,0) + b(0,1) = (a,b)**
 
-This is called a **linear combination** of $v_1$ and $v_2$.
+This is called a **linear combination** of v₁ and v₂.
 
-For example,
+For example:
 
-$$
-3v_1+2v_2
-=
-\begin{bmatrix}3\\2\end{bmatrix}
-$$
+**3v₁ + 2v₂ = (3,2)**
 
 ### Intuition
 
@@ -61,40 +45,34 @@ That question leads directly to **span**.
 
 ## 2. What is Span?
 
-The span of $v_1$ and $v_2$ is the collection of **all possible linear combinations** of those vectors:
+The **span of {v₁, v₂}** means the collection of **all possible linear combinations** of v₁ and v₂.
 
-$$
-\boxed{
-\operatorname{span}\{v_1,v_2\}
-=
-\{av_1+bv_2:a,b\in\mathbb R\}
-}
-$$
+In words:
 
-For
+**span{v₁,v₂} = all vectors of the form a v₁ + b v₂**
 
-$$
-v_1=(1,0),\qquad v_2=(0,1)
-$$
+where a and b can be any real numbers.
 
-we can create
+For:
 
-$$
-(1,2),\quad(-3,7),\quad(0,5)
-$$
+- v₁ = (1,0)
+- v₂ = (0,1)
 
-and in fact any point $(x,y)$.
+we can create:
 
-Therefore
+- (1,2)
+- (-3,7)
+- (0,5)
+- and in fact any point (x,y)
 
-$$
-\boxed{\operatorname{span}\{v_1,v_2\}=\mathbb R^2}
-$$
+Therefore:
+
+> **span{v₁,v₂} = R²**
 
 ### Geometric intuition
 
-- One nonzero vector in $\mathbb R^2$ usually spans a **line**.
-- Two non-parallel vectors in $\mathbb R^2$ span the **whole plane**.
+- One nonzero vector in R² usually spans a **line**.
+- Two non-parallel vectors in R² span the **whole plane**.
 
 So span tells us:
 
@@ -104,49 +82,36 @@ So span tells us:
 
 ## 3. Linear Dependence — Intuitive Meaning
 
-Consider
+Consider:
 
-$$
-v_1=\begin{bmatrix}1\\2\end{bmatrix},
-\qquad
-v_2=\begin{bmatrix}2\\4\end{bmatrix}
-$$
+- **v₁ = (1,2)**
+- **v₂ = (2,4)**
 
-Clearly,
+Clearly:
 
-$$
-v_2=2v_1
-$$
+**v₂ = 2v₁**
 
-So $v_2$ gives us **no new direction**.
+So v₂ gives us **no new direction**.
 
-If we already have $v_1$, adding $v_2$ does not increase the span:
+If we already have v₁, adding v₂ does not increase the span:
 
-$$
-\operatorname{span}\{v_1\}
-=
-\operatorname{span}\{v_1,v_2\}
-$$
+**span{v₁} = span{v₁,v₂}**
 
-Therefore $v_1$ and $v_2$ are **linearly dependent**.
+Therefore v₁ and v₂ are **linearly dependent**.
 
-> **Memory idea:** Dependent means at least one vector is redundant.
+> **Memory idea: Dependent = at least one vector is redundant.**
 
 ---
 
 ## 4. Mathematical Definition of Linear Independence
 
-Vectors $v_1,v_2,\ldots,v_n$ are **linearly independent** if
+Vectors v₁, v₂, ..., vₙ are **linearly independent** if:
 
-$$
-a_1v_1+a_2v_2+\cdots+a_nv_n=0
-$$
+**a₁v₁ + a₂v₂ + ... + aₙvₙ = 0**
 
-has only the solution
+has only one possible solution:
 
-$$
-\boxed{a_1=a_2=\cdots=a_n=0}
-$$
+> **a₁ = a₂ = ... = aₙ = 0**
 
 This is called the **trivial solution**.
 
@@ -154,27 +119,20 @@ This is called the **trivial solution**.
 
 If a **non-zero** set of coefficients can produce the zero vector, then at least one vector can be constructed from the others.
 
-For example,
+For example:
 
-$$
-v_1=\begin{bmatrix}1\\2\end{bmatrix},
-\qquad
-v_2=\begin{bmatrix}2\\4\end{bmatrix}
-$$
+- v₁ = (1,2)
+- v₂ = (2,4)
 
-Since
+Since:
 
-$$
-2v_1-v_2=0
-$$
+**2v₁ - v₂ = 0**
 
-we found coefficients $2$ and $-1$ that are not both zero.
+we found coefficients 2 and -1 that are not both zero.
 
-Therefore
+Therefore:
 
-$$
-\boxed{v_1,v_2\text{ are linearly dependent}}
-$$
+> **v₁ and v₂ are linearly dependent.**
 
 ---
 
@@ -182,11 +140,9 @@ $$
 
 ### 2023–24 EC3 Regular — Q1C — 3 Marks
 
-Suppose $a,b,c$ are linearly independent. Prove that
+Suppose **a, b, c are linearly independent**. Prove that:
 
-$$
-\{b-c,\ a+c,\ a-b\}
-$$
+**{b-c, a+c, a-b}**
 
 is linearly independent.
 
@@ -194,148 +150,108 @@ is linearly independent.
 
 Exactly the definition of linear independence.
 
-Define
+Define:
 
-$$
-v_1=b-c,\qquad v_2=a+c,\qquad v_3=a-b
-$$
+- v₁ = b - c
+- v₂ = a + c
+- v₃ = a - b
 
-To prove these are independent, begin with
+To prove these are independent, begin with:
 
-$$
-\alpha_1v_1+\alpha_2v_2+\alpha_3v_3=0
-$$
+**α₁v₁ + α₂v₂ + α₃v₃ = 0**
 
 Substitute:
 
-$$
-\alpha_1(b-c)+\alpha_2(a+c)+\alpha_3(a-b)=0
-$$
+**α₁(b-c) + α₂(a+c) + α₃(a-b) = 0**
 
-Expand and group the coefficients of $a,b,c$:
+Expand and group the coefficients of a, b and c:
 
-$$
-(\alpha_2+\alpha_3)a
-+(\alpha_1-\alpha_3)b
-+(\alpha_2-\alpha_1)c
-=0
-$$
+**(α₂+α₃)a + (α₁-α₃)b + (α₂-α₁)c = 0**
 
-We are given that $a,b,c$ are linearly independent. Therefore each coefficient must be zero:
+We are given that a, b and c are linearly independent.
 
-$$
-\alpha_2+\alpha_3=0,\qquad
-\alpha_1-\alpha_3=0,\qquad
-\alpha_2-\alpha_1=0
-$$
+Therefore each coefficient must be zero:
 
-The last two equations give
+1. α₂ + α₃ = 0
+2. α₁ - α₃ = 0
+3. α₂ - α₁ = 0
 
-$$
-\alpha_1=\alpha_2=\alpha_3
-$$
+From equations 2 and 3:
 
-Using the first equation,
+**α₁ = α₂ = α₃**
 
-$$
-2\alpha_1=0
-$$
+Using equation 1:
 
-therefore
+**2α₁ = 0**
 
-$$
-\alpha_1=\alpha_2=\alpha_3=0
-$$
+Therefore:
 
-Hence
+**α₁ = α₂ = α₃ = 0**
 
-$$
-\boxed{\{b-c,a+c,a-b\}\text{ is linearly independent}}
-$$
+Hence:
+
+> **{b-c, a+c, a-b} is linearly independent.**
 
 ### Exam Pattern to Remember
 
-Whenever the question says **prove these vectors are linearly independent**, start with
+Whenever the question says:
 
-$$
-\boxed{\alpha_1v_1+\alpha_2v_2+\cdots+\alpha_nv_n=0}
-$$
+> **Prove these vectors are linearly independent**
 
-and prove
+start with:
 
-$$
-\boxed{\alpha_1=\alpha_2=\cdots=\alpha_n=0}
-$$
+**α₁v₁ + α₂v₂ + ... + αₙvₙ = 0**
+
+and prove:
+
+**α₁ = α₂ = ... = αₙ = 0**
 
 ---
 
 # Exam Question 2 — Equality of Two Spans
 
-A previous MFML comprehensive question gives
+A previous MFML comprehensive question gives:
 
-$$
-v_1+v_2+v_3=0
-$$
+**v₁ + v₂ + v₃ = 0**
 
-and asks you to show
+and asks you to show:
 
-$$
-\boxed{\operatorname{span}\{v_1,v_2\}=\operatorname{span}\{v_2,v_3\}}
-$$
+> **span{v₁,v₂} = span{v₂,v₃}**
 
-From the given relation,
+From the given relation:
 
-$$
-v_1=-v_2-v_3
-$$
+**v₁ = -v₂ - v₃**
 
-Therefore $v_1\in\operatorname{span}\{v_2,v_3\}$, so
+Therefore v₁ can be generated using v₂ and v₃.
 
-$$
-\operatorname{span}\{v_1,v_2\}
-\subseteq
-\operatorname{span}\{v_2,v_3\}
-$$
+So:
 
-Similarly,
+**span{v₁,v₂} ⊆ span{v₂,v₃}**
 
-$$
-v_3=-v_1-v_2
-$$
+Similarly:
 
-so
+**v₃ = -v₁ - v₂**
 
-$$
-\operatorname{span}\{v_2,v_3\}
-\subseteq
-\operatorname{span}\{v_1,v_2\}
-$$
+Therefore v₃ can be generated using v₁ and v₂.
 
-Since both inclusions are true,
+So:
 
-$$
-\boxed{\operatorname{span}\{v_1,v_2\}=\operatorname{span}\{v_2,v_3\}}
-$$
+**span{v₂,v₃} ⊆ span{v₁,v₂}**
+
+Since both inclusions are true:
+
+> **span{v₁,v₂} = span{v₂,v₃}**
 
 ### Exam Pattern to Remember
 
-To prove
+To prove:
 
-$$
-\operatorname{span}(A)=\operatorname{span}(B)
-$$
+**span(A) = span(B)**
 
 show both directions:
 
-$$
-\operatorname{span}(A)\subseteq\operatorname{span}(B)
-$$
-
-and
-
-$$
-\operatorname{span}(B)\subseteq\operatorname{span}(A)
-$$
+1. **span(A) ⊆ span(B)**
+2. **span(B) ⊆ span(A)**
 
 ---
 
@@ -343,19 +259,19 @@ $$
 
 A vector space is a collection of objects where vector addition and scalar multiplication behave properly and linear combinations remain inside the collection.
 
-For intuition, $\mathbb R^2$ contains vectors such as
+For intuition, R² contains vectors such as:
 
-$$
-(1,2),\qquad(-5,7),\qquad(0,0)
-$$
+- (1,2)
+- (-5,7)
+- (0,0)
 
-If $u,v\in\mathbb R^2$ and $\alpha,\beta\in\mathbb R$, then
+If u and v belong to R² and α and β are real numbers, then:
 
-$$
-\alpha u+\beta v\in\mathbb R^2
-$$
+**αu + βv also belongs to R².**
 
-The important point is that **vectors do not have to be ordinary columns of numbers**. Matrices, functions and polynomials can themselves form vector spaces.
+The important point is that **vectors do not have to be ordinary columns of numbers**.
+
+Matrices, functions and polynomials can themselves form vector spaces.
 
 ---
 
@@ -363,17 +279,15 @@ The important point is that **vectors do not have to be ordinary columns of numb
 
 A **subspace** is a smaller vector space living inside a larger vector space.
 
-To prove $M\subseteq V$ is a subspace, a convenient test is:
+To prove M is a subspace of V, a convenient test is:
 
-1. The zero vector/object belongs to $M$.
-2. $M$ is closed under addition.
-3. $M$ is closed under scalar multiplication.
+1. The zero vector/object belongs to M.
+2. M is closed under addition.
+3. M is closed under scalar multiplication.
 
-Equivalently, for arbitrary $A,B\in M$ and scalars $\alpha,\beta$, prove
+Equivalently, for arbitrary A and B in M and scalars α and β, prove:
 
-$$
-\boxed{\alpha A+\beta B\in M}
-$$
+> **αA + βB also belongs to M.**
 
 ---
 
@@ -381,74 +295,78 @@ $$
 
 ### MFML/MFDS Comprehensive Regular 2025–26 — Q1(B) — 6 Marks total
 
-Consider
+Consider the set:
 
-$$
-M=\{A\in\mathbb R^{2\times2}\mid A=-A^T\}
-$$
+**M = {A in R^(2×2) such that A = -Aᵀ}**
 
-The first part asks you to prove that $M$ is a subspace of the vector space of all $2\times2$ real matrices.
+The first part asks you to prove that M is a subspace of the vector space of all 2×2 real matrices.
 
-Let
+### First understand A = -Aᵀ
 
-$$
-A=\begin{bmatrix}a&b\\c&d\end{bmatrix}
-$$
+Let:
 
-Then
+```text
+A = | a  b |
+    | c  d |
+```
 
-$$
-A^T=\begin{bmatrix}a&c\\b&d\end{bmatrix}
-$$
+Then:
 
-The condition $A=-A^T$ implies
+```text
+Aᵀ = | a  c |
+     | b  d |
+```
 
-$$
-a=0,\qquad d=0,\qquad c=-b
-$$
+The condition **A = -Aᵀ** implies:
 
-so every matrix in $M$ has the form
+- a = -a → a = 0
+- d = -d → d = 0
+- c = -b
 
-$$
-\boxed{A=\begin{bmatrix}0&b\\-b&0\end{bmatrix}}
-$$
+So every matrix in M has the form:
 
-or equivalently
+```text
+A = |  0   b |
+    | -b   0 |
+```
 
-$$
-A=b\begin{bmatrix}0&1\\-1&0\end{bmatrix}
-$$
+or equivalently:
+
+```text
+        |  0   1 |
+A = b × | -1   0 |
+```
+
+This observation will also help us find the basis and dimension.
 
 ### Prove closure
 
-Take $A,B\in M$. Then
+Take A and B in M.
 
-$$
-A^T=-A,\qquad B^T=-B
-$$
+Then:
 
-Let
+- Aᵀ = -A
+- Bᵀ = -B
 
-$$
-C=\alpha A+\beta B
-$$
+Let:
 
-Then
+**C = αA + βB**
 
-$$
-C^T=(\alpha A+\beta B)^T
-=\alpha A^T+\beta B^T
-=-\alpha A-\beta B
-=-C
-$$
+Then:
 
-Therefore $C=-C^T$, so $C\in M$.
+**Cᵀ = (αA + βB)ᵀ**
 
-Hence
+**Cᵀ = αAᵀ + βBᵀ**
 
-$$
-\boxed{M\text{ is a subspace}}
-$$
+Using Aᵀ = -A and Bᵀ = -B:
+
+**Cᵀ = -αA - βB = -C**
+
+Therefore C satisfies the defining condition of M.
+
+Hence:
+
+> **M is a subspace.**
 
 ---
 
@@ -456,27 +374,30 @@ $$
 
 A **basis** must satisfy two conditions:
 
-$$
-\boxed{\text{Basis}=\text{Linearly Independent}+\text{Spans the Entire Space}}
-$$
+> **Basis = Linearly Independent + Spans the Entire Space**
 
-For our skew-symmetric matrix space,
+For our skew-symmetric matrix space:
 
-$$
-A=b\begin{bmatrix}0&1\\-1&0\end{bmatrix}
-$$
+```text
+        |  0   1 |
+A = b × | -1   0 |
+```
 
-Therefore
+Therefore every element of M is generated by the single matrix:
 
-$$
-M=\operatorname{span}\left\{\begin{bmatrix}0&1\\-1&0\end{bmatrix}\right\}
-$$
+```text
+|  0   1 |
+| -1   0 |
+```
 
-The single nonzero matrix is linearly independent. Therefore a basis for $M$ is
+That matrix is nonzero and therefore a one-element set containing it is linearly independent.
 
-$$
-\boxed{\left\{\begin{bmatrix}0&1\\-1&0\end{bmatrix}\right\}}
-$$
+So a basis for M is:
+
+```text
+{ |  0   1 | }
+  | -1   0 |
+```
 
 ---
 
@@ -484,52 +405,52 @@ $$
 
 The **dimension** of a vector space is the number of vectors in any basis of that space.
 
-$$
-\dim(\mathbb R^2)=2,\qquad \dim(\mathbb R^3)=3
-$$
+Examples:
 
-Our skew-symmetric $2\times2$ matrix space has one basis matrix, so
+- **dim(R²) = 2**
+- **dim(R³) = 3**
 
-$$
-\boxed{\dim(M)=1}
-$$
+Our skew-symmetric 2×2 matrix space has one basis matrix.
+
+Therefore:
+
+> **dim(M) = 1**
 
 ---
 
 # Exam Question 4 — The Basis Trap
 
-The same 2025–26 question asks whether
+The same 2025–26 question asks whether the following two matrices form a basis for M:
 
-$$
-\left\{
-\begin{bmatrix}0&1\\-1&0\end{bmatrix},
-\begin{bmatrix}0&2\\-2&0\end{bmatrix}
-\right\}
-$$
+```text
+A₁ = |  0   1 |       A₂ = |  0   2 |
+     | -1   0 |            | -2   0 |
+```
 
-is a basis for $M$.
+Observe:
 
-Call the matrices $A_1$ and $A_2$. Observe that
-
-$$
-A_2=2A_1
-$$
+**A₂ = 2A₁**
 
 Therefore they are **linearly dependent**.
 
-They span $M$, but they are not independent. Since a basis requires both conditions,
+They span M, but they are not independent.
 
-$$
-\boxed{\text{The given set is NOT a basis for }M}
-$$
+Since:
+
+> **Basis = Span + Independence**
+
+one required condition fails.
+
+Therefore:
+
+> **The given set is NOT a basis for M.**
 
 ### Key intuition
 
-This is exactly the same idea as the ordinary vectors
+This is exactly the same idea as the ordinary vectors:
 
-$$
-(1,2),\qquad(2,4)
-$$
+- (1,2)
+- (2,4)
 
 The examiner has simply replaced ordinary vectors with matrices.
 
@@ -537,48 +458,39 @@ The examiner has simply replaced ordinary vectors with matrices.
 
 # Exam Question 5 — Linear Independence of Matrices
 
-The same question asks whether
+The same question asks whether these matrices are linearly independent:
 
-$$
-\left\{
-\begin{bmatrix}1&0\\0&1\end{bmatrix},
-\begin{bmatrix}0&1\\-1&0\end{bmatrix}
-\right\}
-$$
+```text
+I = | 1  0 |        S = |  0   1 |
+    | 0  1 |            | -1   0 |
+```
 
-is linearly independent.
+Assume:
 
-Let
+**αI + βS = 0**
 
-$$
-\alpha\begin{bmatrix}1&0\\0&1\end{bmatrix}
-+
-\beta\begin{bmatrix}0&1\\-1&0\end{bmatrix}=0
-$$
+Then:
 
-Then
+```text
+|  α    β |   =   | 0  0 |
+| -β    α |       | 0  0 |
+```
 
-$$
-\begin{bmatrix}\alpha&\beta\\-\beta&\alpha\end{bmatrix}
-=
-\begin{bmatrix}0&0\\0&0\end{bmatrix}
-$$
+Therefore:
 
-Therefore
+**α = 0 and β = 0**
 
-$$
-\alpha=0,\qquad\beta=0
-$$
+Only the trivial solution exists.
 
-Only the trivial solution exists. Hence
+Hence:
 
-$$
-\boxed{\text{The two matrices are linearly independent}}
-$$
+> **The two matrices are linearly independent.**
 
 ### Important subtlety
 
-The identity matrix is **not** in the skew-symmetric subspace $M$. That does not matter for this part because the question asks whether the two matrices are linearly independent in the larger vector space $\mathbb R^{2\times2}$.
+The identity matrix I is **not** in the skew-symmetric subspace M.
+
+That does not matter for this part because the question asks whether the two matrices are linearly independent in the larger vector space of all 2×2 real matrices.
 
 ---
 
@@ -586,45 +498,35 @@ The identity matrix is **not** in the skew-symmetric subspace $M$. That does not
 
 ### Linear Combination
 
-$$
-a_1v_1+\cdots+a_nv_n
-$$
+**a₁v₁ + ... + aₙvₙ**
 
 means combining vectors using scalar coefficients.
 
 ### Span
 
-$$
-\operatorname{span}\{v_1,\ldots,v_n\}
-$$
+**span{v₁,...,vₙ}**
 
 means **everything that can be generated** from those vectors.
 
 ### Linear Independence
 
-$$
-a_1v_1+\cdots+a_nv_n=0
-$$
+If:
 
-must imply
+**a₁v₁ + ... + aₙvₙ = 0**
 
-$$
-a_1=\cdots=a_n=0
-$$
+then independence requires:
+
+**a₁ = ... = aₙ = 0**
 
 > **No vector is redundant.**
 
 ### Basis
 
-$$
-\boxed{\text{Basis}=\text{Independent}+\text{Spans the Space}}
-$$
+> **Basis = Independent + Spans the Space**
 
 ### Dimension
 
-$$
-\boxed{\text{Dimension}=\text{Number of vectors in a basis}}
-$$
+> **Dimension = Number of vectors in a basis**
 
 ---
 
@@ -632,7 +534,7 @@ $$
 
 | If the question says... | First thing to think |
 |---|---|
-| Prove vectors are independent | Set $\alpha_1v_1+\cdots+\alpha_nv_n=0$ |
+| Prove vectors are independent | Set α₁v₁ + ... + αₙvₙ = 0 |
 | Show vectors are dependent | Find a non-trivial combination equal to zero |
 | Prove two spans are equal | Prove inclusion in both directions |
 | Prove something is a subspace | Check closure / arbitrary linear combination |
@@ -658,4 +560,4 @@ We will cover those before declaring Topic 1 complete.
 
 > **Is the dimension of a vector space independent of the field?**
 
-This will introduce the meaning of the underlying **field** ($\mathbb R$ versus $\mathbb C$) and show why the same collection of objects can have a different dimension depending on which scalars are allowed.
+This will introduce the meaning of the underlying **field** (R versus C) and show why the same collection of objects can have a different dimension depending on which scalars are allowed.
