@@ -397,3 +397,175 @@ c) Select root node, show first split. [1M]
 d) Continue for one more level. [2M]
 
 ---
+
+
+
+---
+
+**Additional Papers Covered (from ML Final.pdf):**
+- 2024-25 EC-3 Regular Comprehensive (Second Semester, 40% weightage)
+- 2024-25 EC-3 Makeup Comprehensive (Second Semester, 40% weightage)
+
+> **Note:** The ML Final.pdf contains solution keys with answers. Questions below are extracted verbatim from the question sections.
+
+---
+
+## 1. Bayesian Learning / Naive Bayes Classification
+
+### Q3 [2024-25 EC3 Regular, Q4 - 6M]
+
+Consider an email Spam Detection problem. Features: "Free" (Yes/No), "Offer" (Yes/No), Email Length (Short/Long). Class: Spam (Yes/No).
+
+| Feature | Class: Spam | Class: Not Spam |
+|---------|-------------|-----------------|
+| Free = Yes | 40 | 5 |
+| Free = No | 20 | 45 |
+| Offer = Yes | 30 | 10 |
+| Offer = No | 30 | 40 |
+| Length = Short | 50 | 20 |
+| Length = Long | 10 | 30 |
+| **Total emails** | **60** | **50** |
+
+**Test Email:** Free=Yes, Offer=Yes, Length=Short
+
+1. Identify which features provide strongest evidence for predicting Spam. [1.5M]
+2. Without calculation, reason what Naive Bayes would predict and why. [1M]
+3. If "Free" and "Offer" are highly correlated, explain how Naive Bayes might misclassify. [1.5M]
+4. Your model, trained on balanced dataset (60 Spam, 50 Not Spam), is now operating in a real-world environment where only 5% of emails are Spam. Explain why accuracy is a poor and misleading metric for evaluating your spam filter in this skewed environment. If our goal is to catch all spams, which is good — precision or recall? [2M]
+
+---
+
+## 2. Support Vector Machines (SVM)
+
+### Q2 [2024-25 EC3 Regular, Q5 - 6M]
+
+Answer the following questions:
+
+a) What happens if the data is not linearly separable and we try to use a hard-margin SVM? [1M]
+
+b) Consider the value of $\alpha_i$ for a given data point $x_i$. What does it conceptually mean when $\alpha_i$ is equal to zero, and what does it mean when it's greater than zero? [2M]
+
+c) Provide a specific example of a dataset that is not linearly separable in original feature space. Name a kernel that could separate it and explain why it works. [1.5M]
+
+d) Explain the kernel trick: what does a kernel function compute, and how does it avoid explicit feature transformation? [1M]
+
+e) Using $K(x^{(i)}, x^{(j)}) = \phi(x^{(i)}) \cdot \phi(x^{(j)})$, explain how the kernel trick avoids the computational cost of explicitly mapping to high-dimensional $\phi(x)$ space. Give an example of a polynomial kernel and what implicit mapping it performs. [0.5M]
+
+---
+
+### Q3 [2024-25 EC3 Regular, Q6 part - 5M]
+
+Suppose you have a dataset that has 10 features and 10,000 training instances. You have applied logistic regression with gradient descent on this dataset and trained a model. Unfortunately, this model exhibits poor performance on both the training data and test data. To address this issue, your team members have proposed several solutions mentioned below. Suggest which of the following looks promising in the given scenario and provide reasons for your choice:
+
+1. Use SVM with linear kernel without adding any new feature
+2. Increase the regularization parameter $\lambda$ in logistic regression
+3. Use SVM with RBF kernel
+4. Transform the dataset using polynomial transformation and then use logistic regression
+
+Indicate whether each is True/False with brief justification. [5M]
+
+---
+
+## 3. Instance-Based Learning (KNN & Locally Weighted Regression)
+
+### Q3 [2024-25 EC3 Regular, Q3 - 4M]
+
+Consider the following scenario: A streaming service aims to recommend movies to a new user by leveraging similarities with existing users. Since new ratings are added frequently, the system should adapt quickly without requiring frequent retraining.
+
+For this scenario, would you choose an eager learning algorithm (e.g., decision trees, logistic regression) or a lazy learning algorithm (e.g., KNN)? Provide justification in terms of training time, prediction time, memory requirements, and generalization capability. [4 Marks]
+
+---
+
+## 4. Ensemble Learning (AdaBoost, Random Forest)
+
+### Q3 [2024-25 EC3 Regular, Q6 - 6M]
+
+Imagine a small e-commerce company that wants to predict whether a customer will make a purchase (+) or not (−) based only on the time they spend on the website (measured as a numerical value on a 1-dimensional line). We are given four customer data points $P_1, P_2, P_3, P_4$ with their respective time-on-site values:
+
+$$x_1 = 1, \; x_2 = 2, \; x_3 = 3, \; x_4 = 4$$
+
+Their corresponding 2-class (+/−) labels are: $+, -, +, -$
+
+We shall use decision stumps as our weak learner/hypothesis. A decision stump classifier chooses a threshold value $c$ and classifies all points where $x \geq c$ as one class and all points where $x < c$ as the other class.
+
+(a) [1 Mark] What is the initial weight assigned to each data point? Provide the calculation for assigning the initial weights.
+
+(b) [1 Mark] How many different decision stumps are possible for the data points given? Explain the reasoning behind the number of decision stumps.
+
+(c) [1 Mark] Which data point(s) will have their weights increased after the boosting process as per the decision stump considered in the problem? Explain why these specific points will have increased weights.
+
+(d) [2 Marks] What will be the weights of all the data points after boosting is performed? Show your approach clearly.
+
+(e) [2 Marks] Indicate whether the following statements are True/False. Give a brief justification for your answer:
+- We cannot perfectly classify all the training examples given in this problem by only applying a boosting algorithm (AdaBoost). [1 Mark]
+- The training error of a boosting classifier (combination of all weak classifiers) monotonically decreases as the number of iterations in the boosting algorithm increases. [1 Mark]
+
+---
+
+### Q4 [2024-25 EC3 Regular/Makeup, Q5 - 5M]
+
+Assume that in the AdaBoost algorithm we are initially given a dataset of 6 points with classification $(x, y = \text{class})$: $(1,+), (2,+), (3,-), (4,-), (5,+), (6,+)$. The classifier is a decision tree stump choosing a constant $c$ such that all points with $x \geq c$ are labeled one class and all points with $x < c$ are labeled the other class.
+
+Assume that the first classifier (i.e., at the end of the first iteration) misclassifies only the points at $x = 1$ and $x = 2$.
+
+What are possible values of $c$ for the first classifier? Find the importance of the first classifier, and values of instance weights at the end of the first iteration. [5M]
+
+---
+
+## 5. Unsupervised Learning (K-Modes, GMM, K-Means)
+
+### Q3 [2024-25 EC3 Regular, Q7 - 7M]
+
+Answer the following questions:
+
+a) You are clustering customer purchase data where clusters are likely elliptical (not spherical). Would K-Means or GMM be more appropriate? Why? [2M]
+
+b) Explain how poor initialization of cluster centroids affects the results of K-Means. What strategy can be used to overcome this issue? [2M]
+
+c) A company uses an ML model to screen job applications. It is later found that the system disproportionately rejects female candidates. Which FaCCT principles are being violated? What steps should the company take to address this? [3M]
+
+---
+
+## 6. Logistic Regression
+
+### Q2 [2024-25 EC3 Regular, Q1 - 6M]
+
+You are working on a text classification problem with 100,000 features (bag-of-words) and 5,000 training samples. You decide to use logistic regression with L1 and L2 regularization. You perform 5-fold cross-validation to select the regularization parameter $\lambda$. The results are:
+
+| $\lambda$ | CV Accuracy | Selected Features |
+|-----------|-------------|-------------------|
+| 0.001 | 0.95 | 95,000 |
+| 0.01 | 0.92 | 80,000 |
+| 0.1 | 0.88 | 45,000 |
+| 1.0 | 0.85 | 15,000 |
+| 10.0 | 0.75 | 2,000 |
+
+Answer the following questions:
+
+a) How does the regularization parameter $\lambda$ control the trade-off between bias and variance? [1.5M]
+
+b) What type of regularization was likely used? Justify. [1.5M]
+
+c) Can regularization also cause underfitting? Justify your answer. [1.5M]
+
+d) If two highly correlated features are present, how would L1 and L2 regularization handle them differently? [1.5M]
+
+---
+
+## 9. Model Evaluation (Precision, Recall, Bias-Variance)
+
+### Q5 [2024-25 EC3 Regular, Q2 - 3M]
+
+You are developing a classifier to categorize chest X-ray images into four classes: Normal, Pneumonia, COVID-19, and Lung Cancer. Since Lung Cancer is a rare condition in your dataset (only about 10% of the images), your priority is to minimize the risk of missing any potential Lung Cancer cases. To achieve this, you consider adjusting the decision threshold for the Lung Cancer class in your model.
+
+If you adjust the decision threshold to optimize recall for rare classes (like Lung Cancer), what trade-off might you expect with precision? Why is this trade-off acceptable or unacceptable in a healthcare setting? [3 Marks]
+
+---
+
+## 10. Interpretability & Ethics
+
+### Q2 [2024-25 EC3 Regular, Q7c - 3M]
+
+A company uses an ML model to screen job applications. It is later found that the system disproportionately rejects female candidates. Which FaCCT (Fairness, Accountability, and Transparency) principles are being violated? What steps should the company take to address this? [3 Marks]
+
+---
