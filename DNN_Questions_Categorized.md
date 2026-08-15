@@ -380,3 +380,196 @@ a) One-Shot Architecture Search: how it works. [2M]
 b) One advantage and one disadvantage for NAS performance estimation. [2M]
 
 ---
+
+
+
+---
+
+**Additional Papers Covered (from DNN Final.pdf):**
+- 2023-24 EC3 Makeup (Closed Book, 30 marks)
+- 2022-23 EC3 Regular Mid-Semester (Open Book, 40% weightage)
+
+> **Note:** Questions involving diagrams/figures are marked with [DIAGRAM IN ORIGINAL]. Refer to the original PDF for visual content.
+
+---
+
+## 1. CNN - Architecture, Parameters & Computations
+
+### Q7 [2023-24 EC3 Makeup, Q4 - 8M]
+
+Two historians want to classify images of historical objects into 3 classes: Antiquity (y=0), Middle Ages (y=1), Modern Era (y=2). Given the following CNN code skeleton with placeholders (xxAxx to xxHxx):
+
+```python
+cnnModel = models.Sequential()
+cnnModel.add(layers.Conv2D(64, (11,11), activation='relu', input_shape=(1024,1024,3)))
+cnnModel.add(layers.MaxPooling2D((2, 2)))
+cnnModel.add(layers.Conv2D(xxAxx, (7,7), activation='relu'))  # line 1 → 501x501x64
+cnnModel.add(layers.Dropout(xxBxx))
+cnnModel.add(layers.MaxPooling2D((2, 2)))
+cnnModel.add(layers.Conv2D(128, xxCxx, activation='relu'))  # line 2 → 246x246x128
+cnnModel.add(layers.Dropout(0.3))
+cnnModel.add(layers.MaxPooling2D(xxDxx))  # line 3 → reduce output size by half
+cnnModel.add(layers.Conv2D(256, (3,3), xxExx))
+cnnModel.add(layers.MaxPooling2D((2, 2)))
+cnnModel.add(layers.Dropout(0.2))
+cnnModel.add(layers.Flatten())  # xxFxx → global average pooling
+cnnModel.add(layers.Dense(xxGxx, activation='xxHxx'))
+```
+
+Fill in the values of xxAxx to xxHxx such that line 1 results in 501×501×64, line 2 results in 246×246×128, and line 3 reduces the output size by half. Write the statement for global average pooling in place of xxFxx. All answers should be written with the correct syntax. [8M]
+
+---
+
+### Q8 [2022-23 EC3 Regular Mid-Sem, Q1 - 10M]
+
+Consider a CNN architecture with an input image of size 128×128×3. The architecture consists of two convolutional layers with 32 and 64 filters of size 3×3 respectively, followed by a max-pooling layer of size 2×2. 
+
+(a) Calculate the output dimensions after each layer. [3M]
+
+(b) If the input image size is changed to 64×64, how will it affect the number of trainable parameters? [1M]
+
+(c) Compute how many trainable parameters are there in the first convolutional layer. [1M]
+
+(d) Write Python code to implement this architecture using TensorFlow/Keras. [3M]
+
+(e) Given 3×3 input matrix $I$ and a 2×2 filter $F$:
+
+$$I = \begin{bmatrix} 1 & 0 & 2 \\ 2 & 1 & 0 \\ 1 & 3 & 2 \end{bmatrix}, \quad F = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$$
+
+Compute the output matrix after applying the convolution operation. If your BITS ID is odd, use stride of 1; otherwise use stride of 2. Assume zero-padding. [2M]
+
+---
+
+## 3. RNN - Design & Computation
+
+### Q6 [2023-24 EC3 Makeup, Q1 - 6M]
+
+Consider a combined LeNet-5 and single-layer RNN based visual captioning system that is trained to generate the sequence of small characters corresponding to ten digits, 0 to 9. For example, an input image of '7' will generate the output character sequence "s, e, v, e, n". An input image that is not of a digit will generate the output "n, o, n, e". Assuming one-hot representation is used for both input and output:
+
+(a) What is the minimum number of input nodes and minimum number of output nodes required in the RNN? [1M]
+
+(b) Assuming linear combinations of the output of last convolution layer (after subsampling and unrolling) is used to initialize the RNN hidden layer, how many trainable parameters will be needed, excluding the CNN convolution parameters? Assume 50 hidden nodes are used in RNN. Show all steps clearly. No attention is used. [4M]
+
+(c) Over how many time steps does the loss function need to be evaluated during training? [1M]
+
+---
+
+### Q7 [2022-23 EC3 Regular Mid-Sem, Q2b - 5M]
+
+An RNN is shown below with one RNN layer of two tanh neurons and a fully connected output layer with one sigmoid neuron. A record of input with one time-step and two input features is processed with it. Calculate the output of the network assuming all weights and biases are initialized with value 0.12 and previous state as $[0.1, 0.2]$.
+
+Input: $X = [[0.5, 0.6]]$
+
+[DIAGRAM IN ORIGINAL]
+
+---
+
+## 4. LSTM - Parameter Calculation
+
+### Q3 [2022-23 EC3 Regular Mid-Sem, Q2a - 5M]
+
+A data science engineer proposed an LSTM network for a deep learning problem. Calculate the parameters to be learnt in it. The dimensions are: $X_q \in \mathbb{R}^3$, $h_q \in \mathbb{R}^3$, $C_q \in \mathbb{R}^8$. [5M]
+
+---
+
+### Q4 [2022-23 EC3 Regular Mid-Sem, Q3a - 2M]
+
+A data scientist wants to build a Deep Learning model using a single LSTM cell for forecasting a time-series. The training dataset has several records with 15 time steps each. Each time step consists of three-feature normalized numeric data. If total learnable parameters in this model are 180, what is the dimensionality of the hidden state? [2M]
+
+---
+
+## 5. Attention Mechanisms & Transformers
+
+### Q4 [2023-24 EC3 Makeup, Q2 - 5M]
+
+Compute the dimensions of $W_Q$, $W_K$, $W_V$, $W_O$ if the input dimensions and attention dimensions are given as: input dimension = 1024, query dimension = 256, key dimension = 512, value dimension = 512, and there are 6 multi-heads. Compute the dimensions of the attention vector. [5M]
+
+---
+
+## 6. Optimization (GD, Momentum, Adam)
+
+### Q2 [2022-23 EC3 Regular Mid-Sem, Q4a - 5M]
+
+The training data $(x_1, y_1) = (3.5, 0.5)$ for a single Sigmoid neuron and initial values of $w = -2.0$, $b = -2.0$, $\eta = 0.10$, $\beta = 0.90$, $\epsilon = 10^{-8}$, $S_w = 0$ and $S_B = 0$ are provided. Showing all the calculations, find out the values of $w$, $b$, $S_w$ and $S_B$ after one iteration of RMSProp. [5M]
+
+---
+
+### Q3 [2022-23 EC3 Regular Mid-Sem, Q4b - 5M]
+
+The training data $(x_1, y_1) = (3.5, 0.5)$ is fed to the network given below. The initial values are $w_1 = 0.7$, $w_2 = 0.2$, $w_3 = -0.2$, $w_4 = 0.5$, $\eta = 0.10$, $\beta = 0.90$. Showing all the calculations, compute the values of $h$, $\hat{x}_1$, $\hat{x}_2$, $w_3$, $w_4$ after one iteration of SGD with momentum. Assume RMSE loss.
+
+[DIAGRAM IN ORIGINAL - Autoencoder with one hidden neuron]
+
+---
+
+## 8. Perceptron & MLP
+
+*(No new questions in this category from DNN Final.pdf)*
+
+---
+
+## 9. Regularization & Overfitting
+
+*(No new questions in this category from DNN Final.pdf)*
+
+---
+
+## 11. Transfer Learning & Applications
+
+### Q2 [2024 Regular, Q4b - 2.5M]
+
+A research group is working on a project related to medical images classification/clustering. For this they require medical images from diversified super-specialty hospitals so that the model can be trained on diversified images for a more generalized model. But the research group is facing difficulties in obtaining images due to various regulatory guidelines and also they are not having sufficient computational infrastructure. Suggest a suitable and feasible solution to the group. [2.5M]
+
+---
+
+### Q3 [2022-23 EC3 Regular Mid-Sem, Q3 - 10M]
+
+Answer the following architecture recommendation questions with justification:
+
+(a) A data scientist wants to build a Deep Learning model using a single LSTM cell for forecasting a time-series. The training dataset has several records with 15 time steps each. Each time step consists of three-feature normalized numeric data. If total learnable parameters in this model are 180, what is the dimensionality of the hidden state? [2M]
+
+(b) A healthcare startup wants to analyze MRI scans to detect tumors automatically. Each MRI scan is a sequence of 50 grayscale images of size 256×256. Describe the neural network architecture you would recommend for this task. Justify your choice. [2M]
+
+(c) You are building a model for detecting fake news articles. Describe the neural network architecture you would recommend for this task. Justify your choice. [2M]
+
+(d) A tech startup aims to build a chatbot that can understand the context of conversation, remember past interactions, and respond appropriately. Describe the neural network architecture you would recommend for this task. Justify your choice. Discuss how you would handle varying lengths of input sequences in the model. [2M]
+
+(e) An automotive company is developing an autonomous vehicle. One of the challenges is to recognize traffic signs and signals accurately in different lighting conditions. Describe the neural network architecture you would recommend for this task, and justify your choice. Discuss how you would ensure the model generalizes well to different lighting conditions. [2M]
+
+---
+
+## 12. Neural Architecture Search
+
+*(No new questions in this category from DNN Final.pdf)*
+
+---
+
+## 13. GRU - Parameter Calculation
+
+### Q1 [2023-24 EC3 Makeup, Q5 - 6M]
+
+A deep learning researcher is designing a GRU-based neural network for weather forecasting. The researcher plans to use a single-layer GRU with specific architectural parameters. The GRU layer is fed with 24 numeric features of the last 15 days, and hidden size of 128. The neural network is supposed to provide 5 numeric outputs for the next 5 days.
+
+(a) Based on these specifications, calculate the total number of parameters required for this GRU layer. Show gate-wise necessary calculations. [4M]
+
+(b) If the researcher adds bidirectional GRU, how will the number of parameters get affected? Is this addition justified for the application? [2M]
+
+---
+
+## 14. NiN (Network in Network) Architecture
+
+### Q1 [2023-24 EC3 Makeup, Q3 - 5M]
+
+Consider a simplified version of the NiN architecture with one NiN block followed by global average pooling and a sigmoid output layer. Each NiN block consists of the following layers:
+- 1×1 convolutional layer with 32 filters
+- Two separate 3×3 convolutional layers, each with 64 filters
+- Two separate 5×5 convolutional layers with 24 filters
+- ReLU activation function applied after each convolutional layer
+
+Assume that the input to the NiN architecture is a greyscale image with dimensions of 512×512 pixels. Calculate the following:
+
+(a) The number of parameters (weights and biases) in one NiN block. [4M]
+
+(b) The total number of parameters in the entire NiN architecture. [1M]
+
+---
