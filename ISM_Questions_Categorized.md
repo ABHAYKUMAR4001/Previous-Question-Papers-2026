@@ -455,7 +455,6 @@ Select best model. Consider overfitting risk, validation performance, computatio
 - S1 2025-26 EC3 Makeup - March 2026 (40 marks)
 - S1 2025-26 EC3 Makeup - Sept 2025 (40 marks)
 - S1 2025-26 EC3 Regular (40 marks)
-- 2023-24 Mid-Semester Regular - Jan 2024 (Closed Book, 30 marks)
 
 > **Note:** Questions involving diagrams/figures are marked with [DIAGRAM IN ORIGINAL].
 
