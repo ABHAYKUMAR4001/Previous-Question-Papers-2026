@@ -543,21 +543,183 @@ then independence requires:
 
 ---
 
-# Topic 1 — Remaining Material
+# 9. Does Dimension Depend on the Field?
 
-Topic 1 is **not yet complete**.
+### Comprehensive Makeup — Q2(ii) — 2 Marks
 
-The categorized MFML question bank also contains conceptual questions involving:
-
-- whether dimension is independent of the underlying field,
-- relationships between span and vector-space dimension,
-- conceptual linear-independence statements,
-- questions that begin connecting vector spaces to rank, RREF and null space.
-
-We will cover those before declaring Topic 1 complete.
-
-## Next Concept
+The question asks:
 
 > **Is the dimension of a vector space independent of the field?**
 
-This will introduce the meaning of the underlying **field** (R versus C) and show why the same collection of objects can have a different dimension depending on which scalars are allowed.
+The answer is **No**.
+
+But the important thing is to understand *why*.
+
+## What is a Field?
+
+When we write a linear combination such as:
+
+**a₁v₁ + a₂v₂**
+
+we need to know what values a₁ and a₂ are allowed to take.
+
+That set of allowed scalars is called the **field**.
+
+For MFML, the two most important fields are:
+
+- **R = real numbers**
+- **C = complex numbers**
+
+Examples of real numbers:
+
+- 2
+- -5
+- 0.7
+- √2
+- π
+
+Examples of complex numbers:
+
+- 2
+- -5
+- 3+i
+- 2-7i
+
+Every real number is also a complex number, but complex numbers additionally allow **i**, where:
+
+**i² = -1**
+
+---
+
+## Why Can the Field Change the Dimension?
+
+Take the set of complex numbers **C**.
+
+We will treat exactly the same set in two different ways.
+
+### Case 1 — C as a Vector Space over C
+
+Now the allowed scalars are complex numbers.
+
+Can every complex number be generated from the single basis element **1**?
+
+Yes.
+
+For example:
+
+**3 + 4i = (3 + 4i) × 1**
+
+The coefficient **3+4i** is allowed because the field is C.
+
+Therefore a basis is:
+
+**{1}**
+
+So:
+
+> **dim_C(C) = 1**
+
+Read this as:
+
+> Dimension of C as a vector space over C is 1.
+
+---
+
+### Case 2 — C as a Vector Space over R
+
+Now the allowed scalars are **real numbers only**.
+
+Can we generate **3+4i** using only the basis element 1?
+
+No.
+
+A real scalar times 1 can only produce a real number.
+
+So we need two building blocks:
+
+**{1, i}**
+
+because:
+
+**3 + 4i = 3(1) + 4(i)**
+
+and both coefficients 3 and 4 are real.
+
+Therefore:
+
+> **dim_R(C) = 2**
+
+---
+
+## Same Vector Space Set, Different Dimension
+
+| Vector space | Field | Basis | Dimension |
+|---|---|---|---:|
+| C over C | Complex numbers | {1} | 1 |
+| C over R | Real numbers | {1, i} | 2 |
+
+Therefore:
+
+> **The dimension of a vector space is NOT independent of the field.**
+
+The field determines what scalar coefficients are allowed, and that can change how many basis vectors are required.
+
+---
+
+## 2-Mark Exam Answer
+
+> **No. Dimension can depend on the underlying field. For example, C considered as a vector space over C has basis {1}, so its dimension is 1. However, C considered as a vector space over R has basis {1, i}, so its dimension is 2. Hence dimension is not independent of the field.**
+
+---
+
+## Intuition to Remember
+
+> **Dimension = number of independent building blocks required.**
+
+The field decides what coefficients you are allowed to use with those building blocks.
+
+With complex coefficients:
+
+**(3+4i) × 1**
+
+is allowed, so only one building block is needed.
+
+With only real coefficients:
+
+**3 × 1 + 4 × i**
+
+is required, so two building blocks are needed.
+
+A useful intuition is:
+
+> **A richer set of allowed scalars can reduce the number of basis vectors required.**
+
+---
+
+# Progress Through the Comprehensive Makeup 10-Mark Bundle
+
+The categorized question bank contains the following five 2-mark parts:
+
+| Part | Question | Status |
+|---|---|---|
+| (i) | Rank of A where a_jk = j+k-1 (and j+k-α) | To cover with Rank |
+| (ii) | Is dimension independent of the field? | **Covered** |
+| (iii) | v₁+v₂+v₃=0 → equality of two spans | **Covered** |
+| (iv) | RREF uniqueness / two students' answers | To cover with RREF |
+| (v) | Distinct eigenvalues and orthogonality | To cover with Eigenvalues |
+
+We will not memorize parts (i), (iv) and (v) prematurely. They fit naturally into the next prerequisite topics.
+
+---
+
+# Topic 1 — Next Concept
+
+The next bridge is **Null Space**, because the categorized bank contains an actual 6×6 matrix question with column relations of the form:
+
+**C₁ = C₂ + C₃ + C₄ + C₅ + C₆ = 2C₂**
+
+This links everything learned so far:
+
+**Linear Dependence → Matrix Columns → Ax = 0 → Null Space**
+
+That will be the next lesson.
