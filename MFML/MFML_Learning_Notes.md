@@ -649,77 +649,269 @@ Therefore:
 
 > **dim_R(C) = 2**
 
----
-
-## Same Vector Space Set, Different Dimension
+So exactly the same set C has different dimensions depending on the field.
 
 | Vector space | Field | Basis | Dimension |
 |---|---|---|---:|
 | C over C | Complex numbers | {1} | 1 |
-| C over R | Real numbers | {1, i} | 2 |
+| C over R | Real numbers | {1,i} | 2 |
 
 Therefore:
 
 > **The dimension of a vector space is NOT independent of the field.**
 
-The field determines what scalar coefficients are allowed, and that can change how many basis vectors are required.
+### 2-Mark Exam Answer
 
----
+> No. Dimension can depend on the underlying field. For example, C considered as a vector space over C has basis {1}, so its dimension is 1. But C considered as a vector space over R has basis {1,i}, so its dimension is 2. Hence dimension is not independent of the field.
 
-## 2-Mark Exam Answer
-
-> **No. Dimension can depend on the underlying field. For example, C considered as a vector space over C has basis {1}, so its dimension is 1. However, C considered as a vector space over R has basis {1, i}, so its dimension is 2. Hence dimension is not independent of the field.**
-
----
-
-## Intuition to Remember
+### Intuition to Remember
 
 > **Dimension = number of independent building blocks required.**
 
-The field decides what coefficients you are allowed to use with those building blocks.
+The field determines what scalar coefficients are allowed.
 
 With complex coefficients:
 
 **(3+4i) × 1**
 
-is allowed, so only one building block is needed.
+is permitted, so one building block is enough.
 
-With only real coefficients:
+With real coefficients:
 
 **3 × 1 + 4 × i**
 
-is required, so two building blocks are needed.
-
-A useful intuition is:
-
-> **A richer set of allowed scalars can reduce the number of basis vectors required.**
+is needed, so two building blocks are required.
 
 ---
 
-# Progress Through the Comprehensive Makeup 10-Mark Bundle
+# 10. What is Null Space?
 
-The categorized question bank contains the following five 2-mark parts:
+For a matrix **A**, the null space is the set of all vectors **x** satisfying:
 
-| Part | Question | Status |
-|---|---|---|
-| (i) | Rank of A where a_jk = j+k-1 (and j+k-α) | To cover with Rank |
-| (ii) | Is dimension independent of the field? | **Covered** |
-| (iii) | v₁+v₂+v₃=0 → equality of two spans | **Covered** |
-| (iv) | RREF uniqueness / two students' answers | To cover with RREF |
-| (v) | Distinct eigenvalues and orthogonality | To cover with Eigenvalues |
+**Ax = 0**
 
-We will not memorize parts (i), (iv) and (v) prematurely. They fit naturally into the next prerequisite topics.
+So:
+
+> **Null Space = all input vectors that the matrix sends to the zero vector.**
+
+We write:
+
+**N(A) = {x : Ax = 0}**
+
+## The key connection with linear dependence
+
+Suppose matrix A has columns:
+
+**C₁, C₂, ..., Cₙ**
+
+and
+
+**x = (x₁, x₂, ..., xₙ)ᵀ**
+
+Then:
+
+**Ax = x₁C₁ + x₂C₂ + ... + xₙCₙ**
+
+Therefore:
+
+**Ax = 0**
+
+means:
+
+**x₁C₁ + x₂C₂ + ... + xₙCₙ = 0**
+
+So a null-space vector is literally a set of coefficients showing a **linear dependence among the columns**.
+
+That is why Null Space comes naturally after Linear Independence.
 
 ---
 
-# Topic 1 — Next Concept
+## Tiny Example
 
-The next bridge is **Null Space**, because the categorized bank contains an actual 6×6 matrix question with column relations of the form:
+Suppose:
 
-**C₁ = C₂ + C₃ + C₄ + C₅ + C₆ = 2C₂**
+- C₁ = (1,2)
+- C₂ = (2,4)
 
-This links everything learned so far:
+Since:
 
-**Linear Dependence → Matrix Columns → Ax = 0 → Null Space**
+**C₂ = 2C₁**
 
-That will be the next lesson.
+we can write:
+
+**2C₁ - C₂ = 0**
+
+Therefore the coefficient vector:
+
+**x = (2,-1)ᵀ**
+
+satisfies:
+
+**Ax = 0**
+
+Hence:
+
+> **(2,-1)ᵀ belongs to N(A).**
+
+This is exactly the same linear-dependence idea we already learned.
+
+---
+
+# Exam Question 6 — Null Space from Column Relationships
+
+### 2023–24 EC3 Regular — Q3A — 2 Marks
+
+The categorized MFML bank gives a 6×6 matrix whose columns satisfy:
+
+**C₁ = C₂ + C₃ + C₄ + C₅ + C₆**
+
+and also:
+
+**C₁ = 2C₂**
+
+Two important null-space vectors are:
+
+- **[1,-2,0,0,0,0]ᵀ**
+- **[-1,0,2,2,2,2]ᵀ**
+
+Let us see why.
+
+### Candidate 1
+
+Take:
+
+**x = [1,-2,0,0,0,0]ᵀ**
+
+Then:
+
+**Ax = C₁ - 2C₂**
+
+But we are given:
+
+**C₁ = 2C₂**
+
+Therefore:
+
+**C₁ - 2C₂ = 0**
+
+Hence:
+
+> **[1,-2,0,0,0,0]ᵀ ∈ N(A)**
+
+---
+
+### Candidate 2
+
+Take:
+
+**x = [-1,0,2,2,2,2]ᵀ**
+
+Then:
+
+**Ax = -C₁ + 2C₃ + 2C₄ + 2C₅ + 2C₆**
+
+From:
+
+**C₁ = 2C₂**
+
+we get:
+
+**C₂ = C₁/2**
+
+Now substitute into:
+
+**C₁ = C₂ + C₃ + C₄ + C₅ + C₆**
+
+So:
+
+**C₁ = C₁/2 + C₃ + C₄ + C₅ + C₆**
+
+Therefore:
+
+**C₃ + C₄ + C₅ + C₆ = C₁/2**
+
+Multiply both sides by 2:
+
+**2C₃ + 2C₄ + 2C₅ + 2C₆ = C₁**
+
+Hence:
+
+**-C₁ + 2C₃ + 2C₄ + 2C₅ + 2C₆ = 0**
+
+Therefore:
+
+> **[-1,0,2,2,2,2]ᵀ ∈ N(A)**
+
+---
+
+## Exam Pattern to Remember
+
+Whenever you are given relationships among matrix columns, immediately convert them into:
+
+> **column relation → coefficient vector → null-space vector**
+
+Examples:
+
+If:
+
+**C₁ = 3C₂**
+
+then:
+
+**C₁ - 3C₂ = 0**
+
+so:
+
+**[1,-3,0,...,0]ᵀ ∈ N(A)**
+
+If:
+
+**C₁ = C₂ + C₃**
+
+then:
+
+**C₁ - C₂ - C₃ = 0**
+
+so:
+
+**[1,-1,-1,0,...,0]ᵀ ∈ N(A)**
+
+---
+
+## Why Null Space Matters for Rank
+
+If there is a nonzero vector x such that:
+
+**Ax = 0**
+
+then the columns of A are linearly dependent.
+
+So:
+
+> **nontrivial null space ⇒ column dependence ⇒ rank is smaller than the number of columns**
+
+The next concept formalizes this relationship using:
+
+> **Rank + Nullity = Number of Columns**
+
+For now, remember:
+
+> **A null-space vector is a certificate of linear dependence among matrix columns.**
+
+---
+
+# Next Concept
+
+## Rank and Nullity
+
+We will next use the actual Comprehensive Makeup question involving the special matrix:
+
+**a_jk = j + k - 1**
+
+and connect it to:
+
+- column dependence,
+- rank,
+- nullity,
+- RREF,
+- and the Rank–Nullity Theorem.
