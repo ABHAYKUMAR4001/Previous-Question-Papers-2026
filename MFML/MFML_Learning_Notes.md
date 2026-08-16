@@ -1437,12 +1437,308 @@ or simply:
 
 ---
 
+# 14. Finding b from a Known Solution and Understanding RREF
+
+### MFML/MFDS Comprehensive Regular 2025–26 — Q1(A)(ii) — 2 Marks
+
+The categorized question says to find **b** when **RREF(A)=Â**, but the exact displayed matrix Â is not present in the categorized Markdown text. Therefore this section focuses on the exact concept and method rather than inventing the missing matrix entries.
+
+We already know that:
+
+**xₚ = (1,0,1,0)ᵀ**
+
+is a particular solution of:
+
+**Ax = b**
+
+Therefore, by definition:
+
+> **b = Axₚ**
+
+Since:
+
+**A = [C₁ C₂ C₃ C₄]**
+
+and:
+
+```text
+xₚ = | 1 |
+     | 0 |
+     | 1 |
+     | 0 |
+```
+
+matrix multiplication gives:
+
+**Axₚ = 1C₁ + 0C₂ + 1C₃ + 0C₄**
+
+Hence:
+
+> **b = C₁ + C₃**
+
+This result is for the **original matrix A**.
+
+---
+
+## Why Matrix Multiplication Works This Way
+
+If:
+
+**A = [C₁ C₂ ... Cₙ]**
+
+and:
+
+**x = (x₁,x₂,...,xₙ)ᵀ**
+
+then:
+
+> **Ax = x₁C₁ + x₂C₂ + ... + xₙCₙ**
+
+So the components of x are simply the coefficients used to combine the columns of A.
+
+For:
+
+**xₚ = (1,0,1,0)ᵀ**
+
+we take:
+
+- 1 × C₁
+- 0 × C₂
+- 1 × C₃
+- 0 × C₄
+
+therefore:
+
+> **b = C₁ + C₃**
+
+This also gives a very important span interpretation:
+
+> **If Ax=b has a solution, then b must lie in the span of the columns of A.**
+
+---
+
+## The Important RREF Subtlety
+
+Suppose:
+
+**RREF(A) = Â**
+
+Can we simply write:
+
+**b = Âxₚ**?
+
+> **No — not for the original b.**
+
+When row operations transform A into Â, the same row operations must also be applied to b.
+
+So the original system:
+
+**Ax = b**
+
+becomes a row-equivalent system:
+
+**Âx = b̂**
+
+where b̂ is the transformed right-hand side.
+
+Therefore:
+
+> **Âxₚ = b̂**
+
+not necessarily the original b.
+
+---
+
+## Simple Example
+
+Suppose:
+
+```text
+A = | 1  1 |
+    | 2  2 |
+```
+
+and:
+
+```text
+b = | 3 |
+    | 6 |
+```
+
+Apply the row operation:
+
+**R₂ → R₂ - 2R₁**
+
+Then:
+
+```text
+Â = | 1  1 |
+    | 0  0 |
+```
+
+but the right-hand side becomes:
+
+```text
+b̂ = | 3 |
+     | 0 |
+```
+
+So:
+
+> **b ≠ b̂**
+
+although the original and row-reduced systems have exactly the same solution set.
+
+This is why we must distinguish between the original RHS vector and the transformed RHS vector.
+
+---
+
+## What Can We Calculate Using Â?
+
+If the exam gives the actual matrix:
+
+**Â = RREF(A)**
+
+and asks for the RHS of the row-reduced system, then:
+
+> **b̂ = Âxₚ**
+
+Since:
+
+**xₚ = (1,0,1,0)ᵀ**
+
+this becomes:
+
+> **b̂ = Ĉ₁ + Ĉ₃**
+
+where Ĉ₁ and Ĉ₃ are columns 1 and 3 of Â.
+
+So once Â is visible, the numerical calculation is immediate: simply add columns 1 and 3 of Â.
+
+---
+
+## Illustrative Example Only
+
+Suppose, only as an example:
+
+```text
+Â = | 1  3  0   2 |
+    | 0  0  1  -1 |
+    | 0  0  0   0 |
+    | 0  0  0   0 |
+```
+
+Then:
+
+```text
+Ĉ₁ = | 1 |       Ĉ₃ = | 0 |
+     | 0 |            | 1 |
+     | 0 |            | 0 |
+     | 0 |            | 0 |
+```
+
+Therefore:
+
+```text
+b̂ = Ĉ₁ + Ĉ₃
+   = | 1 |
+     | 1 |
+     | 0 |
+     | 0 |
+```
+
+This example is only to demonstrate the method; it is not the missing exam matrix.
+
+---
+
+## One Very Useful Rule
+
+Whenever you see:
+
+**A = [C₁ C₂ ... Cₙ]**
+
+and:
+
+**x = (x₁,x₂,...,xₙ)ᵀ**
+
+immediately think:
+
+> **Ax = x₁C₁ + x₂C₂ + ... + xₙCₙ**
+
+This single idea helps with:
+
+- finding b,
+- null-space questions,
+- column dependence,
+- span,
+- and general solutions.
+
+---
+
+## Complete Connection
+
+### Ax = b
+
+means:
+
+**x₁C₁ + x₂C₂ + ... + xₙCₙ = b**
+
+### Ax = 0
+
+means:
+
+**x₁C₁ + x₂C₂ + ... + xₙCₙ = 0**
+
+which describes column dependence and the null space.
+
+### Ax = b has a solution
+
+means:
+
+> **b lies in the span of the columns of A.**
+
+### Number of independent columns
+
+means:
+
+> **rank**
+
+### Number of independent zero-effect directions
+
+means:
+
+> **nullity**
+
+So span, dependence, null space, rank, RREF and solving Ax=b are all different views of the same matrix structure.
+
+---
+
+## Exam Shortcut
+
+Given:
+
+**xₚ = (1,0,1,0)ᵀ**
+
+immediately write:
+
+> **b = Axₚ = C₁ + C₃**
+
+If the question instead asks for the RHS associated with the row-reduced system:
+
+> **b̂ = Âxₚ = Ĉ₁ + Ĉ₃**
+
+Once the actual Â from the exam paper is available, this becomes a direct column-addition calculation.
+
+---
+
 # Next Step
 
-The second part of the same 2025–26 MFML question asks you to **find b if RREF(A)=Â**.
+The rank/null-space/RREF/general-solution branch is now essentially complete.
 
-That is the natural next step because it introduces a subtle but important distinction between:
+A remaining conceptual question in the older comprehensive bank asks whether **distinct eigenvalues imply an orthogonal matrix is possible**.
 
-- the **original matrix A**,
-- its **RREF**, and
-- how a known particular solution is used to determine b.
+To answer that properly, the next topic should be:
+
+> **Eigenvalues and Eigenvectors**
+
+This will also prepare us for eigenspaces, symmetric matrices, orthogonality, trace, determinant, PCA and SVD.
