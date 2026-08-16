@@ -1260,12 +1260,189 @@ So the exam procedure is:
 
 ---
 
+# 13. General Solution of Ax = b
+
+This section combines **particular solution + null space + rank + free variables**.
+
+### MFML/MFDS Comprehensive Regular 2025–26 — Q1(A)(i) — 2 Marks
+
+The question gives:
+
+- **A = [C₁, C₂, C₃, C₄]**
+- **rank(A) = 2**
+- **C₂ = 3C₁**
+- **C₄ = 2C₁ + 3C₃**
+- a particular solution of **Ax = b** is **xₚ = (1,0,1,0)ᵀ**
+
+and asks for the **general solution** of Ax = b.
+
+## Master Formula
+
+If xₚ is one particular solution of:
+
+**Ax = b**
+
+and xₙ is any solution of:
+
+**Ax = 0**
+
+then:
+
+> **General solution = Particular solution + Null-space solution**
+
+or:
+
+**x = xₚ + xₙ**
+
+Why?
+
+Because:
+
+**A(xₚ + xₙ) = Axₚ + Axₙ = b + 0 = b**
+
+So every null-space vector can be added to a particular solution without changing the output b.
+
+---
+
+## Step 1 — Use C₂ = 3C₁
+
+Rearrange:
+
+**C₂ - 3C₁ = 0**
+
+or:
+
+**-3C₁ + C₂ = 0**
+
+Therefore one null-space vector is:
+
+**n₁ = (-3,1,0,0)ᵀ**
+
+because:
+
+**A n₁ = -3C₁ + C₂ = 0**
+
+---
+
+## Step 2 — Use C₄ = 2C₁ + 3C₃
+
+Move everything to one side:
+
+**-2C₁ - 3C₃ + C₄ = 0**
+
+Therefore another null-space vector is:
+
+**n₂ = (-2,0,-3,1)ᵀ**
+
+because:
+
+**A n₂ = -2C₁ - 3C₃ + C₄ = 0**
+
+---
+
+## Step 3 — Check How Many Null-Space Basis Vectors Are Needed
+
+A has 4 columns and:
+
+**rank(A) = 2**
+
+Using Rank–Nullity:
+
+**rank + nullity = number of columns**
+
+So:
+
+**2 + nullity = 4**
+
+Therefore:
+
+> **nullity(A) = 2**
+
+We already found two independent null-space vectors n₁ and n₂, so they form a basis for N(A).
+
+---
+
+## Step 4 — Write the Complete Null-Space Solution
+
+Any vector in N(A) can be written as:
+
+**xₙ = s n₁ + t n₂**
+
+where s,t ∈ R.
+
+Therefore:
+
+**xₙ = s(-3,1,0,0)ᵀ + t(-2,0,-3,1)ᵀ**
+
+---
+
+## Step 5 — Add the Particular Solution
+
+The particular solution is:
+
+**xₚ = (1,0,1,0)ᵀ**
+
+Therefore:
+
+> **x = (1,0,1,0)ᵀ + s(-3,1,0,0)ᵀ + t(-2,0,-3,1)ᵀ**
+
+where s,t ∈ R.
+
+Component-wise:
+
+- **x₁ = 1 - 3s - 2t**
+- **x₂ = s**
+- **x₃ = 1 - 3t**
+- **x₄ = t**
+
+So equivalently:
+
+> **x = (1 - 3s - 2t, s, 1 - 3t, t)ᵀ**, where s,t ∈ R.
+
+---
+
+## Compact 2-Mark Exam Answer
+
+> Since C₂ = 3C₁, we have -3C₁ + C₂ = 0, giving null-space vector (-3,1,0,0)ᵀ. Since C₄ = 2C₁ + 3C₃, we have -2C₁ - 3C₃ + C₄ = 0, giving (-2,0,-3,1)ᵀ. Since rank(A)=2 and A has 4 columns, nullity(A)=2, so these form a null-space basis. Hence:
+>
+> **x = (1,0,1,0)ᵀ + s(-3,1,0,0)ᵀ + t(-2,0,-3,1)ᵀ**, s,t ∈ R.
+
+---
+
+## Why This Question Matters
+
+This single problem connects several ideas:
+
+**column dependence**
+
+→ gives null-space vectors
+
+→ rank tells how many independent null-space directions are needed
+
+→ a particular solution gives one valid point
+
+→ the null space gives all directions that can be added without changing b
+
+So geometrically:
+
+> **The solution set of Ax=b is one particular solution shifted by the null space.**
+
+A useful memory rule is:
+
+> **General solution = one solution + all zero-effect directions.**
+
+or simply:
+
+> **x = xₚ + N(A)**
+
+---
+
 # Next Step
 
-The next natural concept is the **general solution of Ax = b**.
+The second part of the same 2025–26 MFML question asks you to **find b if RREF(A)=Â**.
 
-The 2025–26 MFML paper gives column relations, rank(A)=2, a particular solution, and asks for the **general solution**.
+That is the natural next step because it introduces a subtle but important distinction between:
 
-That question will connect:
-
-**particular solution + null space + free variables + rank**
+- the **original matrix A**,
+- its **RREF**, and
+- how a known particular solution is used to determine b.
