@@ -1731,14 +1731,381 @@ Once the actual Â from the exam paper is available, this becomes a direct colum
 
 ---
 
+# Topic 2 — Eigenvalues & Eigenvectors
+
+> **Learning goal:** Understand the meaning of eigenvalues and eigenvectors, derive the characteristic equation, solve eigenvalue/eigenvector problems, connect eigenspaces to null spaces, and use exam shortcuts involving triangular matrices, trace, determinant and matrix powers.
+
+## 1. What is an Eigenvector?
+
+Normally, when a matrix acts on a vector, it can change both its direction and magnitude.
+
+But some special vectors keep the same direction after multiplication by the matrix.
+
+Those are called **eigenvectors**.
+
+Mathematically:
+
+**Av = λv**
+
+where:
+
+- A = matrix
+- v = eigenvector
+- λ = eigenvalue
+
+So the matrix changes v only by a scaling factor λ.
+
+### Tiny Example
+
+Take:
+
+```text
+A = | 2  0 |
+    | 0  3 |
+```
+
+and:
+
+**v₁ = (1,0)ᵀ**
+
+Then:
+
+**Av₁ = (2,0)ᵀ = 2v₁**
+
+Therefore:
+
+> **v₁ is an eigenvector with eigenvalue λ=2.**
+
+Similarly, for:
+
+**v₂ = (0,1)ᵀ**
+
+we get:
+
+**Av₂ = (0,3)ᵀ = 3v₂**
+
+Therefore:
+
+> **v₂ is an eigenvector with eigenvalue λ=3.**
+
+---
+
+## 2. Geometric Intuition
+
+An eigenvector is a special direction that the matrix does not rotate away from itself.
+
+The matrix may stretch it, shrink it, or reverse its direction, but it stays on the same line.
+
+- If **λ > 1**, the vector stretches.
+- If **0 < λ < 1**, it shrinks.
+- If **λ < 0**, it reverses direction and scales.
+- If **λ = 0**, it collapses to the zero vector.
+
+---
+
+## 3. Why Do We Solve det(A - λI) = 0?
+
+Start from the eigenvalue equation:
+
+**Av = λv**
+
+Move everything to one side:
+
+**Av - λv = 0**
+
+Since:
+
+**λv = λIv**
+
+we get:
+
+**(A - λI)v = 0**
+
+For v to be a genuine eigenvector, v must be nonzero.
+
+Therefore the equation:
+
+**(A - λI)v = 0**
+
+must have a nontrivial solution.
+
+That means **A - λI must be singular**, so:
+
+> **det(A - λI) = 0**
+
+This is called the **characteristic equation**.
+
+This connects directly to Topic 1: an eigenvector is a nonzero vector in the null space of **A - λI**.
+
+---
+
+## 4. Basic 2×2 Exam-Style Example
+
+Take:
+
+```text
+A = | 4  1 |
+    | 2  3 |
+```
+
+Find the eigenvalues.
+
+First:
+
+```text
+A - λI = | 4-λ   1   |
+         |  2    3-λ |
+```
+
+Set the determinant to zero:
+
+**(4-λ)(3-λ) - 2 = 0**
+
+Expand:
+
+**12 - 7λ + λ² - 2 = 0**
+
+So:
+
+**λ² - 7λ + 10 = 0**
+
+Factor:
+
+**(λ-5)(λ-2)=0**
+
+Therefore:
+
+> **Eigenvalues are λ=5 and λ=2.**
+
+---
+
+## 5. How Do We Find the Eigenvectors?
+
+Take one eigenvalue at a time.
+
+### For λ = 5
+
+Solve:
+
+**(A - 5I)v = 0**
+
+So:
+
+```text
+| -1   1 | |x| = |0|
+|  2  -2 | |y|   |0|
+```
+
+This gives:
+
+**-x + y = 0**
+
+so:
+
+**y = x**
+
+Hence:
+
+**v = t(1,1)ᵀ**
+
+for any nonzero t.
+
+One eigenvector is therefore:
+
+> **(1,1)ᵀ**
+
+### For λ = 2
+
+Solve:
+
+```text
+| 2  1 | |x| = |0|
+| 2  1 | |y|   |0|
+```
+
+So:
+
+**2x + y = 0**
+
+Therefore:
+
+**y = -2x**
+
+Hence:
+
+**v = t(1,-2)ᵀ**
+
+One eigenvector is therefore:
+
+> **(1,-2)ᵀ**
+
+---
+
+## 6. Eigenvector vs Eigenspace
+
+For λ=5 we found:
+
+**v = t(1,1)ᵀ**
+
+All such vectors, together with the zero vector, form the **eigenspace** corresponding to λ=5.
+
+The key identity is:
+
+> **Eigenspace for λ = N(A - λI)**
+
+So eigenspace questions are really null-space questions in disguise.
+
+This is exactly why the earlier null-space foundation matters.
+
+---
+
+## 7. Basis and Dimension of an Eigenspace
+
+For the previous example:
+
+**E₅ = span{(1,1)ᵀ}**
+
+A basis is therefore:
+
+**{(1,1)ᵀ}**
+
+and:
+
+> **dim(E₅)=1**
+
+A useful exam sequence is:
+
+**eigenvalue → solve (A-λI)v=0 → eigenspace → basis → dimension**
+
+This exact structure appears in newer MFML questions.
+
+---
+
+## 8. MFML Shortcut — Triangular Matrices
+
+The question bank contains the lower-triangular matrix:
+
+```text
+L = | 2  0  0 |
+    | 1  4  0 |
+    | 3  1  5 |
+```
+
+The eigenvalues are immediately:
+
+> **2, 4, 5**
+
+Why?
+
+For any upper- or lower-triangular matrix:
+
+> **The eigenvalues are the diagonal entries.**
+
+This is an important exam shortcut.
+
+### Why does it work?
+
+For a triangular matrix, **A-λI** is still triangular.
+
+Its determinant is the product of its diagonal terms:
+
+**det(A-λI) = (a₁₁-λ)(a₂₂-λ)...(aₙₙ-λ)**
+
+So the roots are exactly the diagonal entries.
+
+---
+
+## 9. MFML Pattern — Trace and Determinant
+
+A previous MFML question has eigenvalues:
+
+**3, -3, 14**
+
+and asks for quantities involving **C⁶** and **C⁷**.
+
+Two critical rules are:
+
+> **Trace = sum of eigenvalues**
+
+and:
+
+> **Determinant = product of eigenvalues**
+
+So:
+
+**trace(C) = 3 + (-3) + 14 = 14**
+
+---
+
+## 10. Eigenvalues of a Matrix Power
+
+If λ is an eigenvalue of C, then:
+
+> **λᵏ is an eigenvalue of Cᵏ**
+
+Therefore the eigenvalues of C⁶ are:
+
+- 3⁶
+- (-3)⁶
+- 14⁶
+
+Hence:
+
+> **Trace(C⁶) = 3⁶ + (-3)⁶ + 14⁶**
+
+Since the exponent is even:
+
+**(-3)⁶ = 3⁶**
+
+so equivalently:
+
+> **Trace(C⁶) = 2·3⁶ + 14⁶**
+
+---
+
+## 11. Determinant of a Matrix Power
+
+The determinant of C is:
+
+**det(C) = 3 × (-3) × 14 = -126**
+
+Also:
+
+> **det(Cᵏ) = [det(C)]ᵏ**
+
+Therefore:
+
+> **det(C⁷) = (-126)⁷**
+
+This is exactly the kind of shortcut expected in the exam.
+
+---
+
+# Quick Exam Recognition Table — Eigenvalues
+
+| If you see... | Think immediately |
+|---|---|
+| Av = λv | Eigenvector/eigenvalue definition |
+| Find eigenvalues | det(A-λI)=0 |
+| Find eigenvectors | Solve (A-λI)v=0 |
+| Find eigenspace | N(A-λI) |
+| Triangular matrix | Diagonal entries are eigenvalues |
+| Trace | Sum of eigenvalues |
+| Determinant | Product of eigenvalues |
+| Aᵏ | Eigenvalues become λᵏ |
+| Basis of eigenspace | Basis of N(A-λI) |
+| Dimension of eigenspace | Number of independent basis vectors |
+
+---
+
 # Next Step
 
-The rank/null-space/RREF/general-solution branch is now essentially complete.
+The next useful step is to solve a **full actual MFML eigenspace question** that asks for:
 
-A remaining conceptual question in the older comprehensive bank asks whether **distinct eigenvalues imply an orthogonal matrix is possible**.
+- eigenvalues,
+- the largest eigenvalue,
+- the corresponding eigenspace,
+- a basis for that eigenspace,
+- and its dimension.
 
-To answer that properly, the next topic should be:
-
-> **Eigenvalues and Eigenvectors**
-
-This will also prepare us for eigenspaces, symmetric matrices, orthogonality, trace, determinant, PCA and SVD.
+That will make this foundation concrete before we tackle the conceptual question about **distinct eigenvalues and orthogonality**.
