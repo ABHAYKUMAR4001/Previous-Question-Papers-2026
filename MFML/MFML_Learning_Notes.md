@@ -1731,50 +1731,56 @@ Once the actual Â from the exam paper is available, this becomes a direct colum
 
 ---
 
-# Topic 2 — Eigenvalues & Eigenvectors
+# Next Step
 
-> **Learning goal:** Understand the meaning of eigenvalues and eigenvectors, derive the characteristic equation, solve eigenvalue/eigenvector problems, connect eigenspaces to null spaces, and use exam shortcuts involving triangular matrices, trace, determinant and matrix powers.
+The rank/null-space/RREF/general-solution branch is now essentially complete.
+
+A remaining conceptual question in the older comprehensive bank asks whether **distinct eigenvalues imply an orthogonal matrix is possible**.
+
+To answer that properly, the next topic should be:
+
+> **Eigenvalues and Eigenvectors**
+
+This will also prepare us for eigenspaces, symmetric matrices, orthogonality, trace, determinant, PCA and SVD.
+
+# Topic 2 — Eigenvalues & Eigenvectors
 
 ## 1. What is an Eigenvector?
 
-Normally, when a matrix acts on a vector, it can change both its direction and magnitude.
+Normally, when a matrix acts on a vector, it can change both its **direction** and **magnitude**.
 
-But some special vectors keep the same direction after multiplication by the matrix.
-
-Those are called **eigenvectors**.
+Some special vectors keep the same direction after multiplication by the matrix. These are called **eigenvectors**.
 
 Mathematically:
 
-**Av = λv**
+> **Av = λv**
 
 where:
 
-- A = matrix
-- v = eigenvector
-- λ = eigenvalue
+- A is the matrix,
+- v is a nonzero eigenvector,
+- λ is the corresponding eigenvalue.
 
-So the matrix changes v only by a scaling factor λ.
+The matrix changes v only by a scaling factor λ.
 
 ### Tiny Example
-
-Take:
 
 ```text
 A = | 2  0 |
     | 0  3 |
 ```
 
-and:
+For:
 
 **v₁ = (1,0)ᵀ**
 
-Then:
+we get:
 
 **Av₁ = (2,0)ᵀ = 2v₁**
 
-Therefore:
+Therefore v₁ is an eigenvector with eigenvalue:
 
-> **v₁ is an eigenvector with eigenvalue λ=2.**
+> **λ = 2**
 
 Similarly, for:
 
@@ -1784,28 +1790,36 @@ we get:
 
 **Av₂ = (0,3)ᵀ = 3v₂**
 
-Therefore:
+so v₂ is an eigenvector with eigenvalue:
 
-> **v₂ is an eigenvector with eigenvalue λ=3.**
+> **λ = 3**
 
 ---
 
 ## 2. Geometric Intuition
 
-An eigenvector is a special direction that the matrix does not rotate away from itself.
+An eigenvector is a **special direction that the matrix does not rotate away from itself**.
 
-The matrix may stretch it, shrink it, or reverse its direction, but it stays on the same line.
+The matrix may:
 
-- If **λ > 1**, the vector stretches.
-- If **0 < λ < 1**, it shrinks.
-- If **λ < 0**, it reverses direction and scales.
-- If **λ = 0**, it collapses to the zero vector.
+- stretch it,
+- shrink it,
+- reverse its direction,
+
+but it stays on the same line.
+
+Interpretation of λ:
+
+- **λ > 1** → stretch
+- **0 < λ < 1** → shrink
+- **λ < 0** → reverse direction and scale
+- **λ = 0** → collapse to zero
 
 ---
 
 ## 3. Why Do We Solve det(A - λI) = 0?
 
-Start from the eigenvalue equation:
+Start from:
 
 **Av = λv**
 
@@ -1813,33 +1827,29 @@ Move everything to one side:
 
 **Av - λv = 0**
 
-Since:
-
-**λv = λIv**
-
-we get:
+Since λv = λIv:
 
 **(A - λI)v = 0**
 
-For v to be a genuine eigenvector, v must be nonzero.
+For v to be an eigenvector, v must be **nonzero**.
 
-Therefore the equation:
+So the homogeneous system must have a nontrivial solution.
 
-**(A - λI)v = 0**
+That means A - λI must be singular.
 
-must have a nontrivial solution.
-
-That means **A - λI must be singular**, so:
+Therefore:
 
 > **det(A - λI) = 0**
 
 This is called the **characteristic equation**.
 
-This connects directly to Topic 1: an eigenvector is a nonzero vector in the null space of **A - λI**.
+So eigenvalues are exactly the values of λ that make A - λI singular.
+
+This connects directly to the earlier null-space topic.
 
 ---
 
-## 4. Basic 2×2 Exam-Style Example
+## 4. Basic 2×2 Example
 
 Take:
 
@@ -1848,48 +1858,37 @@ A = | 4  1 |
     | 2  3 |
 ```
 
-Find the eigenvalues.
-
-First:
+Then:
 
 ```text
-A - λI = | 4-λ   1   |
-         |  2    3-λ |
+A - λI =
+| 4-λ   1   |
+|  2    3-λ |
 ```
 
-Set the determinant to zero:
+Set the determinant equal to zero:
 
 **(4-λ)(3-λ) - 2 = 0**
 
 Expand:
 
-**12 - 7λ + λ² - 2 = 0**
-
-So:
-
 **λ² - 7λ + 10 = 0**
 
 Factor:
 
-**(λ-5)(λ-2)=0**
+**(λ-5)(λ-2) = 0**
 
 Therefore:
 
-> **Eigenvalues are λ=5 and λ=2.**
+> **Eigenvalues are λ = 5 and λ = 2.**
 
 ---
 
-## 5. How Do We Find the Eigenvectors?
+## 5. Finding the Eigenvectors
 
-Take one eigenvalue at a time.
-
-### For λ = 5
-
-Solve:
+For λ = 5, solve:
 
 **(A - 5I)v = 0**
-
-So:
 
 ```text
 | -1   1 | |x| = |0|
@@ -1904,38 +1903,34 @@ so:
 
 **y = x**
 
-Hence:
+Therefore:
 
 **v = t(1,1)ᵀ**
 
-for any nonzero t.
-
-One eigenvector is therefore:
+and one eigenvector is:
 
 > **(1,1)ᵀ**
 
-### For λ = 2
-
-Solve:
+For λ = 2:
 
 ```text
 | 2  1 | |x| = |0|
 | 2  1 | |y|   |0|
 ```
 
-So:
+which gives:
 
 **2x + y = 0**
 
-Therefore:
+so:
 
 **y = -2x**
 
-Hence:
+Therefore:
 
 **v = t(1,-2)ᵀ**
 
-One eigenvector is therefore:
+and one eigenvector is:
 
 > **(1,-2)ᵀ**
 
@@ -1943,65 +1938,58 @@ One eigenvector is therefore:
 
 ## 6. Eigenvector vs Eigenspace
 
-For λ=5 we found:
+For λ = 5, we found:
 
 **v = t(1,1)ᵀ**
 
-All such vectors, together with the zero vector, form the **eigenspace** corresponding to λ=5.
+All such vectors together form the **eigenspace** corresponding to λ = 5.
 
-The key identity is:
+The important identity is:
 
 > **Eigenspace for λ = N(A - λI)**
 
-So eigenspace questions are really null-space questions in disguise.
-
-This is exactly why the earlier null-space foundation matters.
+So an eigenspace question is really a null-space question in disguise.
 
 ---
 
 ## 7. Basis and Dimension of an Eigenspace
 
-For the previous example:
+If:
 
 **E₅ = span{(1,1)ᵀ}**
 
-A basis is therefore:
+then a basis is:
 
 **{(1,1)ᵀ}**
 
-and:
+and therefore:
 
-> **dim(E₅)=1**
+> **dim(E₅) = 1**
 
-A useful exam sequence is:
+This is the exam sequence to remember:
 
-**eigenvalue → solve (A-λI)v=0 → eigenspace → basis → dimension**
-
-This exact structure appears in newer MFML questions.
+> **Eigenvalue → solve (A-λI)v=0 → eigenspace → basis → dimension**
 
 ---
 
 ## 8. MFML Shortcut — Triangular Matrices
 
-The question bank contains the lower-triangular matrix:
+A previous MFML question gives the lower-triangular matrix:
 
 ```text
-L = | 2  0  0 |
-    | 1  4  0 |
-    | 3  1  5 |
+L =
+| 2  0  0 |
+| 1  4  0 |
+| 3  1  5 |
 ```
-
-The eigenvalues are immediately:
-
-> **2, 4, 5**
-
-Why?
 
 For any upper- or lower-triangular matrix:
 
 > **The eigenvalues are the diagonal entries.**
 
-This is an important exam shortcut.
+So here:
+
+> **λ = 2, 4, 5**
 
 ### Why does it work?
 
@@ -2098,14 +2086,195 @@ This is exactly the kind of shortcut expected in the exam.
 
 ---
 
+# 12. Actual MFML Eigenspace Question — EC-3 Makeup 2025–26 Q1(a)
+
+Consider:
+
+```text
+A =
+| -2   0   0   0 |
+| -1   3   0   0 |
+|  0  -1  -1   0 |
+|  1   1   0   5 |
+```
+
+The question asks to:
+
+1. find all eigenvalues of A,
+2. find the eigenspace corresponding to the largest eigenvalue,
+3. find a basis for that eigenspace,
+4. find its dimension.
+
+## Step 1 — Find the Eigenvalues
+
+A is a **lower-triangular matrix**.
+
+Therefore its eigenvalues are simply its diagonal entries:
+
+> **λ = -2, 3, -1, 5**
+
+The largest eigenvalue is:
+
+> **λ = 5**
+
+No determinant expansion is required.
+
+---
+
+## Step 2 — Find the Eigenspace for λ = 5
+
+Solve:
+
+**(A - 5I)v = 0**
+
+Let:
+
+**v = (x₁,x₂,x₃,x₄)ᵀ**
+
+Then:
+
+```text
+A - 5I =
+| -7   0   0   0 |
+| -1  -2   0   0 |
+|  0  -1  -6   0 |
+|  1   1   0   0 |
+```
+
+So we solve:
+
+```text
+| -7   0   0   0 |   |x₁|   |0|
+| -1  -2   0   0 |   |x₂| = |0|
+|  0  -1  -6   0 |   |x₃|   |0|
+|  1   1   0   0 |   |x₄|   |0|
+```
+
+### Row 1
+
+**-7x₁ = 0**
+
+Therefore:
+
+**x₁ = 0**
+
+### Row 2
+
+**-x₁ - 2x₂ = 0**
+
+Since x₁ = 0:
+
+**x₂ = 0**
+
+### Row 3
+
+**-x₂ - 6x₃ = 0**
+
+Since x₂ = 0:
+
+**x₃ = 0**
+
+### Row 4
+
+**x₁ + x₂ = 0**
+
+This is already satisfied.
+
+There is no equation involving x₄, so x₄ is a **free variable**.
+
+Let:
+
+**x₄ = t**
+
+Then:
+
+**v = (0,0,0,t)ᵀ**
+
+or:
+
+> **v = t(0,0,0,1)ᵀ**
+
+---
+
+## Step 3 — Write the Eigenspace
+
+Therefore:
+
+> **V₅ = span{(0,0,0,1)ᵀ}**
+
+This is the eigenspace corresponding to the largest eigenvalue λ = 5.
+
+---
+
+## Step 4 — Basis
+
+A basis for V₅ is:
+
+> **{(0,0,0,1)ᵀ}**
+
+because this single nonzero vector spans the eigenspace.
+
+---
+
+## Step 5 — Dimension
+
+The basis contains one vector.
+
+Therefore:
+
+> **dim(V₅) = 1**
+
+---
+
+## Compact 5-Mark Exam Answer
+
+> Since A is lower triangular, its eigenvalues are the diagonal entries:
+>
+> **λ = -2, 3, -1, 5**.
+>
+> The largest eigenvalue is **5**. Solving **(A-5I)v=0** gives **x₁=x₂=x₃=0**, while **x₄** is free. Hence:
+>
+> **v = t(0,0,0,1)ᵀ**.
+>
+> Therefore:
+>
+> **V₅ = span{(0,0,0,1)ᵀ}**,
+>
+> a basis is **{(0,0,0,1)ᵀ}**, and
+>
+> **dim(V₅)=1**.
+
+---
+
+## Why This Question Matters
+
+This question connects concepts from both topics:
+
+**triangular matrix**
+
+→ eigenvalues can be read directly
+
+**eigenspace**
+
+→ solve a null-space problem
+
+**basis and dimension**
+
+→ use the same definitions learned in Topic 1
+
+So eigenspace questions reuse the exact same linear-algebra machinery we already developed.
+
+---
+
 # Next Step
 
-The next useful step is to solve a **full actual MFML eigenspace question** that asks for:
+The next important conceptual MFML question is:
 
-- eigenvalues,
-- the largest eigenvalue,
-- the corresponding eigenspace,
-- a basis for that eigenspace,
-- and its dimension.
+> **If a matrix has distinct eigenvalues, can the corresponding eigenvectors be chosen orthogonal?**
 
-That will make this foundation concrete before we tackle the conceptual question about **distinct eigenvalues and orthogonality**.
+This requires distinguishing between:
+
+- **distinct eigenvalues imply linearly independent eigenvectors**, and
+- **symmetric matrices imply eigenvectors for distinct eigenvalues are orthogonal**.
+
+That distinction is a common exam trap.
