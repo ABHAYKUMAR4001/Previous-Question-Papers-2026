@@ -649,20 +649,11 @@ Therefore:
 
 > **dim_R(C) = 2**
 
-So exactly the same set C has different dimensions depending on the field.
+So the same underlying set C has different dimensions depending on the field.
 
-| Vector space | Field | Basis | Dimension |
-|---|---|---|---:|
-| C over C | Complex numbers | {1} | 1 |
-| C over R | Real numbers | {1,i} | 2 |
+### Final Answer for the 2-Mark Question
 
-Therefore:
-
-> **The dimension of a vector space is NOT independent of the field.**
-
-### 2-Mark Exam Answer
-
-> No. Dimension can depend on the underlying field. For example, C considered as a vector space over C has basis {1}, so its dimension is 1. But C considered as a vector space over R has basis {1,i}, so its dimension is 2. Hence dimension is not independent of the field.
+> **No. Dimension can depend on the underlying field. For example, C considered as a vector space over C has basis {1}, so its dimension is 1. However, C considered as a vector space over R has basis {1,i}, so its dimension is 2. Hence dimension is not independent of the field.**
 
 ### Intuition to Remember
 
@@ -670,23 +661,19 @@ Therefore:
 
 The field determines what scalar coefficients are allowed.
 
-With complex coefficients:
+If complex coefficients are allowed, one building block is enough:
 
 **(3+4i) × 1**
 
-is permitted, so one building block is enough.
-
-With real coefficients:
+If only real coefficients are allowed, two building blocks are needed:
 
 **3 × 1 + 4 × i**
 
-is needed, so two building blocks are required.
-
 ---
 
-# 10. What is Null Space?
+# 10. Null Space
 
-For a matrix **A**, the null space is the set of all vectors **x** satisfying:
+For a matrix **A**, the null space is the set of all vectors x satisfying:
 
 **Ax = 0**
 
@@ -698,17 +685,11 @@ We write:
 
 **N(A) = {x : Ax = 0}**
 
-## The key connection with linear dependence
-
-Suppose matrix A has columns:
-
-**C₁, C₂, ..., Cₙ**
-
-and
+If A has columns C₁, C₂, ..., Cₙ and:
 
 **x = (x₁, x₂, ..., xₙ)ᵀ**
 
-Then:
+then:
 
 **Ax = x₁C₁ + x₂C₂ + ... + xₙCₙ**
 
@@ -721,8 +702,6 @@ means:
 **x₁C₁ + x₂C₂ + ... + xₙCₙ = 0**
 
 So a null-space vector is literally a set of coefficients showing a **linear dependence among the columns**.
-
-That is why Null Space comes naturally after Linear Independence.
 
 ---
 
@@ -741,7 +720,7 @@ we can write:
 
 **2C₁ - C₂ = 0**
 
-Therefore the coefficient vector:
+So the coefficient vector:
 
 **x = (2,-1)ᵀ**
 
@@ -749,19 +728,19 @@ satisfies:
 
 **Ax = 0**
 
-Hence:
+Therefore:
 
-> **(2,-1)ᵀ belongs to N(A).**
+> **(2,-1)ᵀ belongs to the null space of A.**
 
-This is exactly the same linear-dependence idea we already learned.
+This is the same linear-dependence idea we already know.
 
 ---
 
-# Exam Question 6 — Null Space from Column Relationships
+# Exam Question 6 — Null Space from Column Relations
 
 ### 2023–24 EC3 Regular — Q3A — 2 Marks
 
-The categorized MFML bank gives a 6×6 matrix whose columns satisfy:
+For a 6×6 matrix, the columns satisfy:
 
 **C₁ = C₂ + C₃ + C₄ + C₅ + C₆**
 
@@ -769,12 +748,10 @@ and also:
 
 **C₁ = 2C₂**
 
-Two important null-space vectors are:
+Two null-space vectors are:
 
 - **[1,-2,0,0,0,0]ᵀ**
 - **[-1,0,2,2,2,2]ᵀ**
-
-Let us see why.
 
 ### Candidate 1
 
@@ -786,19 +763,15 @@ Then:
 
 **Ax = C₁ - 2C₂**
 
-But we are given:
-
-**C₁ = 2C₂**
+But C₁ = 2C₂.
 
 Therefore:
 
-**C₁ - 2C₂ = 0**
+**Ax = 0**
 
 Hence:
 
-> **[1,-2,0,0,0,0]ᵀ ∈ N(A)**
-
----
+> **[1,-2,0,0,0,0]ᵀ belongs to N(A).**
 
 ### Candidate 2
 
@@ -812,17 +785,17 @@ Then:
 
 From:
 
+**C₁ = C₂ + C₃ + C₄ + C₅ + C₆**
+
+and:
+
 **C₁ = 2C₂**
 
 we get:
 
 **C₂ = C₁/2**
 
-Now substitute into:
-
-**C₁ = C₂ + C₃ + C₄ + C₅ + C₆**
-
-So:
+Substituting:
 
 **C₁ = C₁/2 + C₃ + C₄ + C₅ + C₆**
 
@@ -830,7 +803,7 @@ Therefore:
 
 **C₃ + C₄ + C₅ + C₆ = C₁/2**
 
-Multiply both sides by 2:
+Multiplying by 2:
 
 **2C₃ + 2C₄ + 2C₅ + 2C₆ = C₁**
 
@@ -840,45 +813,39 @@ Hence:
 
 Therefore:
 
-> **[-1,0,2,2,2,2]ᵀ ∈ N(A)**
+> **[-1,0,2,2,2,2]ᵀ also belongs to N(A).**
 
----
+### Exam Pattern to Remember
 
-## Exam Pattern to Remember
+Whenever a question gives **relationships among matrix columns**, convert them into:
 
-Whenever you are given relationships among matrix columns, immediately convert them into:
+**column relation → coefficients → null-space vector**
 
-> **column relation → coefficient vector → null-space vector**
-
-Examples:
-
-If:
+For example:
 
 **C₁ = 3C₂**
 
-then:
+means:
 
 **C₁ - 3C₂ = 0**
 
 so:
 
-**[1,-3,0,...,0]ᵀ ∈ N(A)**
+**[1,-3,0,...,0]ᵀ belongs to N(A)**
 
-If:
+Similarly:
 
 **C₁ = C₂ + C₃**
 
-then:
+means:
 
 **C₁ - C₂ - C₃ = 0**
 
 so:
 
-**[1,-1,-1,0,...,0]ᵀ ∈ N(A)**
+**[1,-1,-1,0,...,0]ᵀ belongs to N(A)**
 
----
-
-## Why Null Space Matters for Rank
+### Connection to Rank
 
 If there is a nonzero vector x such that:
 
@@ -886,32 +853,261 @@ If there is a nonzero vector x such that:
 
 then the columns of A are linearly dependent.
 
-So:
+Therefore:
 
-> **nontrivial null space ⇒ column dependence ⇒ rank is smaller than the number of columns**
+> **Nontrivial null space → column dependence → rank is smaller than the number of columns.**
 
-The next concept formalizes this relationship using:
-
-> **Rank + Nullity = Number of Columns**
-
-For now, remember:
-
-> **A null-space vector is a certificate of linear dependence among matrix columns.**
+This leads directly to the Rank–Nullity Theorem.
 
 ---
 
-# Next Concept
+# 11. What is Rank?
 
-## Rank and Nullity
+For a matrix **A**, rank tells us:
 
-We will next use the actual Comprehensive Makeup question involving the special matrix:
+> **How many linearly independent columns (or rows) the matrix has.**
+
+Equivalent ways to understand rank:
+
+- number of independent columns
+- number of independent rows
+- number of pivots in RREF
+- dimension of the column space
+
+All of these give the same number.
+
+### Tiny Example
+
+Suppose:
+
+```text
+A = | 1  2 |
+    | 2  4 |
+```
+
+Column 2 is:
+
+**C₂ = 2C₁**
+
+So only one column gives a genuinely new direction.
+
+Therefore:
+
+> **rank(A) = 1**
+
+---
+
+# 12. What is Nullity?
+
+Nullity means:
+
+> **Dimension of the null space.**
+
+So if the null space has two independent basis vectors, then:
+
+> **nullity(A) = 2**
+
+This gives one of the most important formulas in linear algebra:
+
+> **Rank + Nullity = Number of Columns**
+
+For an m × n matrix:
+
+> **rank(A) + nullity(A) = n**
+
+This is the **Rank–Nullity Theorem**.
+
+---
+
+## Why Does Rank + Nullity = Number of Columns Make Sense?
+
+Suppose A has 5 columns.
+
+If 3 directions are independent, then:
+
+**rank = 3**
+
+The remaining freedom in solving:
+
+**Ax = 0**
+
+accounts for:
+
+**5 - 3 = 2**
+
+independent free directions.
+
+So:
+
+**nullity = 2**
+
+Hence:
+
+**3 + 2 = 5**
+
+---
+
+# Exam Question 7 — Special Matrix Rank
+
+### Comprehensive Makeup — Q2(i) — 2 Marks
+
+For a matrix with entries:
 
 **a_jk = j + k - 1**
 
-and connect it to:
+find its rank.
 
-- column dependence,
-- rank,
-- nullity,
-- RREF,
-- and the Rank–Nullity Theorem.
+The same question also considers:
+
+**a_jk = j + k - α**
+
+### Step 1 — Understand the Column Structure
+
+Take a 4×4 example for:
+
+**a_jk = j + k - 1**
+
+Then:
+
+**C₁ = [1,2,3,4]ᵀ**
+
+**C₂ = [2,3,4,5]ᵀ**
+
+**C₃ = [3,4,5,6]ᵀ**
+
+**C₄ = [4,5,6,7]ᵀ**
+
+Let:
+
+**1 = [1,1,1,1]ᵀ**
+
+Then:
+
+**C₂ = C₁ + 1**
+
+**C₃ = C₁ + 2·1**
+
+**C₄ = C₁ + 3·1**
+
+In general:
+
+> **C_k = C₁ + (k-1)·1**
+
+So every column can be generated using only two vectors:
+
+- C₁
+- the all-ones vector 1
+
+Therefore:
+
+> **rank(A) ≤ 2**
+
+Now ask whether C₁ and the all-ones vector are linearly independent.
+
+They are, because C₁ is not a scalar multiple of the all-ones vector.
+
+Therefore:
+
+> **rank(A) = 2**
+
+### Modified Matrix: a_jk = j + k - α
+
+For this matrix, the k-th column is:
+
+**C_k = [1+k-α, 2+k-α, 3+k-α, ...]ᵀ**
+
+Again:
+
+> **C_k = C₁ + (k-1)·1**
+
+So the same structure remains.
+
+Therefore, for the usual matrix size greater than 1:
+
+> **rank(A) = 2**
+
+The shift by α does not change the essential rank structure.
+
+---
+
+## Why This Is an Important Exam Pattern
+
+The examiner is not expecting brute-force determinant expansion.
+
+The intended idea is:
+
+> **Look for a simple relationship between columns.**
+
+Once you notice:
+
+**C_k = C₁ + (k-1)·1**
+
+the rank question is almost solved.
+
+This is a classic **structure-recognition** question.
+
+---
+
+## Connection with Rank–Nullity
+
+If an n-column matrix has:
+
+**rank = 2**
+
+then:
+
+**nullity = n - 2**
+
+For example, if the matrix is 6×6:
+
+**rank = 2**
+
+and therefore:
+
+**nullity = 6 - 2 = 4**
+
+So its null space has 4 independent basis vectors.
+
+---
+
+# Exam Pattern to Remember for Structured Matrices
+
+If a question defines matrix entries using a formula such as:
+
+**a_jk = f(j) + g(k)**
+
+ask:
+
+> **Can every column be written using only a few fixed vectors?**
+
+If yes, the rank is bounded by the number of those fixed vectors.
+
+Here:
+
+**a_jk = j + k - 1**
+
+is essentially:
+
+**row-dependent part + column-dependent part**
+
+which is why the rank collapses to 2.
+
+---
+
+# Quick Checkpoint — Rank and Nullity
+
+At this point you should know:
+
+- **Rank** = number of independent columns/rows
+- **Nullity** = dimension of the null space
+- **Rank + Nullity = number of columns**
+- structured matrices often have low rank
+- column formulas can be more useful than determinant calculations
+
+## Next Concept
+
+The next natural step is **RREF and pivots**, because one of the remaining actual MFML questions asks about **two students obtaining the same RREF and who is correct**.
+
+That will connect:
+
+**RREF → pivots → rank → free variables → nullity → uniqueness of RREF**
