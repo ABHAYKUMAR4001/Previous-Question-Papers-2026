@@ -1731,37 +1731,19 @@ Once the actual Â from the exam paper is available, this becomes a direct colum
 
 ---
 
-# Next Step
-
-The rank/null-space/RREF/general-solution branch is now essentially complete.
-
-A remaining conceptual question in the older comprehensive bank asks whether **distinct eigenvalues imply an orthogonal matrix is possible**.
-
-To answer that properly, the next topic should be:
-
-> **Eigenvalues and Eigenvectors**
-
-This will also prepare us for eigenspaces, symmetric matrices, orthogonality, trace, determinant, PCA and SVD.
-
-# Topic 2 — Eigenvalues & Eigenvectors
+# Topic 2 — Eigenvalues and Eigenvectors
 
 ## 1. What is an Eigenvector?
 
-Normally, when a matrix acts on a vector, it can change both its **direction** and **magnitude**.
+Normally, a matrix can change both the direction and magnitude of a vector. Some special vectors keep the same direction after multiplication by the matrix.
 
-Some special vectors keep the same direction after multiplication by the matrix. These are called **eigenvectors**.
+These are **eigenvectors**.
 
 Mathematically:
 
 > **Av = λv**
 
-where:
-
-- A is the matrix,
-- v is a nonzero eigenvector,
-- λ is the corresponding eigenvalue.
-
-The matrix changes v only by a scaling factor λ.
+where A is a matrix, v is an eigenvector, and λ is the corresponding eigenvalue.
 
 ### Tiny Example
 
@@ -1778,11 +1760,9 @@ we get:
 
 **Av₁ = (2,0)ᵀ = 2v₁**
 
-Therefore v₁ is an eigenvector with eigenvalue:
+So v₁ is an eigenvector with eigenvalue 2.
 
-> **λ = 2**
-
-Similarly, for:
+Likewise, for:
 
 **v₂ = (0,1)ᵀ**
 
@@ -1790,30 +1770,27 @@ we get:
 
 **Av₂ = (0,3)ᵀ = 3v₂**
 
-so v₂ is an eigenvector with eigenvalue:
-
-> **λ = 3**
+so v₂ has eigenvalue 3.
 
 ---
 
 ## 2. Geometric Intuition
 
-An eigenvector is a **special direction that the matrix does not rotate away from itself**.
+An eigenvector is a special direction that the matrix does not rotate away from itself.
 
 The matrix may:
 
 - stretch it,
 - shrink it,
 - reverse its direction,
+- or collapse it to zero,
 
-but it stays on the same line.
+but the vector remains on the same line.
 
-Interpretation of λ:
-
-- **λ > 1** → stretch
-- **0 < λ < 1** → shrink
-- **λ < 0** → reverse direction and scale
-- **λ = 0** → collapse to zero
+- λ > 1 → stretch
+- 0 < λ < 1 → shrink
+- λ < 0 → reverse direction and scale
+- λ = 0 → collapse to zero
 
 ---
 
@@ -1831,21 +1808,15 @@ Since λv = λIv:
 
 **(A - λI)v = 0**
 
-For v to be an eigenvector, v must be **nonzero**.
+For v to be an eigenvector, v must be nonzero.
 
-So the homogeneous system must have a nontrivial solution.
+Therefore (A - λI)v = 0 must have a nontrivial solution.
 
-That means A - λI must be singular.
-
-Therefore:
+That happens when A - λI is singular, so:
 
 > **det(A - λI) = 0**
 
 This is called the **characteristic equation**.
-
-So eigenvalues are exactly the values of λ that make A - λI singular.
-
-This connects directly to the earlier null-space topic.
 
 ---
 
@@ -1866,7 +1837,7 @@ A - λI =
 |  2    3-λ |
 ```
 
-Set the determinant equal to zero:
+Set its determinant to zero:
 
 **(4-λ)(3-λ) - 2 = 0**
 
@@ -1884,7 +1855,7 @@ Therefore:
 
 ---
 
-## 5. Finding the Eigenvectors
+## 5. Finding Eigenvectors
 
 For λ = 5, solve:
 
@@ -1897,19 +1868,13 @@ For λ = 5, solve:
 
 This gives:
 
-**-x + y = 0**
-
-so:
-
 **y = x**
 
-Therefore:
+So:
 
-**v = t(1,1)ᵀ**
+> **v = t(1,1)ᵀ**
 
-and one eigenvector is:
-
-> **(1,1)ᵀ**
+and one eigenvector is (1,1)ᵀ.
 
 For λ = 2:
 
@@ -1918,78 +1883,61 @@ For λ = 2:
 | 2  1 | |y|   |0|
 ```
 
-which gives:
+so:
 
 **2x + y = 0**
 
-so:
+and:
 
-**y = -2x**
+> **v = t(1,-2)ᵀ**
 
-Therefore:
-
-**v = t(1,-2)ᵀ**
-
-and one eigenvector is:
-
-> **(1,-2)ᵀ**
+Thus one eigenvector is (1,-2)ᵀ.
 
 ---
 
 ## 6. Eigenvector vs Eigenspace
 
-For λ = 5, we found:
+For a fixed eigenvalue λ, all vectors satisfying:
 
-**v = t(1,1)ᵀ**
+**(A - λI)v = 0**
 
-All such vectors together form the **eigenspace** corresponding to λ = 5.
+form the **eigenspace**.
 
-The important identity is:
+So:
 
 > **Eigenspace for λ = N(A - λI)**
 
-So an eigenspace question is really a null-space question in disguise.
+This means an eigenspace problem is really a null-space problem.
 
 ---
 
 ## 7. Basis and Dimension of an Eigenspace
 
-If:
+Suppose:
 
 **E₅ = span{(1,1)ᵀ}**
 
-then a basis is:
+Then a basis is:
 
 **{(1,1)ᵀ}**
 
-and therefore:
+and:
 
 > **dim(E₅) = 1**
 
-This is the exam sequence to remember:
+So the exam flow is:
 
-> **Eigenvalue → solve (A-λI)v=0 → eigenspace → basis → dimension**
+> **eigenvalue → solve (A-λI)v=0 → eigenspace → basis → dimension**
 
 ---
 
-## 8. MFML Shortcut — Triangular Matrices
-
-A previous MFML question gives the lower-triangular matrix:
-
-```text
-L =
-| 2  0  0 |
-| 1  4  0 |
-| 3  1  5 |
-```
+## 8. Triangular Matrix Shortcut
 
 For any upper- or lower-triangular matrix:
 
 > **The eigenvalues are the diagonal entries.**
 
-So here:
-
-> **λ = 2, 4, 5**
+This is an important exam shortcut.
 
 ### Why does it work?
 
@@ -2086,7 +2034,7 @@ This is exactly the kind of shortcut expected in the exam.
 
 ---
 
-# 12. Actual MFML Eigenspace Question — EC-3 Makeup 2025–26 Q1(a)
+# Actual MFML Worked Example — 2025–26 EC3 Makeup Q1(a)
 
 Consider:
 
@@ -2098,16 +2046,11 @@ A =
 |  1   1   0   5 |
 ```
 
-The question asks to:
-
-1. find all eigenvalues of A,
-2. find the eigenspace corresponding to the largest eigenvalue,
-3. find a basis for that eigenspace,
-4. find its dimension.
+The question asks for all eigenvalues, then the eigenspace corresponding to the largest eigenvalue, a basis for that eigenspace, and its dimension.
 
 ## Step 1 — Find the Eigenvalues
 
-A is a **lower-triangular matrix**.
+A is lower triangular.
 
 Therefore its eigenvalues are simply its diagonal entries:
 
@@ -2116,10 +2059,6 @@ Therefore its eigenvalues are simply its diagonal entries:
 The largest eigenvalue is:
 
 > **λ = 5**
-
-No determinant expansion is required.
-
----
 
 ## Step 2 — Find the Eigenspace for λ = 5
 
@@ -2141,46 +2080,26 @@ A - 5I =
 |  1   1   0   0 |
 ```
 
-So we solve:
+The equations are:
 
-```text
-| -7   0   0   0 |   |x₁|   |0|
-| -1  -2   0   0 |   |x₂| = |0|
-|  0  -1  -6   0 |   |x₃|   |0|
-|  1   1   0   0 |   |x₄|   |0|
-```
+- -7x₁ = 0
+- -x₁ - 2x₂ = 0
+- -x₂ - 6x₃ = 0
+- x₁ + x₂ = 0
 
-### Row 1
-
-**-7x₁ = 0**
-
-Therefore:
+From the first equation:
 
 **x₁ = 0**
 
-### Row 2
-
-**-x₁ - 2x₂ = 0**
-
-Since x₁ = 0:
+Then:
 
 **x₂ = 0**
 
-### Row 3
-
-**-x₂ - 6x₃ = 0**
-
-Since x₂ = 0:
+and:
 
 **x₃ = 0**
 
-### Row 4
-
-**x₁ + x₂ = 0**
-
-This is already satisfied.
-
-There is no equation involving x₄, so x₄ is a **free variable**.
+There is no equation involving x₄, so x₄ is free.
 
 Let:
 
@@ -2188,93 +2107,314 @@ Let:
 
 Then:
 
-**v = (0,0,0,t)ᵀ**
-
-or:
-
 > **v = t(0,0,0,1)ᵀ**
-
----
-
-## Step 3 — Write the Eigenspace
 
 Therefore:
 
 > **V₅ = span{(0,0,0,1)ᵀ}**
 
-This is the eigenspace corresponding to the largest eigenvalue λ = 5.
-
----
-
-## Step 4 — Basis
-
-A basis for V₅ is:
+A basis is:
 
 > **{(0,0,0,1)ᵀ}**
 
-because this single nonzero vector spans the eigenspace.
-
----
-
-## Step 5 — Dimension
-
-The basis contains one vector.
-
-Therefore:
+and:
 
 > **dim(V₅) = 1**
 
----
+### Compact Exam Answer
 
-## Compact 5-Mark Exam Answer
-
-> Since A is lower triangular, its eigenvalues are the diagonal entries:
->
-> **λ = -2, 3, -1, 5**.
->
-> The largest eigenvalue is **5**. Solving **(A-5I)v=0** gives **x₁=x₂=x₃=0**, while **x₄** is free. Hence:
->
-> **v = t(0,0,0,1)ᵀ**.
->
-> Therefore:
->
-> **V₅ = span{(0,0,0,1)ᵀ}**,
->
-> a basis is **{(0,0,0,1)ᵀ}**, and
->
-> **dim(V₅)=1**.
+> Since A is lower triangular, its eigenvalues are the diagonal entries -2, 3, -1 and 5. Hence the largest eigenvalue is 5. Solving (A-5I)v=0 gives x₁=x₂=x₃=0 and x₄ free. Therefore V₅=span{(0,0,0,1)ᵀ}. A basis is {(0,0,0,1)ᵀ}, so dim(V₅)=1.
 
 ---
 
-## Why This Question Matters
+# Distinct Eigenvalues vs Orthogonal Eigenvectors
 
-This question connects concepts from both topics:
+This is an important conceptual exam trap.
 
-**triangular matrix**
+> **Eigenvectors corresponding to distinct eigenvalues are always linearly independent.**
 
-→ eigenvalues can be read directly
+But:
 
-**eigenspace**
+> **They are not necessarily orthogonal.**
 
-→ solve a null-space problem
+Orthogonality requires an additional condition.
 
-**basis and dimension**
+## Independent Does Not Mean Orthogonal
 
-→ use the same definitions learned in Topic 1
+Take:
 
-So eigenspace questions reuse the exact same linear-algebra machinery we already developed.
+- v₁ = (1,0)ᵀ
+- v₂ = (1,1)ᵀ
+
+These are linearly independent because neither is a scalar multiple of the other.
+
+But:
+
+**v₁ᵀv₂ = 1**
+
+so they are not orthogonal.
+
+Therefore:
+
+> **Independent ≠ Orthogonal**
+
+---
+
+## Counterexample — Distinct Eigenvalues but Non-Orthogonal Eigenvectors
+
+Consider:
+
+```text
+A = | 1  1 |
+    | 0  2 |
+```
+
+Since A is triangular, its eigenvalues are:
+
+> **λ₁ = 1, λ₂ = 2**
+
+They are distinct.
+
+### For λ = 1
+
+Solve:
+
+**(A-I)v = 0**
+
+which gives:
+
+**y = 0**
+
+So one eigenvector is:
+
+> **v₁ = (1,0)ᵀ**
+
+### For λ = 2
+
+Solve:
+
+**(A-2I)v = 0**
+
+which gives:
+
+**-x + y = 0**
+
+So y=x, and one eigenvector is:
+
+> **v₂ = (1,1)ᵀ**
+
+Now:
+
+**v₁ᵀv₂ = 1**
+
+Therefore the eigenvectors are not orthogonal even though their eigenvalues are distinct.
+
+---
+
+## When Are Eigenvectors Orthogonal?
+
+The crucial theorem is:
+
+> **For a real symmetric matrix, eigenvectors corresponding to distinct eigenvalues are orthogonal.**
+
+A real symmetric matrix satisfies:
+
+> **A = Aᵀ**
+
+Example:
+
+```text
+A = | 2  1 |
+    | 1  2 |
+```
+
+Its eigenvalues are 3 and 1.
+
+Corresponding eigenvectors can be chosen as:
+
+- v₁ = (1,1)ᵀ
+- v₂ = (1,-1)ᵀ
+
+Check:
+
+**v₁ᵀv₂ = 1 - 1 = 0**
+
+So they are orthogonal.
+
+---
+
+## Why Does Symmetry Guarantee Orthogonality?
+
+Suppose:
+
+**Av₁ = λ₁v₁**
+
+and:
+
+**Av₂ = λ₂v₂**
+
+with:
+
+**λ₁ ≠ λ₂**
+
+and A symmetric.
+
+Start with:
+
+**v₁ᵀAv₂**
+
+Using Av₂ = λ₂v₂:
+
+**v₁ᵀAv₂ = λ₂v₁ᵀv₂**
+
+Because A is symmetric:
+
+**Aᵀ = A**
+
+so:
+
+**v₁ᵀAv₂ = (Av₁)ᵀv₂**
+
+Using Av₁ = λ₁v₁:
+
+**v₁ᵀAv₂ = λ₁v₁ᵀv₂**
+
+Therefore:
+
+**λ₁v₁ᵀv₂ = λ₂v₁ᵀv₂**
+
+so:
+
+**(λ₁ - λ₂)v₁ᵀv₂ = 0**
+
+Since λ₁ ≠ λ₂:
+
+**v₁ᵀv₂ = 0**
+
+Hence:
+
+> **v₁ ⟂ v₂**
+
+---
+
+## Three Levels to Distinguish
+
+| Condition | Conclusion |
+|---|---|
+| Same eigenvalue | Eigenvectors may or may not be independent |
+| Distinct eigenvalues | Corresponding eigenvectors are linearly independent |
+| Symmetric matrix + distinct eigenvalues | Corresponding eigenvectors are orthogonal |
+
+This last row is extremely important for PCA.
+
+---
+
+## Orthogonal Matrix
+
+A square matrix Q is called orthogonal if:
+
+> **QᵀQ = I**
+
+Equivalently:
+
+> **Q⁻¹ = Qᵀ**
+
+Its columns form an **orthonormal set**.
+
+Orthonormal means:
+
+1. vectors are mutually orthogonal;
+2. each vector has unit length.
+
+For example:
+
+- v₁ = (1,1)ᵀ
+- v₂ = (1,-1)ᵀ
+
+are orthogonal, but each has norm √2.
+
+Normalize them:
+
+- q₁ = (1/√2)(1,1)ᵀ
+- q₂ = (1/√2)(1,-1)ᵀ
+
+Then:
+
+```text
+Q = | 1/√2    1/√2  |
+    | 1/√2   -1/√2  |
+```
+
+and:
+
+> **QᵀQ = I**
+
+So Q is orthogonal.
+
+---
+
+## Connection to Diagonalization
+
+If A has n independent eigenvectors, place them as columns of P:
+
+**P = [v₁ v₂ ... vₙ]**
+
+Then:
+
+> **A = PDP⁻¹**
+
+where D is the diagonal matrix of eigenvalues.
+
+If A is symmetric, its eigenvectors can be chosen orthonormal.
+
+Then the eigenvector matrix is an orthogonal matrix Q, so:
+
+**Q⁻¹ = Qᵀ**
+
+and therefore:
+
+> **A = QDQᵀ**
+
+This is called **orthogonal diagonalization**.
+
+---
+
+## MFML Exam Trap
+
+If a question simply says:
+
+> **A has distinct eigenvalues. Are the corresponding eigenvectors orthogonal?**
+
+The correct answer is:
+
+> **Not necessarily. Distinct eigenvalues guarantee linear independence, but orthogonality is guaranteed when the matrix is real symmetric.**
+
+### Compact 2-Mark Exam Answer
+
+> **Distinct eigenvalues guarantee that the corresponding eigenvectors are linearly independent, but they need not be orthogonal. Orthogonality is guaranteed for eigenvectors corresponding to distinct eigenvalues when the matrix is real symmetric. For example, A=[[1,1],[0,2]] has distinct eigenvalues 1 and 2, with eigenvectors (1,0)ᵀ and (1,1)ᵀ, whose dot product is 1, so they are not orthogonal.**
+
+---
+
+## Why This Matters for PCA
+
+The covariance matrix in PCA is symmetric.
+
+Therefore its eigenvectors can be chosen orthonormal.
+
+That is why principal components point in mutually perpendicular directions.
+
+So the conceptual chain is:
+
+**Eigenvalues → Eigenvectors → Symmetric matrices → Orthogonal eigenvectors → Orthogonal diagonalization → PCA**
 
 ---
 
 # Next Step
 
-The next important conceptual MFML question is:
+The next natural concept is:
 
-> **If a matrix has distinct eigenvalues, can the corresponding eigenvectors be chosen orthogonal?**
+> **Algebraic multiplicity, geometric multiplicity and diagonalizability**
 
-This requires distinguishing between:
+This answers the question:
 
-- **distinct eigenvalues imply linearly independent eigenvectors**, and
-- **symmetric matrices imply eigenvectors for distinct eigenvalues are orthogonal**.
-
-That distinction is a common exam trap.
+> **When does a matrix have enough independent eigenvectors to form a basis?**
