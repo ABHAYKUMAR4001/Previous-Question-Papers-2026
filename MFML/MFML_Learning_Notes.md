@@ -649,31 +649,17 @@ Therefore:
 
 > **dim_R(C) = 2**
 
-So the same underlying set C has different dimensions depending on the field.
+So the same set C has different dimensions depending on the field.
 
-### Final Answer for the 2-Mark Question
+### Final Exam Answer
 
 > **No. Dimension can depend on the underlying field. For example, C considered as a vector space over C has basis {1}, so its dimension is 1. However, C considered as a vector space over R has basis {1,i}, so its dimension is 2. Hence dimension is not independent of the field.**
 
-### Intuition to Remember
-
-> **Dimension = number of independent building blocks required.**
-
-The field determines what scalar coefficients are allowed.
-
-If complex coefficients are allowed, one building block is enough:
-
-**(3+4i) × 1**
-
-If only real coefficients are allowed, two building blocks are needed:
-
-**3 × 1 + 4 × i**
-
 ---
 
-# 10. Null Space
+# 10. What is Null Space?
 
-For a matrix **A**, the null space is the set of all vectors x satisfying:
+For a matrix A, the null space is the set of all vectors x satisfying:
 
 **Ax = 0**
 
@@ -681,13 +667,13 @@ So:
 
 > **Null Space = all input vectors that the matrix sends to the zero vector.**
 
-We write:
+We write it conceptually as:
 
 **N(A) = {x : Ax = 0}**
 
-If A has columns C₁, C₂, ..., Cₙ and:
+If A has columns C₁, C₂, ..., Cₙ and
 
-**x = (x₁, x₂, ..., xₙ)ᵀ**
+**x = (x₁,x₂,...,xₙ)ᵀ**
 
 then:
 
@@ -703,9 +689,7 @@ means:
 
 So a null-space vector is literally a set of coefficients showing a **linear dependence among the columns**.
 
----
-
-## Tiny Example
+### Tiny Example
 
 Suppose:
 
@@ -724,23 +708,17 @@ So the coefficient vector:
 
 **x = (2,-1)ᵀ**
 
-satisfies:
-
-**Ax = 0**
+satisfies Ax = 0.
 
 Therefore:
 
 > **(2,-1)ᵀ belongs to the null space of A.**
 
-This is the same linear-dependence idea we already know.
-
 ---
 
-# Exam Question 6 — Null Space from Column Relations
+# Actual MFML Null-Space Question
 
-### 2023–24 EC3 Regular — Q3A — 2 Marks
-
-For a 6×6 matrix, the columns satisfy:
+The categorized bank contains a 6×6 matrix whose columns satisfy:
 
 **C₁ = C₂ + C₃ + C₄ + C₅ + C₆**
 
@@ -763,15 +741,13 @@ Then:
 
 **Ax = C₁ - 2C₂**
 
-But C₁ = 2C₂.
-
-Therefore:
+Given C₁ = 2C₂:
 
 **Ax = 0**
 
-Hence:
+Therefore:
 
-> **[1,-2,0,0,0,0]ᵀ belongs to N(A).**
+> **[1,-2,0,0,0,0]ᵀ is in N(A).**
 
 ### Candidate 2
 
@@ -791,15 +767,11 @@ and:
 
 **C₁ = 2C₂**
 
-we get:
+we have:
 
 **C₂ = C₁/2**
 
-Substituting:
-
-**C₁ = C₁/2 + C₃ + C₄ + C₅ + C₆**
-
-Therefore:
+so:
 
 **C₃ + C₄ + C₅ + C₆ = C₁/2**
 
@@ -813,15 +785,13 @@ Hence:
 
 Therefore:
 
-> **[-1,0,2,2,2,2]ᵀ also belongs to N(A).**
+> **[-1,0,2,2,2,2]ᵀ is also in N(A).**
 
 ### Exam Pattern to Remember
 
-Whenever a question gives **relationships among matrix columns**, convert them into:
+Whenever you are given relationships among columns, convert them into a null-space vector.
 
-**column relation → coefficients → null-space vector**
-
-For example:
+Example:
 
 **C₁ = 3C₂**
 
@@ -831,9 +801,9 @@ means:
 
 so:
 
-**[1,-3,0,...,0]ᵀ belongs to N(A)**
+**[1,-3,0,...,0]ᵀ belongs to N(A).**
 
-Similarly:
+Likewise:
 
 **C₁ = C₂ + C₃**
 
@@ -843,151 +813,94 @@ means:
 
 so:
 
-**[1,-1,-1,0,...,0]ᵀ belongs to N(A)**
-
-### Connection to Rank
-
-If there is a nonzero vector x such that:
-
-**Ax = 0**
-
-then the columns of A are linearly dependent.
-
-Therefore:
-
-> **Nontrivial null space → column dependence → rank is smaller than the number of columns.**
-
-This leads directly to the Rank–Nullity Theorem.
+**[1,-1,-1,0,...,0]ᵀ belongs to N(A).**
 
 ---
 
-# 11. What is Rank?
+# 11. Rank and Nullity
 
-For a matrix **A**, rank tells us:
+## What is Rank?
 
-> **How many linearly independent columns (or rows) the matrix has.**
+For a matrix A, rank tells us:
 
-Equivalent ways to understand rank:
+> **How many linearly independent columns or rows the matrix has.**
+
+Equivalent interpretations:
 
 - number of independent columns
 - number of independent rows
 - number of pivots in RREF
 - dimension of the column space
 
-All of these give the same number.
-
 ### Tiny Example
-
-Suppose:
 
 ```text
 A = | 1  2 |
     | 2  4 |
 ```
 
-Column 2 is:
+Column 2 satisfies:
 
 **C₂ = 2C₁**
 
-So only one column gives a genuinely new direction.
+so there is only one independent column.
 
 Therefore:
 
 > **rank(A) = 1**
 
----
-
-# 12. What is Nullity?
+## What is Nullity?
 
 Nullity means:
 
 > **Dimension of the null space.**
 
-So if the null space has two independent basis vectors, then:
+If the null space has two independent basis vectors, then:
 
 > **nullity(A) = 2**
 
-This gives one of the most important formulas in linear algebra:
+## Rank–Nullity Theorem
 
-> **Rank + Nullity = Number of Columns**
-
-For an m × n matrix:
+For an m×n matrix:
 
 > **rank(A) + nullity(A) = n**
 
-This is the **Rank–Nullity Theorem**.
+where n is the number of columns.
+
+Example: if a matrix has 5 columns and rank 3, then:
+
+**nullity = 5 - 3 = 2**
 
 ---
 
-## Why Does Rank + Nullity = Number of Columns Make Sense?
+# Actual MFML Rank Question — a_jk = j + k - 1
 
-Suppose A has 5 columns.
-
-If 3 directions are independent, then:
-
-**rank = 3**
-
-The remaining freedom in solving:
-
-**Ax = 0**
-
-accounts for:
-
-**5 - 3 = 2**
-
-independent free directions.
-
-So:
-
-**nullity = 2**
-
-Hence:
-
-**3 + 2 = 5**
-
----
-
-# Exam Question 7 — Special Matrix Rank
-
-### Comprehensive Makeup — Q2(i) — 2 Marks
-
-For a matrix with entries:
+The Comprehensive Makeup paper asks for the rank of a matrix with entries:
 
 **a_jk = j + k - 1**
 
-find its rank.
-
-The same question also considers:
+and also asks about the modified form:
 
 **a_jk = j + k - α**
 
-### Step 1 — Understand the Column Structure
+Consider a 4×4 example for the first case.
 
-Take a 4×4 example for:
+The columns are:
 
-**a_jk = j + k - 1**
+- C₁ = [1,2,3,4]ᵀ
+- C₂ = [2,3,4,5]ᵀ
+- C₃ = [3,4,5,6]ᵀ
+- C₄ = [4,5,6,7]ᵀ
 
-Then:
-
-**C₁ = [1,2,3,4]ᵀ**
-
-**C₂ = [2,3,4,5]ᵀ**
-
-**C₃ = [3,4,5,6]ᵀ**
-
-**C₄ = [4,5,6,7]ᵀ**
-
-Let:
+Let **1** denote the all-ones vector:
 
 **1 = [1,1,1,1]ᵀ**
 
 Then:
 
-**C₂ = C₁ + 1**
-
-**C₃ = C₁ + 2·1**
-
-**C₄ = C₁ + 3·1**
+- C₂ = C₁ + 1
+- C₃ = C₁ + 2·1
+- C₄ = C₁ + 3·1
 
 In general:
 
@@ -996,118 +909,363 @@ In general:
 So every column can be generated using only two vectors:
 
 - C₁
-- the all-ones vector 1
+- 1
 
 Therefore:
 
-> **rank(A) ≤ 2**
+**rank(A) ≤ 2**
 
-Now ask whether C₁ and the all-ones vector are linearly independent.
+Since C₁ is not a scalar multiple of the all-ones vector, these two vectors are linearly independent.
 
-They are, because C₁ is not a scalar multiple of the all-ones vector.
-
-Therefore:
+Hence:
 
 > **rank(A) = 2**
 
-### Modified Matrix: a_jk = j + k - α
+## Modified Form — a_jk = j + k - α
 
-For this matrix, the k-th column is:
-
-**C_k = [1+k-α, 2+k-α, 3+k-α, ...]ᵀ**
-
-Again:
+For this matrix, the same column relationship survives:
 
 > **C_k = C₁ + (k-1)·1**
 
-So the same structure remains.
-
-Therefore, for the usual matrix size greater than 1:
+Therefore the rank is again:
 
 > **rank(A) = 2**
 
-The shift by α does not change the essential rank structure.
+for the ordinary nontrivial matrix sizes considered in the question.
 
----
+### Connection to Nullity
 
-## Why This Is an Important Exam Pattern
+If the matrix has n columns and rank 2, then:
 
-The examiner is not expecting brute-force determinant expansion.
+> **nullity(A) = n - 2**
 
-The intended idea is:
-
-> **Look for a simple relationship between columns.**
-
-Once you notice:
-
-**C_k = C₁ + (k-1)·1**
-
-the rank question is almost solved.
-
-This is a classic **structure-recognition** question.
-
----
-
-## Connection with Rank–Nullity
-
-If an n-column matrix has:
-
-**rank = 2**
-
-then:
-
-**nullity = n - 2**
-
-For example, if the matrix is 6×6:
-
-**rank = 2**
-
-and therefore:
+For a 6×6 matrix:
 
 **nullity = 6 - 2 = 4**
 
-So its null space has 4 independent basis vectors.
+### Exam Pattern to Remember
 
----
-
-# Exam Pattern to Remember for Structured Matrices
-
-If a question defines matrix entries using a formula such as:
+If matrix entries are given by a formula such as:
 
 **a_jk = f(j) + g(k)**
 
-ask:
+look for a way to express every column using only a few fixed vectors.
 
-> **Can every column be written using only a few fixed vectors?**
-
-If yes, the rank is bounded by the number of those fixed vectors.
-
-Here:
-
-**a_jk = j + k - 1**
-
-is essentially:
-
-**row-dependent part + column-dependent part**
-
-which is why the rank collapses to 2.
+That often reveals the rank immediately without determinant expansion.
 
 ---
 
-# Quick Checkpoint — Rank and Nullity
+# 12. RREF, Pivots and Why RREF is Unique
 
-At this point you should know:
+## What is RREF?
 
-- **Rank** = number of independent columns/rows
-- **Nullity** = dimension of the null space
-- **Rank + Nullity = number of columns**
-- structured matrices often have low rank
-- column formulas can be more useful than determinant calculations
+RREF means:
 
-## Next Concept
+> **Reduced Row Echelon Form**
 
-The next natural step is **RREF and pivots**, because one of the remaining actual MFML questions asks about **two students obtaining the same RREF and who is correct**.
+It is the most simplified row-equivalent form of a matrix.
 
-That will connect:
+For example:
 
-**RREF → pivots → rank → free variables → nullity → uniqueness of RREF**
+```text
+A = | 1  2 |
+    | 2  4 |
+```
+
+Perform:
+
+**R₂ → R₂ - 2R₁**
+
+We obtain:
+
+```text
+| 1  2 |
+| 0  0 |
+```
+
+This matrix is already in RREF.
+
+## What Makes a Matrix RREF?
+
+A matrix is in RREF if:
+
+1. Every nonzero row has a leading **1**.
+2. Each leading 1 is the **only nonzero entry in its column**.
+3. Leading 1s move to the right as we go down the rows.
+4. Any all-zero rows are at the bottom.
+
+Example:
+
+```text
+| 1  0   3 |
+| 0  1  -2 |
+| 0  0   0 |
+```
+
+The leading 1s are called **pivots**.
+
+There are 2 pivots, therefore:
+
+> **rank = 2**
+
+## Why Do Pivots Matter?
+
+Suppose:
+
+```text
+RREF(A) =
+| 1  0   2  0 |
+| 0  1  -1  0 |
+| 0  0   0  1 |
+```
+
+There are pivots in columns:
+
+- 1
+- 2
+- 4
+
+Therefore:
+
+> **rank(A) = 3**
+
+Column 3 has no pivot, so the corresponding variable is **free**.
+
+A has 4 columns, therefore by Rank–Nullity:
+
+**nullity = 4 - 3 = 1**
+
+So:
+
+> **Number of free variables = nullity**
+
+---
+
+# Actual MFML Conceptual Question — Is RREF Unique?
+
+The Comprehensive Makeup question includes a 2-mark conceptual part involving two students obtaining RREFs of the same matrix.
+
+The key theorem is:
+
+> **Every matrix has one unique RREF.**
+
+Different sequences of row operations are allowed.
+
+For example, Student A may:
+
+- swap rows first,
+- then eliminate,
+- then scale.
+
+Student B may:
+
+- scale first,
+- then eliminate,
+- then swap.
+
+Their intermediate matrices may look different.
+
+But if both continue correctly all the way to RREF, they must end at exactly the same matrix.
+
+> **Different row-operation paths are possible, but the final RREF is unique.**
+
+## REF is Not Unique — RREF is Unique
+
+This distinction is an exam trap.
+
+A matrix such as:
+
+```text
+| 1  2 |
+| 0  3 |
+```
+
+can be in row echelon form (REF).
+
+A scaled version such as:
+
+```text
+| 2  4 |
+| 0  6 |
+```
+
+can also be a valid REF form.
+
+So REF is not necessarily unique.
+
+However, once fully reduced, the RREF is unique.
+
+Remember:
+
+> **REF → not unique**
+>
+> **RREF → unique**
+
+---
+
+## Simple Example — Two Different Routes, Same RREF
+
+Take:
+
+```text
+A = | 1  2 |
+    | 2  4 |
+```
+
+### Student A
+
+Do:
+
+**R₂ → R₂ - 2R₁**
+
+Result:
+
+```text
+| 1  2 |
+| 0  0 |
+```
+
+### Student B
+
+First do:
+
+**R₁ → 2R₁**
+
+giving:
+
+```text
+| 2  4 |
+| 2  4 |
+```
+
+Then:
+
+**R₂ → R₂ - R₁**
+
+```text
+| 2  4 |
+| 0  0 |
+```
+
+Then scale:
+
+**R₁ → (1/2)R₁**
+
+giving:
+
+```text
+| 1  2 |
+| 0  0 |
+```
+
+Both students took different routes but obtained the same RREF.
+
+## What If Two Students Claim Different RREFs?
+
+Suppose Student A says:
+
+```text
+| 1  0   2 |
+| 0  1  -1 |
+```
+
+while Student B says:
+
+```text
+| 1  0   3 |
+| 0  1  -1 |
+```
+
+for the same original matrix.
+
+Both cannot be correct.
+
+Why?
+
+> **Because RREF is unique.**
+
+At least one student made an error.
+
+---
+
+## Relationship Between RREF and Solving Ax = b
+
+Consider:
+
+```text
+A = | 1  2  3 |
+    | 2  4  6 |
+```
+
+Its RREF is:
+
+```text
+| 1  2  3 |
+| 0  0  0 |
+```
+
+There is only one pivot.
+
+Therefore:
+
+> **rank = 1**
+
+Number of columns = 3.
+
+Therefore:
+
+> **nullity = 3 - 1 = 2**
+
+Hence solving:
+
+**Ax = 0**
+
+will involve **2 free variables**.
+
+---
+
+## Pivot Columns vs Original Columns
+
+Suppose RREF(A) has pivots in columns 1 and 3.
+
+Then columns 1 and 3 of the **original matrix A** form a basis for the column space.
+
+Do not use the columns of RREF(A) as the basis for the original column space.
+
+Row operations preserve row-equivalence and reveal pivot locations, but they change the actual column vectors.
+
+So the exam procedure is:
+
+1. Compute or inspect RREF.
+2. Identify pivot column numbers.
+3. Go back to the original matrix.
+4. Take those original columns as the column-space basis.
+
+---
+
+# Quick Exam Memory Map — RREF
+
+| If you see... | Think... |
+|---|---|
+| Find rank | Count pivots in RREF |
+| Find nullity | Number of columns - rank |
+| How many free variables? | Nullity |
+| Two different RREFs for same matrix? | Impossible; RREF is unique |
+| Two different REFs? | Possible; REF is not unique |
+| Basis of column space | Find pivot positions in RREF, take those columns from original A |
+
+## Key Theorem to Memorize
+
+> **Every matrix is row-equivalent to one and only one reduced row echelon form.**
+
+---
+
+# Next Step
+
+The next natural concept is the **general solution of Ax = b**.
+
+The 2025–26 MFML paper gives column relations, rank(A)=2, a particular solution, and asks for the **general solution**.
+
+That question will connect:
+
+**particular solution + null space + free variables + rank**
