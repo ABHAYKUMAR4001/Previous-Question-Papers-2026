@@ -2230,7 +2230,11 @@ Every real symmetric matrix is:
 
 > **Orthogonally diagonalizable**
 
-so it always has enough independent eigenvectors.
+so:
+
+> **A = QDQᵀ**
+
+Even repeated eigenvalues do not prevent diagonalization for a symmetric matrix.
 
 ## Exam Recognition Rules
 
@@ -2270,24 +2274,23 @@ Think:
 
 # Trace, Determinant, Singular Values and SVD Connection
 
-This section connects eigenvalues to one of the recurring MFML SVD-style question patterns.
+## 1. Singular Value Decomposition
 
-## 1. Start with SVD
-
-For any matrix A:
+For a matrix A:
 
 > **A = UΣVᵀ**
 
 where:
 
-- U contains left singular vectors,
-- V contains right singular vectors,
-- Σ contains the singular values σ₁, σ₂, ...,
-- singular values are always non-negative.
+- U contains the left singular vectors,
+- V contains the right singular vectors,
+- Σ contains the singular values σ₁, σ₂, ...
 
-## 2. Key Relationship with Eigenvalues
+The singular values are always non-negative.
 
-The central identities are:
+## 2. Key Eigenvalue Connection
+
+The important identities are:
 
 > **AᵀA = VΣ²Vᵀ**
 
@@ -2297,7 +2300,7 @@ and:
 
 Therefore:
 
-> **Eigenvalues of AᵀA are σ₁², σ₂², ...**
+> **The eigenvalues of AᵀA are σ₁², σ₂², ...**
 
 and the nonzero eigenvalues of AAᵀ are the same σᵢ² values.
 
@@ -2521,10 +2524,352 @@ then:
 
 ---
 
-# Next Step
+# Topic 3 — PCA & Dimensionality Reduction
 
-The next natural topic is **PCA**, because PCA uses exactly this chain:
+## 1. Why PCA Exists
 
-> **covariance matrix → eigenvalues/eigenvectors → principal directions → explained variance**
+Suppose each data point has many features:
 
-The MFML bank contains repeated PCA questions involving variance retention, dimensionality reduction, projection and reconstruction.
+**x = (x₁, x₂, ..., x_D)**
+
+Often, many features are correlated and the data effectively lies in a lower-dimensional subspace.
+
+PCA asks:
+
+> **Can we represent the data using fewer directions while preserving as much variance as possible?**
+
+So the core goal is:
+
+> **Dimensionality reduction while preserving variance.**
+
+---
+
+## 2. Variance Intuition
+
+If a cloud of 2D data lies approximately along a diagonal line, then the spread along that diagonal is large while the spread perpendicular to it is small.
+
+The first principal component chooses:
+
+> **The direction along which the projected data has maximum variance.**
+
+The second principal component is orthogonal to the first and captures the next-largest remaining variance.
+
+---
+
+## 3. Why Mean-Center the Data?
+
+PCA studies variation around the mean rather than absolute location.
+
+Example:
+
+```text
+(10,10)
+(11,11)
+(12,12)
+```
+
+Mean:
+
+**μ = (11,11)**
+
+Centered data:
+
+```text
+(-1,-1)
+( 0, 0)
+( 1, 1)
+```
+
+Therefore PCA normally starts by subtracting the mean.
+
+---
+
+## 4. Covariance Matrix
+
+For mean-centered data matrix X, the covariance matrix is proportional to:
+
+> **C = XᵀX**
+
+Depending on convention, a factor such as 1/N or 1/(N-1) may be included.
+
+That scalar factor changes eigenvalues but not eigenvector directions.
+
+The covariance matrix describes how the features vary together.
+
+---
+
+## 5. PCA is an Eigenvalue Problem
+
+The key PCA theorem is:
+
+> **Principal components are eigenvectors of the covariance matrix.**
+
+and:
+
+> **The corresponding eigenvalues tell us how much variance each principal component captures.**
+
+If:
+
+**λ₁ ≥ λ₂ ≥ λ₃ ≥ ...**
+
+then:
+
+- PC1 is the eigenvector for λ₁
+- PC2 is the eigenvector for λ₂
+- and so on
+
+Since the covariance matrix is symmetric, these eigenvectors can be chosen orthonormal.
+
+---
+
+# Actual MFML PCA Question — Maximum Variance Direction
+
+### 2022–23 Makeup — Q1b — 2 Marks
+
+The data is:
+
+```text
+X =
+|  2  -1 |
+| -2   1 |
+| -4   2 |
+|  4  -2 |
+```
+
+The question asks whether the maximum-variance direction is:
+
+- [1,0]ᵀ
+- [0,1]ᵀ
+- or neither
+
+Observe that every point satisfies:
+
+> **y = -x/2**
+
+So all points lie exactly on one line.
+
+A direction vector for that line is:
+
+> **(2,-1)ᵀ**
+
+The normalized direction is:
+
+> **(2/√5, -1/√5)ᵀ**
+
+Therefore the maximum-variance direction is neither coordinate axis.
+
+> **Correct answer: neither [1,0]ᵀ nor [0,1]ᵀ.**
+
+The dominant principal direction is proportional to **(2,-1)ᵀ**.
+
+### Exam Insight
+
+If the data visibly lies on a line, you can often identify PC1 geometrically without calculating the covariance matrix.
+
+---
+
+## Formal Interpretation
+
+For the same data, the covariance structure is proportional to:
+
+```text
+|  1    -1/2 |
+| -1/2   1/4 |
+```
+
+Its dominant eigenvector points along:
+
+> **(2,-1)ᵀ**
+
+which matches the geometric answer.
+
+---
+
+# Actual MFML PCA Question — Explained Variance
+
+### 2023–24 EC3 Regular — Q4B — 4 Marks
+
+The covariance eigenvalues are:
+
+**12, 6.8, 3.5, 1, 0.02, 0.01**
+
+Total variance:
+
+> **23.33**
+
+The cumulative explained-variance ratio using the first k PCs is:
+
+> **(λ₁ + λ₂ + ... + λ_k) / (sum of all eigenvalues)**
+
+## 95% Variance
+
+Top 1:
+
+**12 / 23.33 ≈ 51.4%**
+
+Top 2:
+
+**(12 + 6.8) / 23.33 ≈ 80.6%**
+
+Top 3:
+
+**(12 + 6.8 + 3.5) / 23.33 ≈ 95.6%**
+
+Therefore:
+
+> **3 principal components are enough to retain at least 95% variance.**
+
+## 99% Variance
+
+The first 3 PCs give only about 95.6%.
+
+Including the fourth eigenvalue:
+
+**12 + 6.8 + 3.5 + 1 = 23.3**
+
+and:
+
+**23.3 / 23.33 ≈ 99.87%**
+
+Therefore:
+
+> **4 principal components are enough to retain at least 99% variance.**
+
+---
+
+## 6. Interpretation of Eigenvalue Size
+
+In PCA:
+
+> **Large eigenvalue = important high-variance direction**
+
+> **Small eigenvalue = low-information direction**
+
+For the eigenvalues:
+
+**12, 6.8, 3.5, 1, 0.02, 0.01**
+
+the final two directions contribute almost no variance.
+
+This is why dimensionality reduction can discard them with little information loss.
+
+---
+
+## 7. PCA Projection
+
+Suppose v₁ is a unit principal-component direction and x is a centered data point.
+
+The scalar PCA coordinate is:
+
+> **z = v₁ᵀx**
+
+This tells us how far the point lies along that principal direction.
+
+If we keep k principal components:
+
+**V_k = [v₁ v₂ ... v_k]**
+
+then the low-dimensional representation is:
+
+> **z = V_kᵀx**
+
+---
+
+## 8. PCA Reconstruction
+
+From the low-dimensional coordinate z:
+
+> **x̂ = V_k z**
+
+Substituting z = V_kᵀx gives:
+
+> **x̂ = V_kV_kᵀx**
+
+If the original data was mean-centered, then for an original point x:
+
+> **x̂ = μ + V_kV_kᵀ(x-μ)**
+
+This gives the approximate reconstruction using only the retained principal directions.
+
+---
+
+## 9. Why the Largest Eigenvector is PC1
+
+The first principal component solves:
+
+> **Maximize the variance of projected data**
+
+subject to:
+
+> **||v|| = 1**
+
+For covariance matrix C, projected variance is proportional to:
+
+> **vᵀCv**
+
+So PCA solves:
+
+> maximize **vᵀCv** subject to **vᵀv = 1**
+
+The solution is:
+
+> **The eigenvector of C corresponding to the largest eigenvalue.**
+
+---
+
+## 10. PCA Pipeline to Memorize
+
+For a standard PCA calculation:
+
+1. **Mean-center the data**
+2. **Compute covariance matrix**
+3. **Find eigenvalues and eigenvectors**
+4. **Sort eigenvalues from largest to smallest**
+5. **Choose the top k eigenvectors**
+6. **Project the data**
+7. If asked, **reconstruct using those k components**
+
+Memory chain:
+
+> **Center → Covariance → Eigendecomposition → Sort → Choose → Project → Reconstruct**
+
+---
+
+## 11. Quick Exam Recognition Table — PCA
+
+| If the question says... | Think immediately |
+|---|---|
+| Maximum variance direction | Eigenvector with largest eigenvalue |
+| PC1 | Dominant eigenvector |
+| Variance captured by a PC | Corresponding eigenvalue |
+| Retain 95% / 99% variance | Cumulative eigenvalue ratio |
+| PCA projection | Vᵀx |
+| PCA reconstruction | VVᵀx |
+| Covariance matrix | Symmetric |
+| PCA eigenvectors | Orthogonal / orthonormal |
+| Tiny eigenvalues | Low-information directions |
+
+---
+
+## Questions Covered So Far
+
+This PCA section directly covers the main ideas required for:
+
+- **2022–23 Makeup Q1b** — maximum-variance direction
+- **2023–24 EC3 Regular Q4B** — 95% and 99% explained variance
+
+---
+
+# Next PCA Step
+
+The next exam pattern to study is the high-dimensional case:
+
+> **D = 1024, N = 20**
+
+where direct eigendecomposition of a 1024×1024 covariance-like matrix is inconvenient.
+
+The key idea will be:
+
+> **Use the much smaller 20×20 matrix XᵀX, then map its eigenvectors back through X.**
+
+This is the PCA kernel-trick / dual-space shortcut.
