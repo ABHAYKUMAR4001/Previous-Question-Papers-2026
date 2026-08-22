@@ -1829,41 +1829,102 @@ For any upper- or lower-triangular matrix:
 
 > **The eigenvalues are the diagonal entries.**
 
-Example:
+This is an important exam shortcut.
 
-```text
-L = | 2  0  0 |
-    | 1  4  0 |
-    | 3  1  5 |
-```
+### Why does it work?
 
-Hence its eigenvalues are immediately:
+For a triangular matrix, **A-λI** is still triangular.
 
-> **2, 4, 5**
+Its determinant is the product of its diagonal terms:
 
-## 8. Trace, Determinant and Matrix Powers
+**det(A-λI) = (a₁₁-λ)(a₂₂-λ)...(aₙₙ-λ)**
 
-Important rules:
-
-> **Trace = sum of eigenvalues**
-
-> **Determinant = product of eigenvalues**
-
-If λ is an eigenvalue of A, then λᵏ is an eigenvalue of Aᵏ.
-
-For eigenvalues 3, -3 and 14:
-
-> **Trace(C⁶) = 3⁶ + (-3)⁶ + 14⁶ = 2·3⁶ + 14⁶**
-
-and:
-
-> **det(C⁷) = (3×(-3)×14)⁷ = (-126)⁷**
+So the roots are exactly the diagonal entries.
 
 ---
 
-# Actual 2025–26 Eigenvalue and Eigenspace Question
+## 8. MFML Pattern — Trace and Determinant
 
-Consider:
+A previous MFML question has eigenvalues:
+
+**3, -3, 14**
+
+and asks for quantities involving **C⁶** and **C⁷**.
+
+Two critical rules are:
+
+> **Trace = sum of eigenvalues**
+
+and:
+
+> **Determinant = product of eigenvalues**
+
+So:
+
+**trace(C) = 3 + (-3) + 14 = 14**
+
+## 9. Eigenvalues of a Matrix Power
+
+If λ is an eigenvalue of C, then:
+
+> **λᵏ is an eigenvalue of Cᵏ**
+
+Therefore the eigenvalues of C⁶ are:
+
+- 3⁶
+- (-3)⁶
+- 14⁶
+
+Hence:
+
+> **Trace(C⁶) = 3⁶ + (-3)⁶ + 14⁶**
+
+Since the exponent is even:
+
+**(-3)⁶ = 3⁶**
+
+so equivalently:
+
+> **Trace(C⁶) = 2·3⁶ + 14⁶**
+
+## 10. Determinant of a Matrix Power
+
+The determinant of C is:
+
+**det(C) = 3 × (-3) × 14 = -126**
+
+Also:
+
+> **det(Cᵏ) = [det(C)]ᵏ**
+
+Therefore:
+
+> **det(C⁷) = (-126)⁷**
+
+This is exactly the kind of shortcut expected in the exam.
+
+---
+
+# Quick Exam Recognition Table — Eigenvalues
+
+| If you see... | Think immediately |
+|---|---|
+| Av = λv | Eigenvector/eigenvalue definition |
+| Find eigenvalues | det(A-λI)=0 |
+| Find eigenvectors | Solve (A-λI)v=0 |
+| Find eigenspace | N(A-λI) |
+| Triangular matrix | Diagonal entries are eigenvalues |
+| Trace | Sum of eigenvalues |
+| Determinant | Product of eigenvalues |
+| Aᵏ | Eigenvalues become λᵏ |
+| Basis of eigenspace | Basis of N(A-λI) |
+| Dimension of eigenspace | Number of independent basis vectors |
+
+---
+
+# Actual MFML Eigenspace Question — 2025–26
+
+Consider the lower-triangular matrix:
 
 ```text
 A =
@@ -1873,17 +1934,30 @@ A =
 |  1   1   0   5 |
 ```
 
-Since A is lower triangular, its eigenvalues are its diagonal entries:
+Because A is lower triangular, its eigenvalues are simply the diagonal entries:
 
-> **-2, 3, -1, 5**
+> **λ = -2, 3, -1, 5**
 
 The largest eigenvalue is:
 
-> **λ=5**
+> **λ = 5**
 
-To find its eigenspace, solve:
+## Find the Eigenspace for λ = 5
+
+Solve:
 
 **(A-5I)v=0**
+
+with:
+
+```text
+v = |x₁|
+    |x₂|
+    |x₃|
+    |x₄|
+```
+
+Then:
 
 ```text
 A-5I =
@@ -1895,18 +1969,33 @@ A-5I =
 
 This gives:
 
-- x₁=0
-- x₂=0
-- x₃=0
-- x₄ is free
+- -7x₁ = 0 → x₁ = 0
+- -x₁ - 2x₂ = 0 → x₂ = 0
+- -x₂ - 6x₃ = 0 → x₃ = 0
+- x₁ + x₂ = 0, already satisfied
 
-Let x₄=t. Then:
+There is no equation involving x₄, so x₄ is free.
 
-**v=t(0,0,0,1)ᵀ**
+Let:
 
-Hence:
+**x₄ = t**
 
-> **V₅ = span{(0,0,0,1)ᵀ}**
+Then:
+
+```text
+v = |0|
+    |0|
+    |0|
+    |t|
+```
+
+or:
+
+> **v = t(0,0,0,1)ᵀ**
+
+Therefore:
+
+> **E₅ = span{(0,0,0,1)ᵀ}**
 
 A basis is:
 
@@ -1914,53 +2003,76 @@ A basis is:
 
 and:
 
-> **dim(V₅)=1**
+> **dim(E₅)=1**
+
+### Compact Exam Answer
+
+> Since A is lower triangular, its eigenvalues are -2, 3, -1 and 5. The largest eigenvalue is 5. Solving (A-5I)v=0 gives x₁=x₂=x₃=0 and x₄ free. Hence E₅=span{(0,0,0,1)ᵀ}. A basis is {(0,0,0,1)ᵀ}, so dim(E₅)=1.
 
 ---
 
 # Distinct Eigenvalues vs Orthogonal Eigenvectors
 
-Important theorem:
+## Key Distinction
 
-> **Eigenvectors corresponding to distinct eigenvalues are linearly independent.**
+Eigenvectors corresponding to distinct eigenvalues are always:
 
-But they are not necessarily orthogonal.
+> **Linearly independent**
 
-Example:
+but they are not necessarily:
+
+> **Orthogonal**
+
+## Counterexample
+
+Take:
 
 ```text
 A = | 1  1 |
     | 0  2 |
 ```
 
-Its distinct eigenvalues are 1 and 2.
+Since A is triangular, its eigenvalues are 1 and 2.
 
-Corresponding eigenvectors can be:
+For λ=1, one eigenvector is:
 
-- for λ=1: **v₁=(1,0)ᵀ**
-- for λ=2: **v₂=(1,1)ᵀ**
+> **v₁=(1,0)ᵀ**
+
+For λ=2, one eigenvector is:
+
+> **v₂=(1,1)ᵀ**
 
 Their dot product is:
 
-**v₁ᵀv₂=1**
+**v₁ᵀv₂ = 1**
 
-so they are not orthogonal.
+which is not zero.
 
 Therefore:
 
-> **Distinct eigenvalues ⇒ independent eigenvectors, not necessarily orthogonal eigenvectors.**
+> **Distinct eigenvalues do not by themselves guarantee orthogonal eigenvectors.**
 
-## Symmetric Matrix Case
+## Symmetric Matrix Theorem
 
-For a real symmetric matrix:
+If A is a real symmetric matrix and λ₁≠λ₂, then eigenvectors corresponding to λ₁ and λ₂ are orthogonal.
 
-> **Eigenvectors corresponding to distinct eigenvalues are orthogonal.**
+Suppose:
 
-If Av₁=λ₁v₁ and Av₂=λ₂v₂, with A=Aᵀ and λ₁≠λ₂, then:
+**Av₁=λ₁v₁**
+
+and:
+
+**Av₂=λ₂v₂**
+
+Since A is symmetric:
+
+**Aᵀ=A**
+
+Then:
 
 **v₁ᵀAv₂ = λ₂v₁ᵀv₂**
 
-but symmetry also gives:
+but also:
 
 **v₁ᵀAv₂ = (Av₁)ᵀv₂ = λ₁v₁ᵀv₂**
 
@@ -1972,9 +2084,9 @@ Since λ₁≠λ₂:
 
 > **v₁ᵀv₂=0**
 
-so the eigenvectors are orthogonal.
+Hence the eigenvectors are orthogonal.
 
-## Orthogonal Matrices and Orthogonal Diagonalization
+## Orthogonal Matrix
 
 A square matrix Q is orthogonal if:
 
@@ -1984,21 +2096,33 @@ Equivalently:
 
 > **Q⁻¹=Qᵀ**
 
-For a real symmetric matrix, the eigenvectors can be chosen orthonormal and placed as columns of Q, giving:
+Its columns form an orthonormal set.
+
+For a real symmetric matrix, eigenvectors can be chosen orthonormal and arranged as the columns of Q.
+
+Then:
 
 > **A = QDQᵀ**
 
-This is orthogonal diagonalization and is a key idea behind PCA.
+This is orthogonal diagonalization.
+
+## Exam Trap Summary
+
+| Condition | Conclusion |
+|---|---|
+| Same eigenvalue | Eigenvectors may or may not be independent |
+| Distinct eigenvalues | Eigenvectors are linearly independent |
+| Symmetric matrix + distinct eigenvalues | Eigenvectors are orthogonal |
+
+### Compact 2-Mark Answer
+
+> Distinct eigenvalues guarantee linearly independent eigenvectors, but not necessarily orthogonal ones. Orthogonality is guaranteed for eigenvectors corresponding to distinct eigenvalues when the matrix is real symmetric.
 
 ---
 
 # Algebraic Multiplicity, Geometric Multiplicity and Diagonalizability
 
-These ideas answer one key question:
-
-> **Does a matrix have enough independent eigenvectors to form a basis?**
-
-## 1. Algebraic Multiplicity
+## Algebraic Multiplicity
 
 The algebraic multiplicity of an eigenvalue is the number of times it appears as a root of the characteristic polynomial.
 
@@ -2008,72 +2132,40 @@ Example:
 
 Then:
 
-- λ=2 has algebraic multiplicity 2.
-- λ=5 has algebraic multiplicity 1.
+- λ=2 has algebraic multiplicity 2
+- λ=5 has algebraic multiplicity 1
 
-So algebraic multiplicity comes directly from:
+## Geometric Multiplicity
 
-> **det(A-λI)=0**
+The geometric multiplicity of λ is:
 
-## 2. Geometric Multiplicity
+> **dim N(A-λI)**
 
-The geometric multiplicity of an eigenvalue is:
-
-> **The dimension of its eigenspace.**
-
-Equivalently:
-
-> **GM(λ) = dim N(A-λI)**
-
-If:
-
-**E₂ = span{v₁,v₂}**
-
-with two independent eigenvectors, then:
-
-> **GM(2)=2**
-
-If:
-
-**E₂ = span{v₁}**
-
-then:
-
-> **GM(2)=1**
-
-## 3. Crucial Relationship
+So it is the dimension of the eigenspace corresponding to λ.
 
 For every eigenvalue:
 
 > **1 ≤ geometric multiplicity ≤ algebraic multiplicity**
 
-So if an eigenvalue has algebraic multiplicity 3, its geometric multiplicity can be 1, 2 or 3, but not 4.
+## Why Multiplicity Matters
 
-## 4. Why Multiplicity Matters
-
-An n×n matrix is diagonalizable if it has:
-
-> **n linearly independent eigenvectors.**
-
-If v₁,...,vₙ are independent eigenvectors, form:
-
-**P=[v₁ v₂ ... vₙ]**
+An n×n matrix is diagonalizable if it has n linearly independent eigenvectors.
 
 Then:
 
-> **A=PDP⁻¹**
+> **A = PDP⁻¹**
 
-where D is diagonal and contains the corresponding eigenvalues.
+where the columns of P are independent eigenvectors and D contains the corresponding eigenvalues.
 
-## 5. Easy Case — All Eigenvalues Distinct
+## Distinct Eigenvalues Shortcut
 
 If an n×n matrix has n distinct eigenvalues, then the corresponding eigenvectors are automatically linearly independent.
 
 Therefore:
 
-> **n distinct eigenvalues ⇒ matrix is diagonalizable.**
+> **n distinct eigenvalues ⇒ diagonalizable**
 
-## 6. Repeated Eigenvalue Can Still Be Diagonalizable
+## Repeated Eigenvalue but Still Diagonalizable
 
 Consider:
 
@@ -2082,35 +2174,17 @@ A = | 2  0 |
     | 0  2 |
 ```
 
-Its characteristic polynomial is:
+The only eigenvalue is 2 with algebraic multiplicity 2.
 
-**(λ-2)²**
-
-So:
-
-> **AM(2)=2**
-
-But:
-
-**A-2I=0**
-
-so every vector in R² is an eigenvector for λ=2.
-
-Hence:
-
-**E₂=R²**
-
-and:
-
-> **GM(2)=2**
+Since A-2I=0, every vector in R² is an eigenvector for λ=2.
 
 Thus:
 
-> **AM=GM=2**
+> **geometric multiplicity = 2**
 
-and the matrix is diagonalizable.
+Therefore A is diagonalizable.
 
-## 7. Example of a Matrix That Is Not Diagonalizable
+## Repeated Eigenvalue and Not Diagonalizable
 
 Consider:
 
@@ -2119,84 +2193,48 @@ A = | 2  1 |
     | 0  2 |
 ```
 
-Since A is triangular, its eigenvalues are:
+The eigenvalue is λ=2 with algebraic multiplicity 2.
 
-**2,2**
-
-Thus:
-
-> **AM(2)=2**
-
-Now:
+Solve:
 
 ```text
 A-2I = | 0  1 |
        | 0  0 |
 ```
 
-Solving:
+This gives y=0 and x free.
 
-**(A-2I)v=0**
+Hence the eigenspace is:
 
-gives y=0 while x is free.
-
-Therefore:
-
-**v=t(1,0)ᵀ**
-
-and:
-
-> **E₂=span{(1,0)ᵀ}**
-
-Hence:
-
-> **GM(2)=1**
-
-We need two independent eigenvectors for a 2×2 matrix but only have one.
-
-Therefore:
-
-> **A is not diagonalizable.**
-
-## 8. Diagonalizability Test
-
-A matrix is diagonalizable if:
-
-> **For every eigenvalue, geometric multiplicity equals algebraic multiplicity.**
-
-Equivalent statement:
-
-> **The total number of linearly independent eigenvectors must equal n.**
-
-Quick comparison:
-
-| Matrix | Eigenvalues | AM | GM | Diagonalizable? |
-|---|---|---:|---:|---|
-| diag(2,2) | 2,2 | 2 | 2 | Yes |
-| [[2,1],[0,2]] | 2,2 | 2 | 1 | No |
-| diag(1,3) | 1,3 | 1 each | 1 each | Yes |
-
-## 9. Why Symmetric Matrices Are Special
-
-Every real symmetric matrix is diagonalizable.
-
-Even more strongly:
-
-> **Every real symmetric matrix is orthogonally diagonalizable.**
+> **span{(1,0)ᵀ}**
 
 So:
 
-> **A=QDQᵀ**
+> **geometric multiplicity = 1**
 
-for some orthogonal matrix Q.
+Since the 2×2 matrix has only one independent eigenvector:
 
-Repeated eigenvalues are not a problem for symmetric matrices because there are enough independent eigenvectors, and an orthonormal basis can be chosen inside each eigenspace.
+> **A is not diagonalizable.**
 
-## 10. Exam Recognition Rules
+## Diagonalizability Test
 
-If you see:
+A matrix is diagonalizable if and only if the total number of independent eigenvectors is n.
 
-### All eigenvalues are distinct
+Equivalently:
+
+> **For every eigenvalue, geometric multiplicity = algebraic multiplicity.**
+
+## Symmetric Matrix Shortcut
+
+Every real symmetric matrix is:
+
+> **Orthogonally diagonalizable**
+
+so it always has enough independent eigenvectors.
+
+## Exam Recognition Rules
+
+### All eigenvalues distinct
 
 Think:
 
@@ -2230,6 +2268,263 @@ Think:
 
 ---
 
+# Trace, Determinant, Singular Values and SVD Connection
+
+This section connects eigenvalues to one of the recurring MFML SVD-style question patterns.
+
+## 1. Start with SVD
+
+For any matrix A:
+
+> **A = UΣVᵀ**
+
+where:
+
+- U contains left singular vectors,
+- V contains right singular vectors,
+- Σ contains the singular values σ₁, σ₂, ...,
+- singular values are always non-negative.
+
+## 2. Key Relationship with Eigenvalues
+
+The central identities are:
+
+> **AᵀA = VΣ²Vᵀ**
+
+and:
+
+> **AAᵀ = UΣ²Uᵀ**
+
+Therefore:
+
+> **Eigenvalues of AᵀA are σ₁², σ₂², ...**
+
+and the nonzero eigenvalues of AAᵀ are the same σᵢ² values.
+
+## 3. Why Does AᵀA Give σ²?
+
+Start from:
+
+**A = UΣVᵀ**
+
+Then:
+
+**Aᵀ = VΣᵀUᵀ**
+
+Therefore:
+
+**AᵀA = VΣᵀUᵀUΣVᵀ**
+
+Since U is orthogonal:
+
+**UᵀU = I**
+
+we get:
+
+**AᵀA = VΣᵀΣVᵀ**
+
+For the usual singular-value structure:
+
+**ΣᵀΣ = Σ²**
+
+so:
+
+> **AᵀA = VΣ²Vᵀ**
+
+Thus the columns of V are eigenvectors of AᵀA, and its eigenvalues are σᵢ².
+
+## 4. Frobenius Norm
+
+The Frobenius norm satisfies:
+
+> **||A||_F² = sum of squares of all entries of A**
+
+For SVD:
+
+> **||A||_F² = σ₁² + σ₂² + ...**
+
+Since Σ contains the singular values on its diagonal:
+
+> **||Σ||_F² = σ₁² + σ₂² + ...**
+
+Therefore:
+
+> **||A||_F² = ||Σ||_F²**
+
+## 5. Actual MFML Question Pattern
+
+Suppose:
+
+**A = UΣVᵀ**
+
+and:
+
+> **||Σ||_F² = γ**
+
+Let:
+
+**B = AᵀA**
+
+Since the eigenvalues of B are σ₁², σ₂², ...:
+
+**trace(B) = σ₁² + σ₂² + ...**
+
+But:
+
+**σ₁² + σ₂² + ... = ||Σ||_F² = γ**
+
+Therefore:
+
+> **trace(AᵀA) = γ**
+
+So a statement claiming trace(AᵀA)=γ is correct.
+
+A statement claiming trace(AᵀA)=√γ is incorrect.
+
+## 6. Why Trace Appears
+
+Remember:
+
+> **Trace = sum of eigenvalues**
+
+For AᵀA, the eigenvalues are σᵢ².
+
+Hence:
+
+> **trace(AᵀA) = Σσᵢ²**
+
+So the following three quantities are the same:
+
+> **trace(AᵀA) = ||A||_F² = Σσᵢ²**
+
+## 7. What About AAᵀ?
+
+Let:
+
+**C = AAᵀ**
+
+Its nonzero eigenvalues are also σ₁², σ₂², ...
+
+Therefore:
+
+> **trace(AAᵀ) = Σσᵢ² = γ**
+
+So:
+
+> **trace(AᵀA) = trace(AAᵀ) = γ**
+
+not γ².
+
+## 8. Why AᵀA and AAᵀ Share Nonzero Eigenvalues
+
+Suppose:
+
+**AᵀA v = λv**
+
+with λ ≠ 0.
+
+Multiply by A:
+
+**AAᵀ(Av) = λ(Av)**
+
+Therefore Av is an eigenvector of AAᵀ with the same eigenvalue λ.
+
+Hence AᵀA and AAᵀ share the same nonzero eigenvalues.
+
+## 9. Singular Values vs Eigenvalues
+
+Eigenvalues of a general matrix may be:
+
+- positive,
+- negative,
+- zero,
+- or complex.
+
+Singular values are always:
+
+> **non-negative real numbers**
+
+because:
+
+> **σᵢ = √λᵢ(AᵀA)**
+
+## 10. Simple Numerical Example
+
+Take:
+
+```text
+A = | 3  0 |
+    | 0  4 |
+```
+
+Then:
+
+```text
+AᵀA = | 9   0 |
+      | 0  16 |
+```
+
+The eigenvalues of AᵀA are 9 and 16.
+
+Therefore the singular values are:
+
+> **σ₁=3, σ₂=4**
+
+Now:
+
+**||A||_F² = 3² + 4² = 25**
+
+and:
+
+**trace(AᵀA) = 9 + 16 = 25**
+
+Therefore:
+
+> **||A||_F² = trace(AᵀA) = σ₁² + σ₂²**
+
+## 11. Rank Connection
+
+The rank of A equals:
+
+> **Number of nonzero singular values**
+
+For example, if:
+
+**Σ = diag(5,2,0,0)**
+
+then:
+
+> **rank(A)=2**
+
+## 12. Exam Recognition Table
+
+| If you see... | Think immediately |
+|---|---|
+| A = UΣVᵀ | SVD |
+| Eigenvalues of AᵀA | σᵢ² |
+| Eigenvalues of AAᵀ | Same nonzero σᵢ² |
+| Singular values | √eigenvalues(AᵀA) |
+| trace(AᵀA) | Sum of σᵢ² |
+| ||A||_F² | Sum of σᵢ² |
+| ||Σ||_F² | Sum of σᵢ² |
+| rank(A) | Number of nonzero singular values |
+
+## Compact MFML Answer
+
+If:
+
+**A = UΣVᵀ**, **||Σ||_F² = γ**, and **B=AᵀA**,
+
+then:
+
+> Since AᵀA = VΣ²Vᵀ, the eigenvalues of AᵀA are σᵢ². Hence **trace(AᵀA)=Σσᵢ²=||Σ||_F²=γ**. Similarly, **trace(AAᵀ)=γ**.
+
+---
+
 # Next Step
 
-The next useful connection is between eigenvalues, trace, determinant and singular values, leading into the SVD-style MFML question.
+The next natural topic is **PCA**, because PCA uses exactly this chain:
+
+> **covariance matrix → eigenvalues/eigenvectors → principal directions → explained variance**
+
+The MFML bank contains repeated PCA questions involving variance retention, dimensionality reduction, projection and reconstruction.
