@@ -2,11 +2,63 @@
 
 > **Purpose:** Organize every question by **Topic → Concept → Exact Question**. As more papers/files are added, questions should be inserted under the closest existing concept. Create a new concept/topic only when necessary.
 >
+> **Professor coverage classifier:** Based only on the uploaded lecture transcripts of Prof. Neha Vinayak. `✅ Covered` means the topic/concept is explicitly taught or discussed in the transcripts. `⚠️ Not found explicitly` means that exact concept was not found in the uploaded transcripts; it does **not** mean it is outside the syllabus.
+>
 > **Sources currently included:**
 > 1. Sample Paper — Comprehensive Examination (EC-3 Make-up), AIMLCZG565/DSECLZG565.
 > 2. NSP4-S2-25_EC3R_AIMLCZG565 — Machine Learning Question Paper.
 > 3. First Semester 2023–2024 End-Semester Test (EC-3 Regular), DSE ZG565 / AIML ZG565 — uploaded image set.
 > 4. First/Second Semester 2024–2025 Comprehensive Examination (EC-3 Regular), AIMLZC565/DSECLZC565 — uploaded image set.
+
+## Professor Lecture Coverage — Quick Classifier
+
+| Topic / Concept appearing in this question bank | Professor coverage |
+|---|---|
+| Ridge Regression — regularization strength, bias–variance, coefficient shrinkage | ⚠️ Not found explicitly as **Ridge Regression** |
+| Polynomial Regression / least-squares curve fitting | ✅ Covered |
+| Linear Regression and its use/limitations | ✅ Covered |
+| Logistic Regression | ✅ Covered |
+| L2-regularized Logistic Regression | ⚠️ Logistic Regression and regularization are covered, but this exact combined formulation was not clearly found |
+| Gradient Descent / learning rate / convergence | ✅ Covered |
+| Bayes' theorem / posterior probability | ✅ Covered |
+| Gaussian Naive Bayes | ✅ Covered |
+| Multinomial Naive Bayes | ✅ Covered |
+| Laplace smoothing | ✅ Covered |
+| Generative vs discriminative models — NB vs Logistic Regression | ⚠️ Not found explicitly in this wording |
+| Naive Bayes conditional-independence assumption | ✅ Covered |
+| KNN classification/regression | ✅ Covered |
+| Min-max normalization / distance calculations for KNN | ✅ Covered |
+| Locally Weighted Linear Regression / local regression | ✅ Covered |
+| Manhattan / Minkowski / Euclidean distance | ✅ Covered |
+| Distance-weighted KNN / weighted neighbours | ✅ Covered |
+| Gower distance for mixed attributes | ✅ Covered |
+| Effect of K / robustness to neighbours and outliers | ✅ Covered |
+| Bagging | ✅ Covered |
+| Random Forest / feature subsampling | ✅ Covered |
+| AdaBoost — weak learners, errors, learner weights, sample reweighting | ✅ Covered |
+| Gradient Boosting | ✅ Covered |
+| Majority voting / ensemble combination | ✅ Covered |
+| GMM / Gaussian Mixture Models | ✅ Covered |
+| EM algorithm — E-step, responsibilities, M-step | ✅ Covered |
+| GMM vs K-Means / soft vs hard clustering | ✅ Covered |
+| K-Means — assignment and centroid update | ✅ Covered |
+| K-Means initialization / limitations | ✅ Covered |
+| SVM / maximum-margin classifier / support vectors | ✅ Covered |
+| Hard-margin SVM primal and Lagrangian | ✅ Covered |
+| SVM dual / Lagrange multipliers | ✅ Covered |
+| KKT / complementary slackness | ✅ Covered |
+| Kernel SVM / kernel trick | ✅ Covered |
+| SVM C / soft margin / kernel hyperparameters | ✅ Covered |
+| Decision Trees | ✅ Covered |
+| Decision-tree overfitting / stopping / depth | ✅ Covered |
+| Decision-tree interpretability | ✅ Covered |
+| Precision–Recall / classification metric question as written | ⚠️ Not found explicitly enough in the uploaded transcripts to mark this exact concept covered |
+| Algorithmic bias / fairness / interpretability | ✅ Covered at a general level |
+| Fairness through unawareness / proxy variables | ⚠️ Not found explicitly |
+
+> **Important:** The classifier is intentionally conservative. If the professor discussed a broad topic but the exact exam-question concept was not explicit in the transcript, it is marked `⚠️` rather than assumed covered.
+
+---
 
 ## 1. Linear Regression / Regularization
 
