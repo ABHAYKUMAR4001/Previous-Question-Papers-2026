@@ -1,34 +1,37 @@
-# Machine Learning Question Bank --- Topic → Concept → Exact Question
+# Machine Learning Question Bank — Topic → Concept → Exact Question
 
 > **Purpose:** Organize every question by **Topic → Concept → Exact Question**. As more papers/files are added, questions should be inserted under the closest existing concept. Create a new concept/topic only when necessary.
 >
 > **Sources currently included:**
-> 1. Sample Paper --- Comprehensive Examination (EC-3 Make-up), AIMLCZG565/DSECLZG565.
-> 2. NSP4-S2-25_EC3R_AIMLCZG565 --- Machine Learning Question Paper.
+> 1. Sample Paper — Comprehensive Examination (EC-3 Make-up), AIMLCZG565/DSECLZG565.
+> 2. NSP4-S2-25_EC3R_AIMLCZG565 — Machine Learning Question Paper.
+> 3. First Semester 2023–2024 End-Semester Test (EC-3 Regular), DSE ZG565 / AIML ZG565 — uploaded image set.
 
 ## 1. Linear Regression / Regularization
 
-### Concept: Ridge Regression --- Regularization Strength, Bias--Variance & Coefficient Shrinkage
+### Concept: Ridge Regression — Regularization Strength, Bias–Variance & Coefficient Shrinkage
 
-**Question (Sample Paper Q1 --- 4 Marks)**
+**Question (Sample Paper Q1 — 4 Marks)**
 
-A data science team is building a linear regression model to predict house prices using 120 correlated features (area, number of rooms, locality index, proximity to schools, etc.).
+A data science team is building a linear regression model to predict house prices using 120 correlated features (area, number of rooms, locality index, proximity to schools, etc.). The training dataset has 8,000 samples, but the validation error fluctuates significantly across folds. To control overfitting, the team applies Ridge Regression and experiments with λ = 0, λ = 0.01 and λ = 10⁴.
 
-The training dataset has 8,000 samples, but the validation error fluctuates significantly across folds. To control overfitting, the team applies Ridge Regression and experiments with different values of the regularization parameter λ.
+(a) For each case, describe the expected behavior of the model coefficients and the bias–variance tradeoff. **[3 Marks]**
 
-They observe the following behaviors: - Case 1: λ = 0 - Case 2: λ = 0.01 - Case 3: λ = 10⁴
+(b) In Case 3, all features still have non-zero coefficients although many are extremely small. Explain why Ridge Regression does not perform feature selection even when λ is very large. **[1 Mark]**
 
-(a) For each case above, describe the expected behavior of the model coefficients and the bias--variance tradeoff. **[3 Marks]**
+### Concept: Polynomial Regression — Least-Squares Curve Fitting / Normal Equations
 
-(b) In Case 3, the team notices that all features still have non-zero coefficients, although many are extremely small. Explain why Ridge Regression does not perform feature selection, even when λ is very large. **[1 Mark]**
+**Question (2023–24 End-Sem Regular Q3(b) — 3 Marks)**
+
+What is the best curve of the form **y = a + bx + cx²** in terms of minimizing square error that fits the following training dataset (x,y): **(-1,0), (1,10), (2,24), (-2,4)**? **[3 Marks]**
 
 ---
 
 ## 2. Logistic Regression
 
-### Concept: L2-Regularized Logistic Regression --- Cross-Entropy, Gradient Descent & Weight Shrinkage
+### Concept: L2-Regularized Logistic Regression — Cross-Entropy, Gradient Descent & Weight Shrinkage
 
-**Question (NSP4-S2-25 Exam Q2 --- 4 Marks)**
+**Question (NSP4-S2-25 Exam Q2 — 4 Marks)**
 
 A streaming service wants to predict subscription cancellation (y = 1: cancels, y = 0: stays) using two normalized features: Watch Hours per week (x1) and Customer Complaints (x2), both scaled 0 to 1.
 
@@ -38,25 +41,40 @@ A streaming service wants to predict subscription cancellation (y = 1: cancels, 
 | C2 | 0.2 | 0.9 | 1 |
 | C3 | 0.7 | 0.2 | 0 |
 
-Initial weights: w0 = 0, w1 = -1, w2 = 1. Learning rate: α = 0.5. Regularization constant: λ = 0.4.
+Initial weights: w0 = 0, w1 = -1, w2 = 1. Learning rate α = 0.5. Regularization constant λ = 0.4.
 
-(a) Write the L2-regularized cross-entropy cost function for logistic regression, and state how its gradient update rule differs from plain (unregularized) logistic regression GD. **[1 Mark]**
+(a) Write the L2-regularized cross-entropy cost function for logistic regression, and state how its gradient update rule differs from plain logistic regression GD. **[1 Mark]**
 
-(b) Using the data and initial weights above, compute σ(z) for each customer, then perform one step of regularized Gradient Descent to obtain w0*, w1*, w2*. **[2 Marks]**
+(b) Compute σ(z) for each customer, then perform one step of regularized Gradient Descent to obtain w0*, w1*, w2*. **[2 Marks]**
 
-(c) Compare the magnitude of w1* obtained here with what it would be under plain (unregularized, λ = 0) logistic regression GD. What does this tell you about how L2 regularization affects convergence and weight magnitude in classification models? **[1 Mark]**
+(c) Compare the magnitude of w1* with plain unregularized (λ = 0) logistic regression GD. What does this tell you about L2 regularization's effect on convergence and weight magnitude? **[1 Mark]**
+
+### Concept: Gradient Descent — Learning Rate Too Large, Cost Divergence & Learning Curves
+
+**Question (2023–24 End-Sem Regular Q3(a) — 2 Marks)**
+
+Suppose you tried logistic regression with **2 distinct values of learning rate** and plotted the learning curve for each case where **J(θ)** represents the cost function. For which of the following cases (A or B) is the learning rate possibly too large? Justify your answer. **[2 Marks]**
+
+- Curve A: J(θ) decreases and converges as the number of iterations increases.
+- Curve B: J(θ) increases/diverges as the number of iterations increases.
 
 ---
 
-## 3. Naive Bayes
+## 3. Naive Bayes / Bayesian Learning
 
-### Concept: Gaussian Naive Bayes --- Mixed Continuous & Categorical Features
+### Concept: Bayes' Theorem — Posterior Probability & Law of Total Probability
 
-**Question (Sample Paper Q2 --- 5 Marks)**
+**Question (2023–24 End-Sem Regular Q1 — 4 Marks)**
 
-As a part of efforts to improve students' performance in the exams, you have been given the data showing number of study hours spent by students, their gender and their final results as pass or fail. Using this sample dataset, apply Naïve Bayes classification technique, to classify the test case **{No of study hours = 3.5, Gender = "male"}** either as "Pass", or "Fail".
+In a specific population, the probability of a person experiencing a particular symptom given they've had Meningitis is **80%**, whereas the chances of experiencing the same symptom without Meningitis is **10%**. If the prevalence of Meningitis in the population is **5%**, what is the probability that a person displaying the symptom indeed has Meningitis? **[4 Marks]**
 
-| No. of study hours | Gender | Final result |
+### Concept: Gaussian Naive Bayes — Mixed Continuous & Categorical Features
+
+**Question (Sample Paper Q2 — 5 Marks)**
+
+Using the following student data, apply Naïve Bayes classification to classify the test case **{No. of study hours = 3.5, Gender = Male}** as Pass or Fail.
+
+| Study hours | Gender | Result |
 |---:|---|---|
 | 4.5 | Male | Pass |
 | 7 | Female | Pass |
@@ -68,403 +86,255 @@ As a part of efforts to improve students' performance in the exams, you have bee
 | 8 | Female | Pass |
 | 9 | Male | Pass |
 
-### Concept: Multinomial Naive Bayes --- Laplace Smoothing & Posterior Classification
+### Concept: Multinomial Naive Bayes — Laplace Smoothing & Posterior Classification
 
-**Question (NSP4-S2-25 Exam Q6(a,b) --- 3 Marks)**
+**Question (NSP4-S2-25 Exam Q6(a,b) — 3 Marks)**
 
-A movie-review platform wants to tag reviews as Positive or Negative using a Multinomial Naive Bayes (bag-of-words) classifier. From the training corpus, word counts within each class are:
+A movie-review platform wants to tag reviews as Positive or Negative using a Multinomial Naive Bayes classifier. Word counts are: great (6,1), boring (1,5), acting (4,2), slow (2,4), brilliant (3,0) for Positive and Negative respectively. Total words: Positive = 16, Negative = 12, |V| = 5. Priors: P(Positive)=0.6, P(Negative)=0.4. Test review: **“acting was slow but great.”**
 
-| Word | Count in Positive reviews | Count in Negative reviews |
-|---|---:|---:|
-| great | 6 | 1 |
-| boring | 1 | 5 |
-| acting | 4 | 2 |
-| slow | 2 | 4 |
-| brilliant | 3 | 0 |
+(a) Using Laplace smoothing (k=1), compute P(word|class) for acting, slow and great under both classes. **[1.5 Marks]**
 
-Total words in Positive class = 16. Total words in Negative class = 12. Vocabulary size |V| = 5.
+(b) Compute the unnormalized posterior score for both classes and determine the predicted class. **[1.5 Marks]**
 
-Class priors: P(Positive) = 0.6, P(Negative) = 0.4 (6 positive and 4 negative reviews in the training set).
+### Concept: Generative vs Discriminative Models — Naive Bayes vs Logistic Regression
 
-Test review: "acting was slow but great" (only words present in the vocabulary above are used: acting, slow, great).
+**Question (NSP4-S2-25 Exam Q6(c) — 1 Mark)**
 
-(a) Using Laplace smoothing (k=1), compute the smoothed likelihood P(word | class) for each of the three test words (acting, slow, great) under both Positive and Negative. **[1.5 Marks]**
+Naive Bayes models P(Y) and P(X|Y) separately (generative), while Logistic Regression models P(Y|X) directly (discriminative). Briefly explain this distinction and why the two approaches can produce different results despite a shared parametric form. **[1 Mark]**
 
-(b) Using these likelihoods, compute the unnormalized posterior score for both classes and determine the predicted class. **[1.5 Marks]**
+### Concept: Conditional Independence Assumption — Correlated Features & Overconfident Posteriors
 
-### Concept: Generative vs Discriminative Models --- Naive Bayes vs Logistic Regression
+**Question (NSP4-S2-25 Exam Q6(d) — 1 Mark)**
 
-**Question (NSP4-S2-25 Exam Q6(c) --- 1 Mark)**
-
-Naive Bayes here models P(Y) and P(X|Y) separately (a generative approach), while Logistic Regression models P(Y|X) directly (a discriminative approach) - the parametric form of P(Y|X) implied by Gaussian Naive Bayes is actually the same form Logistic Regression uses directly. Briefly explain this generative-vs-discriminative distinction, and why the two approaches can still produce different results despite that shared form. **[1 Mark]**
-
-### Concept: Conditional Independence Assumption --- Correlated Features & Overconfident Posteriors
-
-**Question (NSP4-S2-25 Exam Q6(d) --- 1 Mark)**
-
-Words like "great" and "brilliant" are likely to co-occur strongly in genuinely positive reviews (and "boring"/"slow" in genuinely negative ones) - violating Naive Bayes' word-independence assumption. Explain how this could make Naive Bayes' posterior scores overconfident, and why Logistic Regression might handle such correlated words more gracefully. **[1 Mark]**
+Words like “great” and “brilliant” are likely to co-occur strongly in positive reviews (and “boring”/“slow” in negative ones), violating Naive Bayes' word-independence assumption. Explain how this could make NB posterior scores overconfident and why Logistic Regression might handle correlated words more gracefully. **[1 Mark]**
 
 ---
 
 ## 4. K-Nearest Neighbours (KNN) / Local Regression
 
-### Concept: KNN Regression --- Min-Max Normalization & Euclidean Distance
+### Concept: KNN Regression — Min-Max Normalization & Euclidean Distance
+### Concept: Locally Weighted Linear Regression — Gaussian Kernel & One GD Update
 
-### Concept: Locally Weighted Linear Regression --- Gaussian Kernel & One GD Update
+**Question (Sample Paper Q3 — 6 Marks)**
 
-**Question (Sample Paper Q3 --- 6 Marks)**
+A consumer electronics company wants to predict the scaled-down selling price of a gadget using Size and Warranty. For query Q = (7 cm, 18 months), produce (1) a standard 4-NN regression estimate and (2) a locally weighted linear regression estimate using a Gaussian kernel and one GD update. Apply min-max normalization, Euclidean distances, K(d)=exp(-d²/(2b²)), b=2, initial w=(1.5,0.8,0.4), α=0.1. Training points: P0(4,6,6.0), P1(6,12,7.5), P2(7,24,12.0), P3(8,6,8.0), P4(10,12,9.0), P5(12,24,11.0), P6(5,24,10.5), P7(9,18,10.0).
 
-A consumer electronics company wants to predict the scaled-down selling price (continuous) of a new gadget based on two features: (i) Size (in cm) and (ii) Warranty period (in months). The training set has mixed magnitudes, so you must work in a comparable feature space to compute neighborhoods reliably. For a query gadget **Q with Size = 7 cm and Warranty = 18 months**, produce two estimates: (1) a standard k-NN regression estimate using **k = 4** (simple mean of the 4 nearest prices), and (2) a locally weighted linear regression estimate using a Gaussian kernel around the query and **ONE gradient-descent (GD) update**.
+(a) Compute the standard 4-NN prediction. **[2 Marks]**
+(b) Compute K(d), perform one GD update, and report new weights and locally weighted prediction. **[3 Marks]**
+(c) State one reason why the predictions differ. **[1 Mark]**
 
-Training data (Size, Warranty, Price): P0(4,6,6.0), P1(6,12,7.5), P2(7,24,12.0), P3(8,6,8.0), P4(10,12,9.0), P5(12,24,11.0), P6(5,24,10.5), P7(9,18,10.0)
+### Concept: KNN Classification — Manhattan Distance & Unweighted Voting
+### Concept: Distance-Weighted KNN — Inverse-Distance Voting
+### Concept: Feature-Weighted Distance Metric — Effect on Neighbourhood & Classification
 
-Instructions:
-- Apply min--max normalization separately to Size and Warranty using the min/max from the training set.
-- Compute Euclidean distances in the normalized 2D space and find the 4 nearest neighbors.
-- Standard k-NN regression: unweighted mean of the 4 neighbor prices.
-- Locally weighted linear regression: ŷ = w0 + w1x1 + w2x2, where (x1,x2) are normalized features.
-- Kernel: K(d) = exp(−d²/(2b²)), with b = 2.
-- Start from w0 = 1.5, w1 = 0.8, w2 = 0.4 and learning rate α = 0.1.
-- Perform exactly ONE GD update using only the 4 nearest neighbors.
+**Question (NSP4-S2-25 Exam Q7 — 7 Marks)**
 
-(a) Compute the standard 4-NN prediction for Q. **[2 Marks]**
+A manufacturing plant has labelled machines with vibration x1 and temperature-deviation x2. M1(5,6,F), M2(4,4,F), M3(7,6,N), M4(8,6,N), M5(9,6,N), M6(2,2,F), M7(10,8,N), M8(1,7,F). Query xq=(5,5).
 
-(b) Compute K(d) for the 4 neighbors, perform ONE GD update, and report (w0_new, w1_new, w2_new) and the locally weighted prediction for Q after the update. **[3 Marks]**
+(a) Why is KNN reasonable compared with decision trees or logistic regression? **[1]**
+(b) Compute Manhattan distances and five nearest neighbours. **[1]**
+(c) Classify with unweighted 5-NN. **[1]**
+(d) Classify with distance-weighted 5-NN, wi=1/d. **[2]**
+(e) Compare and state the advantage of weighted KNN. **[1]**
+(f) Change metric to d'=|Δx1|+2|Δx2| and analyze whether classification is likely to change. **[1]**
 
-(c) State one reason why the two predictions differ for this dataset. **[1 Mark]**
+### Concept: KNN with Categorical Features — Matching-Attribute Similarity
+### Concept: Effect of K / Robustness to Outliers
+### Concept: Ensemble of KNN Models — Majority Voting Across Different K
 
-### Concept: KNN Classification --- Manhattan Distance & Unweighted Voting
+**Question (2023–24 End-Sem Regular Q4(a–c) — 6 Marks)**
 
-### Concept: Distance-Weighted KNN --- Inverse-Distance Voting
+A committee classifies literary works as **High, Medium or Low** chance of nomination using three categorical attributes: Readership Base, Writer's Reputation spread in other countries, and Distinctive in Style. For the given test instance **<Readership Base = High, Writer's Reputation = High, Distinctive in Style = High>**:
 
-### Concept: Feature-Weighted Distance Metric --- Effect on Neighbourhood & Classification
+(a) Use **6-NN, 3-NN and 1-NN separately** to classify the test instance. Assume all features are categorical and use only the following measure of similarity, rounding proximity values to two decimal places:
 
-**Question (NSP4-S2-25 Exam Q7 --- 7 Marks)**
+**Similarity(data1,data2) = Number of matching categorical attributes / Total number of categorical attributes.** **[3.5 Marks]**
 
-A manufacturing plant records two sensor indicators for machines: vibration score (x1) and temperature-deviation score (x2). Historical machines have been labelled as Normal (N) or Fault (F) after inspection. A newly observed machine must be classified from its sensor readings. Machines with similar sensor patterns tend to have similar operating conditions.
+(b) Which of the individual k-NN models is more robust to outliers? Justify your answer in no more than 40 words. **[1.5 Marks]**
 
-| Machine | Vibration x1 | Temperature deviation x2 | Condition |
-|---|---:|---:|---|
-| M1 | 5 | 6 | F |
-| M2 | 4 | 4 | F |
-| M3 | 7 | 6 | N |
-| M4 | 8 | 6 | N |
-| M5 | 9 | 6 | N |
-| M6 | 2 | 2 | F |
-| M7 | 10 | 8 | N |
-| M8 | 1 | 7 | F |
-
-Query machine: xq = (5, 5)
-
-(a) Why is an instance-based method such as KNN a reasonable choice for this problem, compared with algorithms like decision trees or logistic regression? **[1 Mark]**
-
-(b) Compute the Manhattan distance from xq to each machine and identify the five nearest neighbours. **[1 Mark]**
-
-(c) Classify xq using unweighted 5-NN and show the vote totals for N and F. **[1 Mark]**
-
-(d) Classify xq using distance-weighted 5-NN with wi = 1 / d(xq, xi) and show the total weight for each class. **[2 Marks]**
-
-(e) Compare the predictions in (c) and (d). What advantage of weighted KNN does this case demonstrate? **[1 Mark]**
-
-(f) Now the distance metric is changed so Temperature Deviation (x2) counts twice as much as Vibration (x1): d'(xq, xi) = |Δx1| + 2|Δx2|. Without recomputing all distances from scratch, analyze whether the classification of xq is likely to change under distance-weighted 5-NN with this new metric, and justify your answer using how x1 and x2 vary among the original five nearest neighbours. **[1 Mark]**
+(c) Create an ensemble using all the above models with **majority voting** to predict the class for the given test instance. **[1 Mark]**
 
 ---
 
 ## 5. Ensemble Learning
 
-### Concept: Bagging vs AdaBoost --- Sources of Learner Diversity
+### Concept: Bagging vs AdaBoost — Sources of Learner Diversity
+### Concept: Random Forest — Feature Subsampling & Tree Correlation
+### Concept: Majority Voting — Ensemble Accuracy
 
-### Concept: Random Forest --- Feature Subsampling & Tree Correlation
+**Question (Sample Paper Q4 — 6 Marks)**
 
-### Concept: Majority Voting --- Ensemble Accuracy
+A telecom company compares Bagging, Random Forest and AdaBoost for churn prediction. (a) Explain how Bagging and AdaBoost create learner diversity, distinguishing data-level randomness from error-driven focus. **[2]** (b) Identify Random Forest's additional randomness and explain why it reduces tree correlation. **[2]** (c) For 3 independent classifiers each with accuracy 0.7, compute majority-vote accuracy and compare with an individual classifier. **[2]**
 
-**Question (Sample Paper Q4 --- 6 Marks)**
+### Concept: AdaBoost — Weighted Error & Weak-Learner Weight
+### Concept: AdaBoost — Sample-Weight Update & Normalization
+### Concept: AdaBoost — Final Weighted Ensemble Prediction
+### Concept: AdaBoost — Weak Learner with Error > 0.5 & Robustness vs Majority Voting
 
-A telecom company is building a machine learning system to predict customer churn (Yes/No) using historical usage and billing data. The dataset contains 20,000 customers and 30 features (call duration, recharge frequency, complaints, etc.).
+**Question (NSP4-S2-25 Exam Q3 — 6 Marks)**
 
-The data science team experiments with three ensemble approaches:
-- Bagging with decision trees
-- Random Forest
-- AdaBoost with decision stumps
+A bank develops an AdaBoost fraud classifier. Current weights/classes/predictions: T1(0.1,+1,+1), T2(0.2,+1,-1), T3(0.25,-1,-1), T4(0.15,-1,+1), T5(0.3,+1,+1). Use εt=sum of weights of misclassified points; αt=0.5 ln[(1-εt)/εt]; wi←wi exp(-αt yi ht(xi)), then normalize. For new q: h1 weight 0.6 predicts +1; h2 weight 0.31 predicts -1; h3 weight 0.8 predicts -1.
 
-During model evaluation, the team observes:
-- Individual decision trees are high-variance models.
-- Each base classifier trained independently achieves an accuracy of approximately 70%.
-- The business requirement emphasizes robustness and generalization, not just single-model accuracy.
+(a) Identify misclassified transactions, compute εt and αt, interpret sign. **[1.5]**
+(b) Update and normalize every transaction weight. **[2]**
+(c) Compute final weighted ensemble score and class. **[1]**
+(d) If a learner has error 0.55, should it be included? State corrective action and why weighted AdaBoost is more robust than unweighted majority voting. **[1.5]**
 
-(a) The team trains 100 decision trees using Bagging and 100 weak learners using AdaBoost. Explain, with reference to the training process, how each method creates diversity among its base learners. Your answer must clearly distinguish data-level randomness from error-driven focus. **[2 Marks]**
+### Concept: AdaBoost Decision Stump — Threshold Selection, Learner Importance & Instance-Weight Update
 
-(b) When switching from Bagging to Random Forest, the team notices improved validation performance. Identify the additional source of randomness introduced by Random Forest and explain numerically or structurally why this reduces correlation among trees compared to standard Bagging. **[2 Marks]**
+**Question (2023–24 End-Sem Regular Q5 — 5 Marks)**
 
-(c) Suppose the final ensemble uses 3 independently trained classifiers, each with accuracy 0.7, and predictions are combined using majority voting.
+Assume that in the **AdaBoost algorithm**, we are initially given a dataset of 6 points with classification **(x,y=class): (1,+), (2,+), (3,-), (4,-), (5,+), (6,+)**. The classifier is a decision-tree stump choosing a constant **c** such that all points with **x > c** are labeled one class and all points with **x ≤ c** are labeled the other class. Assume the first classifier (at the end of the first iteration) misclassifies only the points at **x=1 and x=2**.
 
-1. Compute the probability that the ensemble prediction is correct.
-2. Based on your calculation, state whether the ensemble is better than an individual classifier, and justify numerically. **[2 Marks]**
-
-### Concept: AdaBoost --- Weighted Error & Weak-Learner Weight
-
-### Concept: AdaBoost --- Sample-Weight Update & Normalization
-
-### Concept: AdaBoost --- Final Weighted Ensemble Prediction
-
-### Concept: AdaBoost --- Weak Learner with Error > 0.5 & Robustness vs Majority Voting
-
-**Question (NSP4-S2-25 Exam Q3 --- 6 Marks)**
-
-A bank develops an AdaBoost classifier to flag transactions as Fraudulent (+1) or Genuine (-1). At a particular boosting round, the training observations have the following weights, actual classes, and current weak-learner predictions:
-
-| Transaction | Current Weight (wi) | Actual Class (yi) | Weak Learner Prediction ht(xi) |
-|---|---:|---:|---:|
-| T1 | 0.1 | 1 | 1 |
-| T2 | 0.2 | 1 | -1 |
-| T3 | 0.25 | -1 | -1 |
-| T4 | 0.15 | -1 | 1 |
-| T5 | 0.3 | 1 | 1 |
-
-Use: weighted error εt = Σ(wi for misclassified i); learner weight αt = 0.5 × ln[(1-εt)/εt]; unnormalized weight update wi ← wi × exp(-αt · yi · ht(xi)); normalized weight = unnormalized weight / Z, where Z is the sum of all unnormalized weights.
-
-After three boosting rounds, three weak learners are available for a new transaction q:
-
-| Weak Learner | Learner Weight | Prediction for q |
-|---|---:|---:|
-| h1 | 0.6 | 1 |
-| h2 | 0.31 | -1 |
-| h3 | 0.8 | -1 |
-
-(a) Identify the misclassified transactions, compute the weighted error εt, the learner weight αt, and interpret what the sign of αt indicates about this weak learner. **[1.5 Marks]**
-
-(b) Compute the unnormalized and normalized updated weight of every transaction. Which transactions receive increased attention in the next round? **[2 Marks]**
-
-(c) Compute the final weighted ensemble score for transaction q using h1, h2, h3, and determine its predicted class. **[1 Mark]**
-
-(d) Suppose a subsequent weak learner produces an error rate of 0.55. Should it be included in its current form? State the corrective action indicated by the boosting procedure, and briefly explain why AdaBoost's weighted combination is generally more robust than plain (unweighted) majority voting when base classifiers have very different competence levels. **[1.5 Marks]**
+What are possible values of **c** for the first classifier? Find the **importance of the first classifier**, and values of **instance weights at the end of the first iteration**. **[5 Marks]**
 
 ---
 
 ## 6. Gaussian Mixture Models (GMM) / EM
 
-### Concept: EM Algorithm --- E-Step Responsibilities
-
+### Concept: EM Algorithm — E-Step Responsibilities
 ### Concept: Log-Likelihood
+### Concept: EM Algorithm — M-Step Parameter Updates
+### Concept: GMM vs K-Means — Soft vs Hard Assignment
 
-### Concept: EM Algorithm --- M-Step Parameter Updates
+**Question (Sample Paper Q5 — 6 Marks)**
 
-### Concept: GMM vs K-Means --- Soft vs Hard Assignment
+For X={-4,-2,0,3}, fit a two-component GMM with π1=0.6, π2=0.4, μ1=-3, μ2=2, σ1²=σ2²=1. (a) E-step responsibilities. **[2]** (b) Log-likelihood. **[0.5]** (c) M-step updated weights, means and variances. **[2]** (d) One K-Means iteration with centroids -3 and 2 and comparison with GMM means. **[1.5]**
 
-**Question (Sample Paper Q5 --- 6 Marks)**
+### Concept: Gaussian Mixture Model — One EM Iteration with Multivariate Features
+### Concept: Responsibility Matrix — Soft Cluster Membership
+### Concept: M-Step — Updated Mixture Weights & Cluster Means
+### Concept: Soft Clustering — Appropriate Application Scenario
 
-A reliability team is analyzing machine vibration data collected from four machines, represented by a single standardized vibration feature:
+**Question (2023–24 End-Sem Regular Q4 — 8 Marks; GMM variant in uploaded image set)**
 
-**X = {−4, −2, 0, 3}**
+A committee wants to cluster literary works using two features: **Readership Base** and **Number of Translations**.
 
-They believe the data is generated by two latent operating modes and model it using a Gaussian Mixture Model (GMM) with two components.
+| Literary Work | Readership Base | Number of Translations |
+|---|---:|---:|
+| ID:1 | 70 | 5 |
+| ID:2 | 30 | 3 |
+| ID:3 | 50 | 7 |
 
-Initial parameters:
-- π1 = 0.6, π2 = 0.4
-- μ1 = −3, μ2 = 2
-- σ1² = σ2² = 1
+Use the features as-is without scaling and round calculations to four decimal places.
 
-Gaussian density: **N(x | μ, σ²) = (1 / √(2πσ²)) exp(−(x−μ)² / (2σ²))**
+(a) Assume the data follows a **Gaussian Distribution**. Apply **Gaussian Mixture Model based soft clustering for one iteration** to cluster the points into two clusters. Initial values (mean vector, standard-deviation vector, weight) are: Cluster 1 = **((20,1),(10,1),0.5)** and Cluster 2 = **((50,7),(10,1),0.5)**. Show step-by-step computations and the final **responsibility matrix** at the end of the first iteration. **[4.5 Marks]**
 
-(a) Perform the E-step. Compute the responsibilities γi1 and γi2 for each data point. **[2 Marks]**
+(b) Find only the **new mixture weights and cluster means** at the end of the first iteration. No need to calculate other prototypes' standard deviations. **[1.5 Marks]**
 
-(b) Using the mixture likelihoods obtained above, compute the log-likelihood of the data at iteration 0. **[0.5 Mark]**
-
-(c) Perform the M-step and compute the updated mixing weights, means, and variances. **[2 Marks]**
-
-(d) Now apply one iteration of K-Means with k = 2 using initial centroids −3 and 2. Compute the updated centroids and compare them with the updated GMM means. State one reason for any difference observed. **[1.5 Marks]**
+(c) Give a plagiarism-free example and sample feature design from the domain of **healthcare where soft clustering is best suited than hard clustering**. Justify your choice in no more than 40 words. **[2 Marks]**
 
 ---
 
 ## 7. K-Means Clustering
 
-### Concept: K-Means --- One Iteration, Euclidean Distance, Cluster Assignment & Centroid Update
+### Concept: K-Means — One Iteration, Euclidean Distance, Cluster Assignment & Centroid Update
 
-**Question (NSP4-S2-25 Exam Q1(a) --- 3 Marks)**
+**Question (NSP4-S2-25 Exam Q1(a) — 3 Marks)**
 
-A logistics company wants to group delivery locations using two operational features: x1 = average delivery time (minutes) and x2 = average number of packages delivered per trip.
+For delivery locations P(2,3), Q(3,4), R(4,5), S(5,5), T(6,6), U(7,7), V(8,6), W(9,7), use K-Means with C1=(2,3), C2=(9,7). Perform one Euclidean-distance iteration, show distances, assignments and updated centroids. **[3]**
 
-| Location | x1: Avg. delivery time | x2: Packages/trip |
-|---|---:|---:|
-| P | 2 | 3 |
-| Q | 3 | 4 |
-| R | 4 | 5 |
-| S | 5 | 5 |
-| T | 6 | 6 |
-| U | 7 | 7 |
-| V | 8 | 6 |
-| W | 9 | 7 |
+### Concept: K-Means — Sensitivity to Initial Centroids
 
-Using K-Means with initial centroids C1 = (2,3) and C2 = (9,7), perform one iteration using Euclidean distance. Show the distance of every point to both centroids, the resulting cluster assignments, and the updated centroids. **[3 Marks]**
+**Question (NSP4-S2-25 Exam Q1(b) — 2 Marks)**
 
-### Concept: K-Means --- Sensitivity to Initial Centroids
+If initial centroids were C1'=(4,5) and C2'=(5,5), reason without fully recomputing whether this is likely to produce good final clustering and explain K-Means sensitivity to initialization. **[2]**
 
-**Question (NSP4-S2-25 Exam Q1(b) --- 2 Marks)**
+### Concept: K-Means — Limitations & Alternative Clustering Approaches
 
-Suppose instead the initial centroids had been chosen as C1' = (4,5) and C2' = (5,5) - two nearby, very similar points, rather than two well-separated extremes. Without recomputing fully, reason about whether this choice is likely to produce a good final clustering, and explain why K-Means' outcome is sensitive to the choice of initial centroids. **[2 Marks]**
+**Question (NSP4-S2-25 Exam Q1(c) — 2 Marks)**
 
-### Concept: K-Means --- Limitations & Alternative Clustering Approaches
-
-**Question (NSP4-S2-25 Exam Q1(c) --- 2 Marks)**
-
-K-Means assumes clusters are roughly compact and similar in size. Describe one scenario (from the limitations covered in class - differing cluster sizes, differing densities, non-globular shapes, or outliers) where K-Means would fail to produce a meaningful clustering, and name an alternative approach that better handles that specific scenario. **[2 Marks]**
+Describe one scenario involving differing cluster sizes, densities, non-globular shapes or outliers where K-Means fails, and name a better alternative. **[2]**
 
 ---
 
 ## 8. Gradient Boosting
 
-### Concept: Gradient Boosting Regression --- Initial Prediction & Pseudo-Residuals
-
+### Concept: Gradient Boosting Regression — Initial Prediction & Pseudo-Residuals
 ### Concept: Regression Tree Leaf Predictions
-
 ### Concept: Learning-Rate Update After One Boosting Iteration
 
-**Question (Sample Paper Q6 --- 3 Marks)**
+**Question (Sample Paper Q6 — 3 Marks)**
 
-A logistics company wants to predict Delivery Time (in minutes) for short intra-city deliveries using Gradient Boosting Regression with squared loss.
-
-| Job | Traffic Level | Distance (km) | Vehicle | Actual Time (y) |
-|---|---|---:|---|---:|
-| J1 | High | 3 | Bike | 34 |
-| J2 | High | 6 | Van | 52 |
-| J3 | Low | 4 | Bike | 28 |
-| J4 | Low | 8 | Van | 46 |
-| J5 | High | 5 | Bike | 40 |
-
-Setup:
-- Initial model F₀ predicts a constant value equal to the mean of y.
-- Squared loss is used, so pseudo-residuals are rᵢ = yᵢ − F₀(xᵢ).
-- Learning rate η = 0.2.
-- First weak learner h₁(x): If Traffic Level = Low → Leaf L_A; otherwise, if Distance ≤ 4 → Leaf L_B; else → Leaf L_C.
-- Each leaf predicts the average residual of the samples reaching that leaf.
-
-(a) Compute F₀ and the pseudo-residuals for all samples. **[1 Mark]**
-
-(b) Compute the leaf predictions L_A, L_B, and L_C. **[1 Mark]**
-
-(c) Compute the updated prediction F₁(x) and the new residual for Job J2 after one boosting iteration. **[1 Mark]**
+A logistics company uses Gradient Boosting Regression with squared loss. Initial F0 is mean(y), pseudo-residual ri=yi-F0(xi), η=0.2. First weak learner partitions by Traffic Level and Distance. (a) Compute F0 and residuals. **[1]** (b) Compute leaf predictions. **[1]** (c) Compute F1 and new residual for J2. **[1]**
 
 ---
 
 ## 9. Support Vector Machines (SVM)
 
-### Concept: Maximum-Margin Hyperplane --- Geometric Construction from Support Vectors
-
-### Concept: Canonical Margin --- Computing w and b
-
-### Concept: Dual Formulation --- Lagrange Multipliers & Support Vectors
-
+### Concept: Maximum-Margin Hyperplane — Geometric Construction from Support Vectors
+### Concept: Canonical Margin — Computing w and b
+### Concept: Dual Formulation — Lagrange Multipliers & Support Vectors
 ### Concept: Margin Width & Robustness
+### Concept: Kernelized SVM — Computational Cost
 
-### Concept: Kernelized SVM --- Computational Cost
+**Question (Sample Paper Q7 — 8 Marks)**
 
-**Question (Sample Paper Q7 --- 8 Marks)**
+Training data: P1(1,4,+1), P2(2,3,+1), P3(4,1,-1), P4(5,2,-1), with only P2 and P3 support vectors. (a) Geometrically identify maximum-margin hyperplane. **[2]** (b) Use yi(wᵀxi+b)=1 to compute w,b and f(x). **[2]** (c) State αi condition for support vectors and why only P2/P3 influence classifier. **[1.5]** (d) Compute ||w|| and 2/||w|| and interpret larger margin. **[2]** (e) State why kernelized SVM may be computationally expensive. **[0.5]**
 
-A financial institution is using a Support Vector Machine (SVM) to classify transactions as High Risk (+1) or Low Risk (−1). Each transaction is represented using two structured numeric features x₁ and x₂. In later stages, the bank plans to include unstructured text embeddings from transaction remarks.
+### Concept: SVM Hyperparameters — C, Gamma, Overfitting & Linear Boundary Suitability
 
-Training data:
+**Question (NSP4-S2-25 Exam Q4(a) — 3 Marks)**
 
-| Point | x₁ | x₂ | Class y |
-|---|---:|---:|---:|
-| P1 | 1 | 4 | +1 |
-| P2 | 2 | 3 | +1 |
-| P3 | 4 | 1 | −1 |
-| P4 | 5 | 2 | −1 |
+Model A: Linear SVM C=0.5, train=91%, test=89%. Model B: polynomial SVM C=100, gamma=20, train=100%, test=76%. Which overfits? Explain C and gamma and suitability of linear boundary. **[3]**
 
-Assume that in the optimal maximum-margin solution, only P2 and P3 are support vectors.
+### Concept: Hard-Margin SVM — Primal Formulation, Lagrangian & Stationarity Conditions
 
-(a) Using geometric reasoning, identify the equation of the maximum-margin separating hyperplane for the given data. Clearly justify your choice based on the support vectors. **[2 Marks]**
+**Question (NSP4-S2-25 Exam Q4(b) — 3 Marks)**
 
-(b) Assuming that the support vectors satisfy the canonical margin conditions yᵢ(wᵀxᵢ + b) = 1, compute a valid weight vector w and bias b. Write the resulting decision function f(x) = wᵀx + b. **[2 Marks]**
+Write hard-margin primal min ½||w||² subject to yi(wᵀxi+b)≥1, formulate L(w,b,α), derive stationarity from ∂L/∂w=0 and ∂L/∂b=0, and state how optimal w is built from training data. **[3]**
 
-(c) State the condition on the Lagrange multipliers αᵢ that identifies a support vector in the dual formulation of SVM. Explain why only P2 and P3 influence the final classifier. **[1.5 Marks]**
+### Concept: KKT Complementary Slackness — Identifying Support Vectors & Functional Margin
 
-(d) Compute ||w|| and the margin width 2/||w||. What does a larger margin imply about the classifier's robustness? **[2 Marks]**
+**Question (NSP4-S2-25 Exam Q4(c) — 2 Marks)**
 
-(e) To incorporate text embeddings, the bank switches to a kernelized SVM. Consider the kernels:
-
-- K₁(x,z) = (xᵀz + 2)²
-- K₂(x,z) = exp(−0.5||x−z||²)
-- K₃(x,z) = sin(xᵀz)
-
-State one reason why kernelized SVMs may become computationally expensive. **[0.5 Mark]**
-
-### Concept: SVM Hyperparameters --- C, Gamma, Overfitting & Linear Boundary Suitability
-
-**Question (NSP4-S2-25 Exam Q4(a) --- 3 Marks)**
-
-A semiconductor company uses an SVM classifier to identify defective chips from two normalized inspection features: surface irregularity and thermal deviation. Two candidate models are trained:
-
-- Model A: Linear SVM, C = 0.5; training accuracy = 91%, test accuracy = 89%
-- Model B: polynomial-kernel SVM, C = 100, gamma = 20; training accuracy = 100%, test accuracy = 76%
-
-Which model is overfitting? Explain the effect of C and gamma. What do the results suggest about the suitability of a linear boundary for this dataset? **[3 Marks]**
-
-### Concept: Hard-Margin SVM --- Primal Formulation, Lagrangian & Stationarity Conditions
-
-**Question (NSP4-S2-25 Exam Q4(b) --- 3 Marks)**
-
-Write the primal formulation for Model A's hard-margin SVM (minimize ½||w||² subject to yi(wᵗxi+b) ≥ 1 for all i), then formulate the Lagrangian L(w, b, α) using Lagrange multipliers αi ≥ 0. Derive the two stationarity conditions from ∂L/∂w = 0 and ∂L/∂b = 0, and briefly state what these conditions tell you about how the optimal w is built from the training data. **[3 Marks]**
-
-### Concept: KKT Complementary Slackness --- Identifying Support Vectors & Functional Margin
-
-**Question (NSP4-S2-25 Exam Q4(c) --- 2 Marks)**
-
-The optimizer has already assigned Lagrange multipliers to four inspection chips (no need to solve for these - they are given): αA = 0, αB = 2.5, αC = 0, αD = 1.8. Using the KKT complementary-slackness condition αi[yi(wᵗxi+b) - 1] = 0, identify which chips are support vectors. For the chips that are NOT support vectors, what must be true about their functional margin yi(wᵗxi+b)? **[2 Marks]**
+Given αA=0, αB=2.5, αC=0, αD=1.8 and αi[yi(wᵀxi+b)-1]=0, identify support vectors and state what must be true of the functional margin for non-support vectors. **[2]**
 
 ---
 
 ## 10. Decision Trees
 
-### Concept: Overfitting --- Tree Depth & Minimum Leaf Size
+### Concept: Overfitting — Tree Depth & Minimum Leaf Size
+### Concept: Stopping Conditions — Complexity vs Generalization
 
-### Concept: Stopping Conditions --- Complexity vs Generalization
+**Question (Sample Paper Q8 — 2 Marks)**
 
-**Question (Sample Paper Q8 --- 2 Marks)**
+Model A: unrestricted depth, leaf can contain one sample, training accuracy 99%, test 71%. Model B: depth restricted to 4, at least 25 samples per leaf, training 86%, test 83%. (a) Which overfits? **[0.5]** (b) Why does the other perform well? **[0.5]** (c) Explain how stopping conditions affect complexity/generalization. **[1]**
 
-A bank trains two Decision Tree models to predict loan default:
+### Concept: Decision Trees — Interpretability & Limitations
 
-**Model A:**
-- The tree is allowed to grow without depth restriction.
-- A leaf node may contain even a single training sample.
-- Training Accuracy = 99%
-- Test Accuracy = 71%
+**Question (2023–24 End-Sem Regular Q2(a) — 2 Marks)**
 
-**Model B:**
-- The tree depth is restricted to 4 levels.
-- Each leaf must contain at least 25 training samples.
-- Training Accuracy = 86%
-- Test Accuracy = 83%
-
-(a) Which model is overfitting? **[0.5 Mark]**
-
-(b) Why does the other model perform well? **[0.5 Mark]**
-
-(c) Briefly explain how the stopping conditions influence model complexity and generalization. **[1 Mark]**
+**How can Decision Tree models aid in enhancing the Interpretability of Machine Learning Systems, and what are their limitations? [1+1 Marks]**
 
 ---
 
-## 11. Algorithmic Fairness / Bias
+## 11. Model Evaluation / Classification Metrics
 
-### Concept: Algorithmic Bias --- Bias Originating from Training Data
+### Concept: Precision & Recall — Contextual Interpretation
+### Concept: Precision–Recall Trade-off — False Positives vs False Negatives
+### Concept: Metric Selection — Cost-Sensitive Choice for Spam Filtering
 
-**Question (NSP4-S2-25 Exam Q5(a) --- 1 Mark)**
+**Question (2023–24 End-Sem Regular Q2(b) — 5 Marks)**
 
-A bank builds a loan-approval ML model. To ensure fairness, the data science team removes gender and race/ethnicity entirely before training. An external auditor later reviews a sample of the model's decisions:
+You are an ML engineer working in a large organization that receives many spam emails. Your boss asks you to build a spam filter to distinguish genuine emails from unwanted spam emails. **Assume spam is the positive class.**
 
-| Applicant | Zip Code | Language Preference | Loan Approved? |
-|---|---|---|---|
-| A | 90210 | English | Yes |
-| B | 60623 | Spanish | No |
-| C | 90210 | English | Yes |
-| D | 60623 | Spanish | No |
+1. Describe **Precision and Recall** with respect to the given problem. **[1 Mark]**
+2. Explain what happens if you optimize each of the above parameters. **[2 Marks]**
+3. Which would be more important to optimize and why? **[2 Marks]**
 
-The auditor finds that Zip Code and Language Preference are among the model's most heavily weighted features, and that approval outcomes split almost perfectly along these two features.
+---
 
-Even though the developers had no intention to discriminate, explain how algorithmic bias can still enter a model like this - referencing where bias typically originates in the training data. **[1 Mark]**
+## 12. Algorithmic Fairness / Bias
 
-### Concept: Fairness Through Unawareness --- Proxy Variables & Indirect Discrimination
+### Concept: Algorithmic Bias — Bias Originating from Training Data
 
-**Question (NSP4-S2-25 Exam Q5(b) --- 2 Marks)**
+**Question (NSP4-S2-25 Exam Q5(a) — 1 Mark)**
 
-The bank's specific fix - removing race/gender directly from the inputs ("Fairness Through Unawareness") - appears to satisfy fairness on the surface. Using the auditor's finding as evidence, explain why this approach still failed, name the phenomenon it illustrates, and state one general reason this kind of fix is hard to guarantee in real-world data. **[2 Marks]**
+A bank removes gender and race/ethnicity before training a loan model, but Zip Code and Language Preference strongly split approvals. Explain how algorithmic bias can still enter the model, referencing where bias originates in training data. **[1]**
+
+### Concept: Fairness Through Unawareness — Proxy Variables & Indirect Discrimination
+
+**Question (NSP4-S2-25 Exam Q5(b) — 2 Marks)**
+
+Explain why removing race/gender directly still failed, name the phenomenon illustrated by Zip Code/Language Preference, and state why such a fix is hard to guarantee in real-world data. **[2]**
